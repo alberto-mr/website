@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/index/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/index/" rel="alternate" type="text/html" /><updated>2020-11-15T15:55:46+01:00</updated><id>http://localhost:4000/index/feed.xml</id><title type="html">Alberto Monge Roffarello</title><subtitle>Personal website of Alberto Monge Roffarello, PostDoc researcher at Politecnico di Torino</subtitle><entry><title type="html">PhD Defense</title><link href="http://localhost:4000/index/presentations/2020/05/22/defense.html" rel="alternate" type="text/html" title="PhD Defense" /><published>2020-05-22T00:00:00+02:00</published><updated>2020-05-22T00:00:00+02:00</updated><id>http://localhost:4000/index/presentations/2020/05/22/defense</id><content type="html" xml:base="http://localhost:4000/index/presentations/2020/05/22/defense.html">&lt;p&gt;&lt;img style=&quot;float: left; margin-right: 10px; &quot; height=&quot;250px&quot; src=&quot;/index/assets/images/news/eud_iot.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p style=&quot;text-align: justify;&quot;&gt;
+On Friday, May 22, 2020, at 9:00, I defended my Ph.D. final dissertation, presenting the thesis &quot;End-User Development in the Internet of Things&quot;.&lt;br /&gt;&lt;br /&gt;
+
+The defense has been evaluated by an International Committee composed by: Aaron Quigley (University of New South Wales, Australia), Fabio Paternò (CNR ISTI, Italy), Marianna Obrist (University of Sussex, UK), Cristina Gena (Università degli Studi di Torino, Italy), and Maurizio Morisio (Politecnico di Torino, IT).
+&lt;/p&gt;
+
+&lt;p&gt;More information:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://iris.polito.it/handle/11583/2847152#.X7E_CxNKjlw&quot;&gt;PhD thesis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://elite.polito.it/files/papers/Monge-PhD-presentation.pdf&quot;&gt;Presentation slides&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=a-mkbNZhYtQ&amp;amp;feature=youtu.be&quot;&gt;Video of the defense&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="presentations" /><summary type="html"></summary></entry><entry><title type="html">Presentation of “Empowering End Users in Debugging Trigger-Action Rules” at CHI 2019</title><link href="http://localhost:4000/index/presentations/2019/05/09/chi.html" rel="alternate" type="text/html" title="Presentation of “Empowering End Users in Debugging Trigger-Action Rules” at CHI 2019" /><published>2019-05-09T00:00:00+02:00</published><updated>2019-05-09T00:00:00+02:00</updated><id>http://localhost:4000/index/presentations/2019/05/09/chi</id><content type="html" xml:base="http://localhost:4000/index/presentations/2019/05/09/chi.html">&lt;p&gt;&lt;img style=&quot;float: left; margin-right: 10px; &quot; height=&quot;250px&quot; src=&quot;/index/assets/images/news/euddebug.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p style=&quot;text-align: justify;&quot;&gt;
+On May 9, 2019, I presented the paper &quot;Empowering End Users in Debugging Trigger-Action Rules&quot; at the audience of ACM CHI 2019 (International CHI Conference on Human Factors in Computing Systems), held in Glasgow, UK.
+&lt;br /&gt;&lt;br /&gt;
+The paper presents EUDebug, a system that enables end users to debug trigger-action rules for personalizing Internet of Things (IoT) devices and service. With EUDebug, users compose rules in a web-based application like &lt;a href=&quot;https://ifttt.com/&quot;&gt;IFTTT&lt;/a&gt;. The system highlights possible problems that the set of all defined rules may generate and allows their step-by-step simulation. Under the hood, a hybrid Semantic Colored Petri Net (SCPN) models, checks, and simulates trigger-action rules and their interactions. Results of exploratory study on 15 end users shows that EUDebug helps identifying and understanding problems in trigger-action rules, which are not easily discoverable in existing platforms.
+&lt;/p&gt;
+
+&lt;p&gt;More information:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://iris.polito.it/handle/11583/2724318#.X7E-wRNKjlw&quot;&gt;PDF of the paper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.acm.org/doi/10.1145/3290605.3300618&quot;&gt;Link to the ACM DL&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/AlbertoMongeRoffarel/empowering-end-users-in-debugging-triggeraction-rules&quot;&gt;Presentation slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="presentations" /><summary type="html"></summary></entry><entry><title type="html">Presentation of “The Race Towards Digital Wellbeing: Issues and Opportunities” at CHI 2019</title><link href="http://localhost:4000/index/presentations/2019/05/06/chi.html" rel="alternate" type="text/html" title="Presentation of “The Race Towards Digital Wellbeing: Issues and Opportunities” at CHI 2019" /><published>2019-05-06T00:00:00+02:00</published><updated>2019-05-06T00:00:00+02:00</updated><id>http://localhost:4000/index/presentations/2019/05/06/chi</id><content type="html" xml:base="http://localhost:4000/index/presentations/2019/05/06/chi.html">&lt;p&gt;&lt;img style=&quot;float: left; margin-right: 10px; &quot; height=&quot;250px&quot; src=&quot;/index/assets/images/news/dwb.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p style=&quot;text-align: justify;&quot;&gt;
+On May 6, 2019, I presented the paper &quot;The Race Towards Digital Wellbeing: Issues and Opportunities&quot; at the audience of ACM CHI 2019 (International CHI Conference on Human Factors in Computing Systems), held in Glasgow, UK.
+&lt;br /&gt;&lt;br /&gt;
+The paper provides an overall perspective of contemporary mobile apps designed for for breaking &quot;smartphone addiction&quot; and achieving &quot;digital wellbeing&quot;. It presents, in particular, a functionality review of the 42 most popular digital wellbeing apps available in the Google Play Store, a thematic analysis of more than 1000 users' reviews, and an in-the-wild study of a digital wellbeing app named Socialize. Results show that contemporary digital wellbeing apps are liked by users and useful for some specific use cases, but they are not sufficient for effectively changing users' behavior with smartphones: promising areas to be explored include the design of digital wellbeing apps that support the formation of new habits and promote self regulation through social support.
+&lt;/p&gt;
+
+&lt;p&gt;More information:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://iris.polito.it/handle/11583/2724317#.X7E_xhNKjlw&quot;&gt;PDF of the paper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dl.acm.org/doi/10.1145/3290605.3300616&quot;&gt;Link to the ACM DL&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/AlbertoMongeRoffarel/the-race-towards-digital-wellbeing-issues-and-opportunities&quot;&gt;Presentation slides&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube-nocookie.com/embed/iE34A1agELI&quot;&gt;Video of the presentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="presentations" /><summary type="html"></summary></entry></feed>
