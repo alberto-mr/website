@@ -21,7 +21,7 @@ email: alberto.monge@polito.it
 * <p style='text-align: justify;'>
 PhD in Control and Computer Engineering (<b>with honors</b>), Politecnico di Torino
 <br>Committee: Aaron Quigley, Fabio Paternò, Marianna Obrist, Antonio Piccinno, Maurizio Morisio<br>
-<a href="https://elite.polito.it/files/people/monge/papers/thesis.pdf">Link to the PhD thesis</a> - <a href = "/index/EUD/">Overview of my PhD</a></p>
+<a href="https://elite.polito.it/files/people/monge/papers/thesis.pdf">Link to the PhD thesis</a> - <a href = "../EUD/">Overview of my PhD</a></p>
 
 > 2016-2020
 
@@ -84,7 +84,7 @@ High-School Teacher for the course <a href = "https://minerva.miurprogettopps.un
 * **RecRules: Recommending IF-THEN Rules for End-User Development**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST)  
 [pdf](https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw) - [source code](https://git.elite.polito.it/public-projects/recrules)
 
-Click [here](/index/publications) to see the full list of publications.
+Click [here](../publications) to see the full list of publications.
 
 ## Service
 * Reviewer for CHI, MobileHCI, CSCW, EICS, IUI, Journal of Ambient Intelligence and Smart Environments (JAISE), IEEE Access, International Journal of Human-Computer Studies (IJHCS), IEEE Internet of Things Journal.
