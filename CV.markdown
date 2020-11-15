@@ -20,14 +20,15 @@ email: alberto.monge@polito.it
 
 * <p style='text-align: justify;'>
 PhD in Control and Computer Engineering (<b>with honors</b>), Politecnico di Torino
-<br>Committee: Aaron Quigley, Fabio Paternò, Marianna Obrist, Antonio Piccinno, Maurizio Morisio<br>
+<br>Advisor: <a href="https://elite.polito.it/index.php/people/members/fulvio-corno/">Fulvio Corno</a>
+<br>Evaluation Committee: Aaron Quigley, Fabio Paternò, Marianna Obrist, Antonio Piccinno, Maurizio Morisio<br>
 <a href="https://elite.polito.it/files/people/monge/papers/thesis.pdf">Link to the PhD thesis</a> - <a href = "../EUD/">Overview of my PhD</a></p>
 
 > 2016-2020
 
 * <p style='text-align: justify;'>
 MSc. in Computer Engineering (<b>cum laude</b>), Politecnico di Torino
-<br>Thesis Advisor: Fulvio Corno<br>
+<br>Thesis Advisor: <a href="https://elite.polito.it/index.php/people/members/fulvio-corno/">Fulvio Corno</a><br>
 <a href="https://elite.polito.it/files/people/monge/papers/thesis_msc.pdf">Link to the MSc thesis</a> </p>
 
 > 2016-2020

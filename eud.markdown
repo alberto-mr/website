@@ -3,6 +3,7 @@ layout: page
 title: EUD
 permalink: /eud/
 ---
+<img style="float: left; margin-right: 10px; " height="250px"  src="../assets/images/eud.png">
 
 <p style='text-align: justify;'>In the contemporary Internet of Things (IoT) era, people can interact with a multitude of smart devices, always connected to the Internet, in the majority of today’s environments. With lamps, thermostats, and many other appliances that can be remotely controlled, homes and workplaces are becoming “smart.” Furthermore, by using PCs and smartphones, users can access a variety of online services, ranging from social networks to news and messaging apps. The result is a complex network of connected entities, be they physical devices or virtual services, that can communicate with each other, with humans, and with
 the environment. This complex scenario opens up, at the same time, possibilities and issues. By taking advantage of End-User Development (EUD) solutions, users can actively participate in the IoT by personalizing the functionality of their connected entities.
