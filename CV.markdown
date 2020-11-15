@@ -4,7 +4,7 @@ title: CV
 permalink: /cv/
 ---
 <p style='text-align: justify;'>
-I am a postdoctoral research assistant at the <a href="https://www.dauin.polito.it/"> Department of Control and Computer Engineering</a>, Politecnico di Torino, with the <a href = "https:/elite.polito.it">e-Lite Research Group</a>. My research is at the intersection of end-user development, Internet of Things, and digital wellbeing.
+I am a postdoctoral research assistant at the <a href="https://www.dauin.polito.it/"> Department of Control and Computer Engineering</a>, Politecnico di Torino, with the <a href = "https://elite.polito.it">e-Lite Research Group</a>. My research is at the intersection of end-user development, Internet of Things, and digital wellbeing.
 <br><br>
 <b>Contacts:</b><br></p>
 ```
