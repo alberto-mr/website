@@ -62,7 +62,10 @@ PhD student at Politecnico di Torino at the <a href="https://www.dauin.polito.it
 > 2019 - present
 
 * <p style='text-align: justify;'>
-Teaching assistant for the course <a href = "https://elite.polito.it/teaching/current-courses/521-wa1">01TXYOV - Web Applications I</a>, offered to students in the 1st year of Master Degree in Computer Engineering. The course aims at presenting the main techniques for creating distributed web applications. In focuses in particular on the front-end programming: topics include the JavaScript language and the React framework. </p>
+Teaching assistant for the course <a href = "https://elite.polito.it/teaching/current-courses/521-wa1">01TXYOV - Web Applications I</a>, offered to students in the 1st year of Master Degree in Computer Engineering. The course aims at presenting the main techniques for creating distributed web applications. It focuses in particular on the front-end programming: topics include the JavaScript language and the React framework. </p>
+
+* <p style='text-align: justify;'>
+Primary-school teacher for the project <a href ="https://fondazionemirafiori.it/batti-il-5-progetto"> Batti il 5</a>, in the collaboration with <a href = "https://www.conibambini.org/">Impresa Sociale Con i bambini - Fondo per il contrasto alla povertà educativa minorile</a>. The goal of the project is to train students and teachers of different primary and secondary schools of Turin in coding and using a computational thinking approach. My role in the project is to coordinate the coding work-package for the primary school.
 
 > 2016 - present
 
@@ -72,9 +75,9 @@ Teaching assistant for the course <a href = "https://elite.polito.it/teaching/cu
 > 2017 - 2019
 
 * <p style='text-align: justify;'>
-Teaching assistant for the course <a href = "https://elite.polito.it/teaching/past-courses/196-01qzp-ami">01QZP - Ambient Intelligence</a>, offered to students in the 3rd year of Engineering (among elective courses). The course aims at describing, from an experimental point of view, theeld of Ambient Intelligence (AmI), outlining its multidisciplinary nature as well as its technology and application area.</p>
+Teaching assistant for the course <a href = "https://elite.polito.it/teaching/past-courses/196-01qzp-ami">01QZP - Ambient Intelligence</a>, offered to students in the 3rd year of Engineering (among elective courses). The course aims at describing, from an experimental point of view, the field of Ambient Intelligence (AmI), outlining its multidisciplinary nature as well as its technology and application area.</p>
 * <p style='text-align: justify;'>
-High-School Teacher for the course <a href = "https://minerva.miurprogettopps.unito.it/">PP&S - Corso Sperimentale di Informatica</a>. The course aims at introducing the students to problem solving, with a particular focus on the Python programming language..</p>
+High-school teacher for the course <a href = "https://minerva.miurprogettopps.unito.it/">PP&S - Corso Sperimentale di Informatica</a>. The course aims at introducing the students to problem solving, with a particular focus on the Python programming language.</p>
 
 ## Featured Publications
 
