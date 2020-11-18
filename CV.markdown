@@ -70,7 +70,7 @@ Primary-school teacher for the project <a href ="https://fondazionemirafiori.it/
 > 2016 - present
 
 * <p style='text-align: justify;'>
-Teaching assistant for the course <a href = "https://elite.polito.it/teaching/current-courses/164-03fyz-tecn-progr"> 03FYZ - Tecniche di Programazione</a>, offered to the students in the 3rd year of Management Engineering. The course aims at improving the programming skills of the students, making them able to face with complex problems through the development of software components.</p>
+Teaching assistant for the course <a href = "https://elite.polito.it/teaching/current-courses/164-03fyz-tecn-progr"> 03FYZ - Tecniche di Programmazione</a>, offered to the students in the 3rd year of Management Engineering. The course aims at improving the programming skills of the students, making them able to face with complex problems through the development of software components.</p>
 
 > 2017 - 2019
 
