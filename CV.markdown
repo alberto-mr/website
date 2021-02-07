@@ -87,9 +87,16 @@ High-school teacher for the course <a href = "https://minerva.miurprogettopps.un
 [pdf](https://iris.polito.it/handle/11583/2724317#.X7E_xhNKjlw) - [source code](https://git.elite.polito.it/public-projects/socialize-v1) - [dataset](https://elite.polito.it/files/releases/Digital-Wellbeing/reviews.rar)
 * **RecRules: Recommending IF-THEN Rules for End-User Development**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST)  
 [pdf](https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw) - [source code](https://git.elite.polito.it/public-projects/recrules)
+* **Coping with Digital Wellbeing in a Multi-Device World**, Alberto Monge Roffarello, and Luigi De Russis, Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI ‘21)  
+[pdf](https://iris.polito.it/retrieve/handle/11583/2862497/423067/multidevicedwb.pdf)
+* **Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults**, Alberto Monge Roffarello, and Luigi De Russis, ACM Transactions on Interactive Intelligent Systems (TiiS)  
+[pdf](https://elite.polito.it/files/papers/habitsdetection.pdf) - [source code](https://git.elite.polito.it/public-projects/socialize-v2)
+* **From Users' Intentions to IF-THEN Rules in the Internet of Things**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS)  
+[pdf](https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf) - [source code](https://git.elite.polito.it/public-projects/intrec)
+
 
 Click [here](../publications) to see the full list of publications.
 
 ## Service
-* Reviewer for CHI, MobileHCI, CSCW, EICS, IUI, Journal of Ambient Intelligence and Smart Environments (JAISE), IEEE Access, International Journal of Human-Computer Studies (IJHCS), IEEE Internet of Things Journal.
+* Reviewer for CHI, MobileHCI, CSCW, IUI, Journal of Ambient Intelligence and Smart Environments (JAISE), IEEE Access, International Journal of Human-Computer Studies (IJHCS), IEEE Internet of Things Journal, PACM on Interactive, Multimedia, Wearable and Ubiquitous Technologies (IMWUT), PACM on Human-Computer Interaction (EICS), Universal Access in the Information Society (UAIS)
 * Associate Chair for CHI Late-Breaking Works

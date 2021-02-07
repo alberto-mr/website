@@ -1,0 +1,16 @@
+I"c<p><img style="float: left; margin-right: 10px; " height="250px" src="../assets/images/news/dwb.png" /></p>
+
+<p style="text-align: justify;">
+Our paper "From Users' Intentions to IF-THEN Rules in the Internet of Things" has been accepted to <a href="https://dl.acm.org/journal/tois">ACM Transaction on Information System (TOIS)</a> as part of the <a href="https://dl.acm.org/doi/10.1145/3381926">special issue on conversational search and recommendation</a>!
+<br /><br />
+The paper presents HeyTAP<sup>2</sup>, a semantic Conversational Search and Recommendation (CSR) system that combines a semantic recommendation algorithm and a navigation-by-preference approach. By exploiting a conversational agent, the user can communicate her current personalization intention by specifying a set of functionality at a high level, e.g., to decrease the temperature of a room when she left it. Stemming from this input, HeyTAP<sup>2</sup> implements a semantic recommendation process that takes into account the current user’s intention, the connected entities owned by the user, and the user's long-term preferences revealed by her profile. If not satisfied with the suggestions, the user can converse with the system to provide further feedback, i.e., a short-term preference, thus allowing HeyTAP<sup>2</sup> to provide refined recommendations that better align with the her original intention.
+
+
+</p>
+
+<p>More information:</p>
+<ul>
+  <li><a href="https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf">PDF of the paper</a></li>
+  <li><a href="https://dl.acm.org/doi/10.1145/3381926">Link to the special issue</a></li>
+</ul>
+:ET

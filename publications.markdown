@@ -4,6 +4,14 @@ title: Publications
 permalink: /publications/
 ---
 
+#### 2021
+* **Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults**, Alberto Monge Roffarello, and Luigi De Russis, ACM Transactions on Interactive Intelligent Systems (TiiS)  
+[[pdf]](https://elite.polito.it/files/papers/habitsdetection.pdf) [[source code]](https://git.elite.polito.it/public-projects/socialize-v2)
+* **From Users' Intentions to IF-THEN Rules in the Internet of Things**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf) [[source code]](https://git.elite.polito.it/public-projects/intrec)
+* **Coping with Digital Wellbeing in a Multi-Device World**, Alberto Monge Roffarello, and Luigi De Russis, Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI ‘21)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2862497/423067/multidevicedwb.pdf)
+
 #### 2020
 * **HeyTAP: Bridging the Gaps Between Users' Needs and Technology in IF-THEN Rules via Conversation**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the International Conference on Advanced Visual Interfaces (AVI ‘20)  
 [[pdf]](https://iris.polito.it/handle/11583/2829354#.X7E_QRNKjlw)

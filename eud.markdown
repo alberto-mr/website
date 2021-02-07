@@ -63,10 +63,16 @@ To overcome the information overload issue that characterize contemporary platfo
     Your browser does not support the video tag.
   </video></p>
   </dd>
+  <dt><b>HeyTAP<sup>2</sup></b></dt>
+  <dd>
+  HeyTAP<sup>2</sup> is a semantic Conversational Search and Recommendation (CSR) system that extends HeyTAP by applying a smarter recommendation algorithm and a navigation-by-preference approach. By exploiting a conversational agent, the user can communicate her current personalization intention by specifying a set of functionality at a high level, e.g., to decrease the temperature of a room when she left it. Stemming from this input, HeyTAP<sup>2</sup> implements a semantic recommendation process that takes into account a) the current user’s intention, b) the connected entities owned by the user, and c) the user's long-term preferences revealed by her profile. If not satisfied with the suggestions, the user can converse with the system to provide further feedback, i.e., a short-term preference, thus allowing HeyTAP<sup>2</sup> to provide refined recommendations that better align with the her original intention.
+
+  </dd>
 </dl>
 
-Check out the <a href="https://git.elite.polito.it/public-projects/recrules">RecRules algorithm</a> and the following papers for additional details!
+Check out the <a href="https://git.elite.polito.it/public-projects/recrules">RecRules algorithm</a>, the <a href = "https://git.elite.polito.it/public-projects/intrec">HeyTAP<sup>2</sup> algorithm</a>, and the following papers for additional details!
 </p>
+* **From Users' Intentions to IF-THEN Rules in the Internet of Things**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS) [[pdf]](https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf) 
 * **HeyTAP: Bridging the Gaps Between Users' Needs and Technology in IF-THEN Rules via Conversation**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the International Conference on Advanced Visual Interfaces (AVI ‘20) [[pdf]](https://iris.polito.it/handle/11583/2829354#.X7E_QRNKjlw)
 * **TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 25th International Conference on Intelligent User Interfaces (IUI ‘20) [[pdf]](https://iris.polito.it/handle/11583/2779432#.X7E_9xNKjlw)
 * **RecRules: Recommending IF-THEN Rules for End-User Development**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST) [[pdf]](https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw)
