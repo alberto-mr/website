@@ -1,0 +1,19 @@
+I"�
+<p>People’s digital wellbeing has been traditionally considered as an end-user responsibility by the research community. Unfortunately, previous attempts to support users’ digital wellbeing, e.g., through digital self-control tools, have been found to be ineffective in the long term, while many tech companies continue to adopt “attention-capture” designs that undermine users’ sense of agency and self-control. All in all, researchers pointed out that one of the main (and perhaps insurmountable) issues of contemporary DSCTs lies in their “external” nature, which prevents them from easily changing the problematic design patterns and functionality of an app or a website. In other words, DSCTs do not solve the inherent contradiction of designing technologies to reduce the usage of other technologies, especially in a business model that incentivizes frequent and continuous usage.</p>
+
+<p>We believe there are still open challenges and opportunities for the HCI community to explore how to (re)align technology with people’s digital wellbeing. Our idea is that digital wellbeing should be taken into account at every stage of the design process of a digital service.</p>
+
+<p>Following this idea, we organized an Unternational workshop called “Designing for Meaningful Interactions and Digital Wellbeing,” co-located within the international conference “AVI 2022 - International Conference on Advanced Visual Interfaces,” in cooperation with ACM. The workshop website can be found here: <a>https://sites.google.com/view/design4dwb/</a></p>
+
+<p>started investigating what we called “Attention-Capture Damaging Patterns”</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><strong>Defining and Identifying Attention Capture Damaging Patterns in Digital Interfaces</strong><br /> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems (CHI ‘23)<br />
+<a href="https://baltea.polito.it/owncloud/index.php/s/9LNT125rVOfWaB4">[pdf]</a></li>
+  <li><strong>Towards Understanding the Dark Patterns That Steal Our Attention</strong><br /> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2022 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘22)<br />
+<a href="https://iris.polito.it/retrieve/handle/11583/2955697/579805/dpimpact.pdf">[pdf]</a></li>
+  <li><strong>Designing for Meaningful Interactions and Digital Wellbeing</strong><br /> Alberto Monge Roffarello, Luigi De Russis, Panagiotis Apostolellis, R.X. Schwartz, Proceedings of the 2022 International Conference on Advanced Visual Interfaces (AVI ‘22)<br />
+<a href="https://iris.polito.it/retrieve/handle/11583/2966052/e384c434-c873-d4b2-e053-9f05fe0a1d67/digitalwellbeing.pdf">[pdf]</a></li>
+</ul>
+:ET
