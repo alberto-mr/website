@@ -1,0 +1,25 @@
+
+<div class = "container">
+  <footer class="py-5 mt-5 border-top">
+    <div class="row">
+
+      <div class ="col-6 col-md-3 text-muted">
+        <h2 class="footer-heading">{{ site.title | escape }}</h2>
+        <ul class="contact-list">
+            {%- if site.email -%}
+            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            {%- endif -%}
+        </ul>
+      </div>
+      <div class ="col-6 col-md-4 text-muted">
+        {%- include social.html -%}
+      </div>
+      <div class ="col-6 col-md-5 text-muted">
+        {{- site.description | escape -}}
+      </div>
+
+    </div>
+    
+
+  </footer>
+</div>

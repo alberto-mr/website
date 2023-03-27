@@ -1,0 +1,26 @@
+- title: End-User Development
+  sublinks:
+    - title: EUD Intro
+      url: /eud/
+    - title: Definition
+      url: /eud-definition/
+    - title: Discovery
+      url: /eud-discovery/
+    - title: Debugging
+      url: /eud-debugging/
+- title: Digital Wellbeing
+  sublinks:
+    - title: DWB Intro
+      url: /dwb/
+    - title: Digital Self-Control Tools
+      url: /dwb-dscts/
+    - title: Multi-device DWB
+      url: /dwb-multidevice/
+    - title: Design for DWB
+      url: /dwb-design/
+- title: Publications
+  url: /publications/
+- title: CV
+  url: /cv/
+- title: Teaching
+  url: /teaching/

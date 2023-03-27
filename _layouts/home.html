@@ -2,58 +2,93 @@
 layout: default
 ---
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<div class = "container mt-3">
+  <div class="row ">
 
-  {{ content }}
+    <div class="col-md-8 order-xs-2 order-sm-2 order-md-1 bg-light p-5">
+      {%- if page.title -%}
+        <h1 class="page-heading">{{ page.title }}</h1>
+      {%- endif -%}
+
+      {{ content }}
+
+      {% if site.paginate %}
+        {% assign posts = paginator.posts %}
+      {% else %}
+        {% assign posts = site.posts %}
+      {% endif %}
 
 
-  {% if site.paginate %}
-    {% assign posts = paginator.posts %}
-  {% else %}
-    {% assign posts = site.posts %}
-  {% endif %}
-
-
-  {%- if posts.size > 0 -%}
-    <h2 class="post-list-heading">Highlights</h2>
-    <ul class="post-list">
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      {%- for post in posts -%}
-      <li>
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-
-    {% if site.paginate %}
-      <div class="pager">
-        <ul class="pagination">
-        {%- if paginator.previous_page %}
-          <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
-          <li><div class="current-page">{{ paginator.page }}</div></li>
-        {%- if paginator.next_page %}
-          <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
+      {%- if posts.size > 0 -%}
+        <h2 class="post-list-heading">Highlights</h2>
+        <ul class="list-group">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {%- for post in paginator.posts -%}
+          <li class="list-group-item">
+            <span class="post-meta">{{ post.date | date: date_format }}</span>
+            <h6>
+              <a href="{{ post.url | relative_url }}">
+                {{ post.title | escape }}
+              </a>
+            </h6>
+            {%- if site.show_excerpts -%}
+              {{ post.excerpt }}
+            {%- endif -%}
+          </li>
+          {%- endfor -%}
         </ul>
-      </div>
-    {%- endif %}
+        {% if paginator.total_pages > 1 %}
+        <div class="pagination">
+          {% if paginator.previous_page %}
+            <a class="me-1" href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+          {% else %}
+            <span class="me-1" >&laquo; Prev</span>
+          {% endif %}
+        
+          {% for page in (1..paginator.total_pages) %}
+            {% if page == paginator.page %}
+              <em>{{ page }}</em>
+            {% elsif page == 1 %}
+              <a href="/">{{ page }}</a>
+            {% else %}
+              <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
+        
+          {% if paginator.next_page %}
+            <a class="ms-1" href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+          {% else %}
+            <span class="ms-1">Next &raquo;</span>
+          {% endif %}
+        </div>
+        {% endif %}
 
-  {%- endif -%}
+      {%- endif -%}
+    </div> 
+    <div class="col-md-4 order-xs-1 order-sm-1 order-md-2 mb-3">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <img style="border-radius: 50%; " height="200px"  src="{{'/assets/images/personal2.jpeg' | relative_url }}">
+        </div>
+      </div>
+      <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-8 d-flex justify-content-center">
+          <div class="card">
+            <div class="card-header">Contacts</div>
+            <div class="card-body">
+              <h5 class="card-title">Email</h5>
+              <p>alberto.monge@polito.it</p>
+              <h5 class="card-title">Address</h5>
+              <p> Politecnico di Torino, Dipartimento di Automatica e Informatica<br>Corso Duca degli Abruzzi, 24 <br>10129 Torino, Italy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
 
 </div>
+

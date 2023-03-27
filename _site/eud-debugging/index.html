@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Debugging Trigger-Action Rules | Alberto Monge Roffarello</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Debugging Trigger-Action Rules" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<meta property="og:description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<link rel="canonical" href="http://localhost:4000/index/eud-debugging/" />
+<meta property="og:url" content="http://localhost:4000/index/eud-debugging/" />
+<meta property="og:site_name" content="Alberto Monge Roffarello" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Debugging Trigger-Action Rules" />
+<script type="application/ld+json">
+{"description":"Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino","headline":"Debugging Trigger-Action Rules","url":"http://localhost:4000/index/eud-debugging/","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/index/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/index/feed.xml" title="Alberto Monge Roffarello" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</head><body><header class="site-header" role="banner"><nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container"><a class="navbar-brand" rel="author" href="/index/">Alberto Monge Roffarello</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="End-User Development" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">End-User Development</a>
+                    <div class="dropdown-menu" aria-labelledby="End-User Development">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud/">EUD Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-definition/">Definition</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-discovery/">Discovery</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-debugging/">Debugging</a>
+                            
+                        
+                    </div>
+                </li>
+            
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="Digital Wellbeing" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Digital Wellbeing</a>
+                    <div class="dropdown-menu" aria-labelledby="Digital Wellbeing">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb/">DWB Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-dscts/">Digital Self-Control Tools</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-multidevice/">Multi-device DWB</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-design/">Design for DWB</a>
+                            
+                        
+                    </div>
+                </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/publications/">Publications</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/cv/">CV</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/teaching/">Teaching</a>
+              </li>
+            </ul>
+      
+    </div>
+    </div>
+  </nav>
+</header>
+<main aria-label="Content">
+      <div >
+        <div class="container">
+  <div class="row mt-3">
+    <div class="col-2"></div>
+    <div class="col ">
+      <h1 class="post-title">Debugging Trigger-Action Rules</h1>
+      <p><img style="float: left; margin-right: 10px; " height="250px" src="../assets/images/debug.png" /></p>
+<p style="text-align: justify;">
+We explored the urgent need of assessing the correctness of IF-THEN rules. Problems in trigger-action programs, indeed, negatively influence users’ ability to correctly predict the outcomes of trigger-action programs, and can lead to unpredictable and dangerous behaviors, e.g., a door that is unexpectedly unlocked. To investigate end-user debugging in the trigger-action programming context, we presented two end-user debugging tools, namely EUDebug and My IoT Puzzle.
+<dl style="text-align: justify;">
+  <dt><b>EUDebug</b></dt>
+  <dd>
+  EUDebug is an end-user debugging tool built on top of an IFTTT-like interface that enables end users to debug their IF-THEN rules at composition time. It assists users in identifying rule conflicts, and it allows them to foresee the runtime behavior of their rules through step-by-step simulation. To model and check the run-time behavior of IF-THEN rules, we defined a novel formalism, named SCPN, based on Petri Nets and the EUPont model. With the help of EUDebug, users can successfully face computer-related concepts such as loops, inconsistencies, and redundancies. The step-by-step simulation, in particular, helps users understand why their rules might generate a specific problem.
+
+  <p><iframe style="display: block; margin-top:10px;margin-left: auto; margin-right: auto;" src="https://www.youtube-nocookie.com/embed/iE34A1agELI" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+
+  </dd>
+  <dt><b>My IoT Puzzle</b></dt>
+  <dd>
+  My IoT Puzzle is an end-user debugging tool to compose and debug IF-THEN rules based on the Jigsaw metaphor. As EUDebug, it exploits the SCPN formalism, and it is based on a set of design guidelines extracted from the literature. My IoT Puzzle represents triggers and actions as complementary puzzle pieces, and it provides users with different real-time feedback, textual and graphical explanations, by following established theories such as the interrogative debugging paradigm. The usage of different representations and visual languages facilitates users in analyzing problems and helps them understand, identify, and correct errors in IF-THEN rules.
+  <br />
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="controls" preload="none" plays-inline="">
+    <source type="video/mp4" src="../assets/videos/MyIoTPuzzle.mp4" />
+    <source type="video/webm" src="../assets/videos/MyIoTPuzzle.webm" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+</dl>
+</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><strong>Empowering End Users in Debugging Trigger-Action Rules</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI ‘19) <a href="https://iris.polito.it/handle/11583/2724318#.X7E-wRNKjlw">[pdf]</a></li>
+  <li><strong>My IoT Puzzle: Debugging IF-THEN Rules Through the Jigsaw Metaphor</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IS-EUD: the 7th International Symposium on End-User Development <a href="https://iris.polito.it/handle/11583/2731417#.X7E_kRNKjlw">[pdf]</a></li>
+  <li><strong>A Debugging Approach for Trigger-Action Programming</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2018 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘18) <a href="https://iris.polito.it/handle/11583/2701270#.X7E-phNKjlw">[pdf]</a></li>
+</ul>
+
+    </div>
+    <div class="col-2"></div>
+
+  </div>
+</div>
+
+
+      </div>
+    </main>
+<div class = "container">
+  <footer class="py-5 mt-5 border-top">
+    <div class="row">
+
+      <div class ="col-6 col-md-3 text-muted">
+        <h2 class="footer-heading">Alberto Monge Roffarello</h2>
+        <ul class="contact-list"><li><a class="u-email" href="mailto:alberto.monge@polito.it">alberto.monge@polito.it</a></li></ul>
+      </div>
+      <div class ="col-6 col-md-4 text-muted"><ul class="social-media-list"><li><a href="https://github.com/alberto-mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#github"></use></svg> <span class="username">alberto-mr</span></a></li><li><a href="https://www.twitter.com/a1b3rt0_mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">a1b3rt0_mr</span></a></li></ul>
+</div>
+      <div class ="col-6 col-md-5 text-muted">Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino</div>
+
+    </div>
+    
+
+  </footer>
+</div>
+</body>
+
+</html>

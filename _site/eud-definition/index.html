@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Defining Trigger-Action Rules | Alberto Monge Roffarello</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Defining Trigger-Action Rules" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<meta property="og:description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<link rel="canonical" href="http://localhost:4000/index/eud-definition/" />
+<meta property="og:url" content="http://localhost:4000/index/eud-definition/" />
+<meta property="og:site_name" content="Alberto Monge Roffarello" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Defining Trigger-Action Rules" />
+<script type="application/ld+json">
+{"description":"Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino","headline":"Defining Trigger-Action Rules","url":"http://localhost:4000/index/eud-definition/","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/index/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/index/feed.xml" title="Alberto Monge Roffarello" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</head><body><header class="site-header" role="banner"><nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container"><a class="navbar-brand" rel="author" href="/index/">Alberto Monge Roffarello</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="End-User Development" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">End-User Development</a>
+                    <div class="dropdown-menu" aria-labelledby="End-User Development">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud/">EUD Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-definition/">Definition</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-discovery/">Discovery</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-debugging/">Debugging</a>
+                            
+                        
+                    </div>
+                </li>
+            
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="Digital Wellbeing" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Digital Wellbeing</a>
+                    <div class="dropdown-menu" aria-labelledby="Digital Wellbeing">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb/">DWB Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-dscts/">Digital Self-Control Tools</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-multidevice/">Multi-device DWB</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-design/">Design for DWB</a>
+                            
+                        
+                    </div>
+                </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/publications/">Publications</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/cv/">CV</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/teaching/">Teaching</a>
+              </li>
+            </ul>
+      
+    </div>
+    </div>
+  </nav>
+</header>
+<main aria-label="Content">
+      <div >
+        <div class="container">
+  <div class="row mt-3">
+    <div class="col-2"></div>
+    <div class="col ">
+      <h1 class="post-title">Defining Trigger-Action Rules</h1>
+      <p><img style="float: left; margin-right: 10px; " height="250px" src="../assets/images/eupont_architecture.png" /></p>
+
+<p style="text-align: justify;">
+To simplify the definition of IF-THEN rules, we explored the adoption of semantic-based technologies. Our EUPont ontolgy, in particular, is a high-level representation for end-user development that allows the definition of abstract and technology-independent IF-THEN rules that can be adapted to different contextual situations, independently of manufacturers, brands, and other technical details. The aim is to simplify the processes needed by end users to define personalizations: by defining IF-THEN rules such as <i>"if I enter a closed space, then cool the environment"</i>, users are not requested to specify technological details, and they can personalize the functionality of their connected entities with fewer rules, fewer mistakes, and in less time.
+<br /><br />
+An <a href="http://elite.polito.it/ontologies/eupont-ifttt.owl">instantiation of EUPont for IFTTT</a> models all the 379 devices and services (100%) available on the popular platform as of March, 2017. We also manually mapped in the EUPont representation 951 IFTTT triggers out of a total of 976 (97.44%), and 528 actions out of the 551 (95.83%) available on IFTTT on the same date. Moreover, EUPont has been evaluated in terms of understandability, completeness, and usefulness, especially with user studies. <br /><br />
+Check out the <a href="http://elite.polito.it/ontologies/eupont.owl">OWL ontology!</a>
+</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><strong>A High-Level Semantic Approach to End-User Development in the Internet of Things</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, International Journal of Human-Computer Studies <a href="https://iris.polito.it/handle/11583/2720712#.X7E_ZhNKjlw">[pdf]</a></li>
+  <li><strong>End User Development in the IoT: a Semantic Approach</strong>, Alberto Monge Roffarello, Proceedings of 14th International Conference on Intelligent Environments (IE ‘2018) <a href="https://iris.polito.it/handle/11583/2705010#.X7E-1BNKjlw">[pdf]</a></li>
+  <li><strong>A High-Level Approach Towards End User Development in the IoT</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2017 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘17) <a href="https://iris.polito.it/handle/11583/2665147#.X7E_VBNKjlw">[pdf]</a></li>
+  <li><strong>A Semantic Web Approach to Simplifying Trigger-Action Programming in the IoT</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IEEE Computer <a href="https://iris.polito.it/handle/11583/2691911#.X7E_5hNKjlw">[pdf]</a></li>
+</ul>
+
+
+    </div>
+    <div class="col-2"></div>
+
+  </div>
+</div>
+
+
+      </div>
+    </main>
+<div class = "container">
+  <footer class="py-5 mt-5 border-top">
+    <div class="row">
+
+      <div class ="col-6 col-md-3 text-muted">
+        <h2 class="footer-heading">Alberto Monge Roffarello</h2>
+        <ul class="contact-list"><li><a class="u-email" href="mailto:alberto.monge@polito.it">alberto.monge@polito.it</a></li></ul>
+      </div>
+      <div class ="col-6 col-md-4 text-muted"><ul class="social-media-list"><li><a href="https://github.com/alberto-mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#github"></use></svg> <span class="username">alberto-mr</span></a></li><li><a href="https://www.twitter.com/a1b3rt0_mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">a1b3rt0_mr</span></a></li></ul>
+</div>
+      <div class ="col-6 col-md-5 text-muted">Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino</div>
+
+    </div>
+    
+
+  </footer>
+</div>
+</body>
+
+</html>

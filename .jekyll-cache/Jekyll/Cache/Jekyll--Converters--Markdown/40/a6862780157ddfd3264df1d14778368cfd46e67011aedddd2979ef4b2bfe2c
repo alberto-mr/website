@@ -1,0 +1,54 @@
+I"D<p><img style="float: right; margin-left: 10px; " height="250px" src="../assets/images/PC_rule_recommendations.png" /></p>
+<p style="text-align: justify;">
+We also explored how to use the <a href="../eud">EUPont model</a> to help users discover proper "low-level" triggers, actions, and rules without requiring any radical change in the adopted representation model. To overcome the information overload issue that characterize contemporary platforms like IFTTT and Zapier, in particular, we explored different approaches and techniques, ranging from optimisation methods and recommendation algorithms to conversational methods. The following are the main outcomes of such an exploration.
+<dl style="text-align: justify;">
+  <dt><b>EUDoptimizer</b></dt>
+  <dd>
+  EUDoptimizer is an optimization tool that dynamically redesign layouts in trigger-action programming interfaces in an interactive way, i.e., by considering the choices made by end users during the rule definition process. The aim is to promote the discovery of the "right" connected entity to be used for defining the trigger or the action, according to the current user need.
+  </dd>
+  <dt><b>RecRules</b></dt>
+  <dd>
+  RecRules is a hybrid and semantic recommendation system of IF-THEN rules. Its aim is to allow users to discover new rules on the basis of the underlying functionality, rather than the involved brands or manufacturers. A rule for turning on a Philips Hue lamp, for example, is functionally similar to a rule for opening the Hunter Douglas blinds, because they share a common final goal, i.e., to light up a place.
+  </dd>
+  <dt><b>TAPrec</b></dt>
+  <dd>
+  TAPrec is an End-User Development platform that supports the composition of trigger-action rules with dynamic recommendations. By exploiting RecRules, TAPrec suggests, at composition time, either a) new rules to be used or b) actions for autocompleting a rule. Recommendations, in particular, are computed to follow the user’s high-level intention, i.e., by focusing on the rules’ final purpose rather than on low-level details like manufacturers and brands.
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="" plays-inline="">
+    <source src="../assets/videos/taprec.webm" type="video/webm" />
+    <source src="../assets/videos/taprec.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+  <dt><b>HeyTAP</b></dt>
+  <dd>
+  HeyTAP is a conversational and semantic-powered triggeraction programming platform able to map abstract users’ needs to executable IF-THEN rules. By interacting with a conversational agent, the user communicates her personalization intentions and preferences. User’s inputs, along with contextual and semantic information related to the available connected entities, are then used to recommend a set of IF-THEN rules that satisfies the user’s needs.
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="" plays-inline="">
+    <source src="../assets/videos/HeyTAP.mp4" type="video/mp4" />
+    <source src="../assets/videos/HeyTAP.webm" type="video/webm" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+  <dt><b>HeyTAP<sup>2</sup></b></dt>
+  <dd>
+  HeyTAP<sup>2</sup> is a semantic Conversational Search and Recommendation (CSR) system that extends HeyTAP by applying a smarter recommendation algorithm and a navigation-by-preference approach. By exploiting a conversational agent, the user can communicate her current personalization intention by specifying a set of functionality at a high level, e.g., to decrease the temperature of a room when she left it. Stemming from this input, HeyTAP<sup>2</sup> implements a semantic recommendation process that takes into account a) the current user’s intention, b) the connected entities owned by the user, and c) the user's long-term preferences revealed by her profile. If not satisfied with the suggestions, the user can converse with the system to provide further feedback, i.e., a short-term preference, thus allowing HeyTAP<sup>2</sup> to provide refined recommendations that better align with the her original intention.
+  
+  HeyTAP<sup>2</sup> was presented at <a href="https://sigir.org/sigir2022">SIGIR 2022</a>:
+
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/C-LcCSGRHzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></p>
+  </dd>
+</dl>
+
+
+
+
+
+Check out the <a href="https://git.elite.polito.it/public-projects/recrules">RecRules algorithm</a>, the <a href="https://git.elite.polito.it/public-projects/intrec">HeyTAP<sup>2</sup> algorithm</a>, and the following papers for additional details!
+</p>
+<ul>
+  <li><strong>From Users’ Intentions to IF-THEN Rules in the Internet of Things</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS) <a href="https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf">[pdf]</a></li>
+  <li><strong>HeyTAP: Bridging the Gaps Between Users’ Needs and Technology in IF-THEN Rules via Conversation</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the International Conference on Advanced Visual Interfaces (AVI ‘20) <a href="https://iris.polito.it/handle/11583/2829354#.X7E_QRNKjlw">[pdf]</a></li>
+  <li><strong>TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 25th International Conference on Intelligent User Interfaces (IUI ‘20) <a href="https://iris.polito.it/handle/11583/2779432#.X7E_9xNKjlw">[pdf]</a></li>
+  <li><strong>RecRules: Recommending IF-THEN Rules for End-User Development</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST) <a href="https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw">[pdf]</a></li>
+  <li><strong>EUDoptimizer: Assisting End Users in Composing IF-THEN Rules Through Optimization</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IEEE Access <a href="https://iris.polito.it/handle/11583/2728803#.X7E_HhNKjlw">[pdf]</a></li>
+</ul>
+:ET

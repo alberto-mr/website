@@ -1,0 +1,8 @@
+---
+layout: page
+permalink: /cv/
+---
+
+
+
+<object data="../assets/cv-monge-roffarello.pdf" width="1000" height="1000" type='application/pdf'></object>

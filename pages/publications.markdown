@@ -1,0 +1,95 @@
+---
+layout: page
+title: Publications
+permalink: /publications/
+---
+
+### In Press
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Defining and Identifying Attention Capture Damaging Patterns in Digital Interfaces**<br> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems (CHI ‘23)  
+[[pdf]](https://baltea.polito.it/owncloud/index.php/s/9LNT125rVOfWaB4) <br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **Achieving Digital Wellbeing Through Digital Self-Control Tools: A Systematic Review and Meta-Analysis**<br> Alberto Monge Roffarello and Luigi De Russis, Transactions on Computer-Himan Interaction (TOCHI)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2972709/28c10713-3c1e-4084-83d0-0a9b2e8b2723/dwbreview.pdf)
+
+### 2023
+<img src="../assets/images/icon-journal.png" width="30" height="30"> ** Understanding digital wellbeing within complex technological contexts **<br>Alberto Monge Roffarello, Luigi De Russis, Danielle Lottridge, and Marta E. Cecchinato, International Journal of Human-Computer Studies (IJHCS)  
+[[pdf]](https://baltea.polito.it/owncloud/index.php/s/j91NlHakxwgpvHp)
+
+### 2022
+
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Towards Understanding the Dark Patterns That Steal Our Attention**<br> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2022 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘22)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2955697/579805/dpimpact.pdf) [[video]](https://www.youtube.com/watch?v=myUS8IJJlXA)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **An Ontology-Based Approach for Setting Security Policies in Smart Homes**<br> Alberto Monge Roffarello and Luigi De Russis, 5th International Workshop on Emerging Technologies for Authorization and Authentication (ETAA 2022)
+[[pdf]](https://baltea.polito.it/owncloud/index.php/s/khMUe7iOOcQ8AYL) <br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Designing for Meaningful Interactions and Digital Wellbeing**<br> Alberto Monge Roffarello, Luigi De Russis, Panagiotis Apostolellis, R.X. Schwartz, Proceedings of the 2022 International Conference on Advanced Visual Interfaces (AVI ‘22)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2966052/e384c434-c873-d4b2-e053-9f05fe0a1d67/digitalwellbeing.pdf)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **Understanding and Streamlining App Switching Experiences in Mobile Interaction**<br> Alberto Monge Roffarello and Luigi De Russis, International Journal of Human-Computer Studies (IJHCS)  
+[[pdf]](https://baltea.polito.it/owncloud/index.php/s/lJhwbyFQsxJMdgd)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **How Do End-Users Program the Internet of Things?**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Behaviour & Information Technology
+[[pdf]](https://baltea.polito.it/owncloud/index.php/s/htgcIv6TqHQqHsp)
+
+### 2021
+<img src="../assets/images/icon-conference.png" width="30" height="30">  **Coping with Digital Wellbeing in a Multi-Device World**<br> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI ‘21)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2862497/423067/multidevicedwb.pdf) [[video]](https://www.youtube.com/watch?v=s3VEgVAUtQs) <br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30">  **Devices, Information, and People: Abstracting the Internet of Things for End-User Personalization**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IS-EUD: the 8th International Symposium on End-User Development  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2895856/477416/eudinthewild.pdf)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30">  **Towards Multi-Device Digital Self-Control Tools**<br> Alberto Monge Roffarello and Luigi De Russis, IFIP Conference on Human-Computer Interaction (INTERACT ‘21)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2909952/511807/multidevicedsct.pdf)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30">  **Reducing Risk in Digital Self-Control Tools: Design Patterns and Prototype**<br> Alberto Monge Roffarello, Luigi De Russis, Panagiotis Apostolellis, R.X. Schwartz, Proceedings of the 2022 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘22)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2873154/434222/chi21c-sub1604-cam-i16.pdf)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30">  **Towards Vocally-Composed Personalization Rules in the IoT**<br> Luigi De Russis and Alberto Monge Roffarello, EMPATHY 2021: Empowering People in Dealing with Internet of Things Ecosystems  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2910012/495396/vocal-eud.pdf)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults**<br> Alberto Monge Roffarello, and Luigi De Russis, ACM Transactions on Interactive Intelligent Systems (TiiS)  
+[[pdf]](https://elite.polito.it/files/papers/habitsdetection.pdf) [[source code]](https://git.elite.polito.it/public-projects/socialize-v2) [[video]](https://www.youtube.com/watch?v=nC56Uqi6iC4)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **From Users' Intentions to IF-THEN Rules in the Internet of Things**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS)  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf) [[source code]](https://git.elite.polito.it/public-projects/intrec)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **Designing Technology That Promotes Users' Digital Wellbeing**<br> Alberto Monge Roffarello and Luigi De Russis, ACM CROSSROADS  
+[[pdf]](https://iris.polito.it/retrieve/handle/11583/2915952/506643/Designing%20Technology%20That%20Promotes%20Users%27%20Digital%20Wellbeing.pdf)
+
+
+### 2020
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **HeyTAP: Bridging the Gaps Between Users' Needs and Technology in IF-THEN Rules via Conversation**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the International Conference on Advanced Visual Interfaces (AVI ‘20)   
+[[pdf]](https://iris.polito.it/handle/11583/2829354#.X7E_QRNKjlw) <br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Personalizing IoT Ecosystems via Voice**<br> Luigi De Russis and Alberto Monge Roffarello, EMPATHY 2020: Empowering People in Dealing with Internet of Things Ecosystems  
+[[pdf]](https://iris.polito.it/handle/11583/2842742#.X7E_tBNKjlw)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 25th International Conference on Intelligent User Interfaces (IUI ‘20)  
+[[pdf]](https://iris.polito.it/handle/11583/2779432#.X7E_9xNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **End-User Development in the Internet of Things**<br> Alberto Monge Roffarello, PhD Thesis  
+[[pdf]](https://iris.polito.it/handle/11583/2847152#.X7E_CxNKjlw)
+
+### 2019
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Empowering End Users in Debugging Trigger-Action Rules**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI ‘19)  
+[[pdf]](https://iris.polito.it/handle/11583/2724318#.X7E-wRNKjlw) [[video]](https://www.youtube.com/watch?v=iE34A1agELI)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **The Race Towards Digital Wellbeing: Issues and Opportunities**<br> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI ‘19)  
+[[pdf]](https://iris.polito.it/handle/11583/2724317#.X7E_xhNKjlw) [[source code]](https://git.elite.polito.it/public-projects/socialize-v1) [[dataset]](https://lys.polito.it/files/releases/Digital-Wellbeing/reviews.rar) [[video]](https://www.youtube.com/watch?v=ToSG6rYCOJA)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **My IoT Puzzle: Debugging IF-THEN Rules Through the Jigsaw Metaphor**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IS-EUD: the 7th International Symposium on End-User Development  
+[[pdf]](https://iris.polito.it/handle/11583/2731417#.X7E_kRNKjlw)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **Towards Detecting and Mitigating Smartphone Habits**<br> Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2019 ACM International Joint Conference and 2019 International Symposium on Pervasive and Ubiquitous Computing and Wearable Computers (UbiComp 2019)  
+[[pdf]](https://iris.polito.it/handle/11583/2740100#.X7FAAhNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **RecRules: Recommending IF-THEN Rules for End-User Development**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST)  
+[[pdf]](https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw) [[source code]](https://git.elite.polito.it/public-projects/recrules)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **EUDoptimizer: Assisting End Users in Composing IF-THEN Rules Through Optimization**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IEEE Access  
+[[pdf]](https://iris.polito.it/handle/11583/2728803#.X7E_HhNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **A High-Level Semantic Approach to End-User Development in the Internet of Things**<br>Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, International Journal of Human-Computer Studies (IJHCS)  
+[[pdf]](https://iris.polito.it/handle/11583/2720712#.X7E_ZhNKjlw)
+
+### 2018
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **A Debugging Approach for Trigger-Action Programming**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2018 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘18)  
+[[pdf]](https://iris.polito.it/handle/11583/2701270#.X7E-phNKjlw)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **End User Development in the IoT: a Semantic Approach**<br> Alberto Monge Roffarello, Proceedings of 14th International Conference on Intelligent Environments (IE '2018)  
+[[pdf]](https://iris.polito.it/handle/11583/2705010#.X7E-1BNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **AwareNotifications: Multi-Device Semantic Notification Handling with User-Defined Preferences**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Journal of Ambient Intelligence and Smart Environments  
+[[pdf]](https://iris.polito.it/handle/11583/2693822#.X7E-dhNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **IoT for Ambient Assisted Living: Care4Me - A Healthcare Support System**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Wearable Technologies: Concepts, Methodologies, Tools, and Applications (reprint)  
+
+### 2017
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **A High-Level Approach Towards End User Development in the IoT**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2017 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘17)  
+[[pdf]](https://iris.polito.it/handle/11583/2665147#.X7E_VBNKjlw)<br><br>
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **On the Benefit of Adding User Preferences to Notification Delivery**<br> Luigi De Russis and Alberto Monge Roffarello, Proceedings of the 2017 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘17)  
+[[pdf]](https://iris.polito.it/handle/11583/2665148#.X7E_oBNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **A Semantic Web Approach to Simplifying Trigger-Action Programming in the IoT**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IEEE Computer  
+[[pdf]](https://iris.polito.it/handle/11583/2691911#.X7E_5hNKjlw)<br><br>
+<img src="../assets/images/icon-journal.png" width="30" height="30"> **IoT for Ambient Assisted Living: Care4Me - A Healthcare Support System**<br> Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Internet of Things and Advanced Application in Healthcare  
+
+### 2016
+<img src="../assets/images/icon-conference.png" width="30" height="30"> **A Healthcare Support System for Assisted Living Facilities: an IoT Solution**, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello<br> IEEE 40th Annual Computer Software and Applications Conference (COMPSAC 2016)  
+[[pdf]](https://iris.polito.it/handle/11583/2638601#.X7E_MxNKjlw)

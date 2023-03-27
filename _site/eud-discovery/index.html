@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Discovering Trigger-Action Rules | Alberto Monge Roffarello</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Discovering Trigger-Action Rules" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<meta property="og:description" content="Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino" />
+<link rel="canonical" href="http://localhost:4000/index/eud-discovery/" />
+<meta property="og:url" content="http://localhost:4000/index/eud-discovery/" />
+<meta property="og:site_name" content="Alberto Monge Roffarello" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Discovering Trigger-Action Rules" />
+<script type="application/ld+json">
+{"description":"Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino","headline":"Discovering Trigger-Action Rules","url":"http://localhost:4000/index/eud-discovery/","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/index/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/index/feed.xml" title="Alberto Monge Roffarello" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</head><body><header class="site-header" role="banner"><nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container"><a class="navbar-brand" rel="author" href="/index/">Alberto Monge Roffarello</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="End-User Development" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">End-User Development</a>
+                    <div class="dropdown-menu" aria-labelledby="End-User Development">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud/">EUD Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-definition/">Definition</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-discovery/">Discovery</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/eud-debugging/">Debugging</a>
+                            
+                        
+                    </div>
+                </li>
+            
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="Digital Wellbeing" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Digital Wellbeing</a>
+                    <div class="dropdown-menu" aria-labelledby="Digital Wellbeing">
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb/">DWB Intro</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-dscts/">Digital Self-Control Tools</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-multidevice/">Multi-device DWB</a>
+                            
+                        
+                            
+                                <a class="dropdown-item text-secondary" href="http://localhost:4000/index/dwb-design/">Design for DWB</a>
+                            
+                        
+                    </div>
+                </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/publications/">Publications</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/cv/">CV</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="/index/teaching/">Teaching</a>
+              </li>
+            </ul>
+      
+    </div>
+    </div>
+  </nav>
+</header>
+<main aria-label="Content">
+      <div >
+        <div class="container">
+  <div class="row mt-3">
+    <div class="col-2"></div>
+    <div class="col ">
+      <h1 class="post-title">Discovering Trigger-Action Rules</h1>
+      <p><img style="float: right; margin-left: 10px; " height="250px" src="../assets/images/PC_rule_recommendations.png" /></p>
+<p style="text-align: justify;">
+We also explored how to use the <a href="../eud">EUPont model</a> to help users discover proper "low-level" triggers, actions, and rules without requiring any radical change in the adopted representation model. To overcome the information overload issue that characterize contemporary platforms like IFTTT and Zapier, in particular, we explored different approaches and techniques, ranging from optimisation methods and recommendation algorithms to conversational methods. The following are the main outcomes of such an exploration.
+<dl style="text-align: justify;">
+  <dt><b>EUDoptimizer</b></dt>
+  <dd>
+  EUDoptimizer is an optimization tool that dynamically redesign layouts in trigger-action programming interfaces in an interactive way, i.e., by considering the choices made by end users during the rule definition process. The aim is to promote the discovery of the "right" connected entity to be used for defining the trigger or the action, according to the current user need.
+  </dd>
+  <dt><b>RecRules</b></dt>
+  <dd>
+  RecRules is a hybrid and semantic recommendation system of IF-THEN rules. Its aim is to allow users to discover new rules on the basis of the underlying functionality, rather than the involved brands or manufacturers. A rule for turning on a Philips Hue lamp, for example, is functionally similar to a rule for opening the Hunter Douglas blinds, because they share a common final goal, i.e., to light up a place.  
+  <br /><br />
+  The RecRules algorithm is hosted on this <a href="https://git.elite.polito.it/public-projects/recrules">repository</a>.
+  </dd>
+  <dt><b>TAPrec</b></dt>
+  <dd>
+  TAPrec is an End-User Development platform that supports the composition of trigger-action rules with dynamic recommendations. By exploiting RecRules, TAPrec suggests, at composition time, either a) new rules to be used or b) actions for autocompleting a rule. Recommendations, in particular, are computed to follow the user’s high-level intention, i.e., by focusing on the rules’ final purpose rather than on low-level details like manufacturers and brands.
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="" plays-inline="">
+    <source src="../assets/videos/taprec.webm" type="video/webm" />
+    <source src="../assets/videos/taprec.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+  <dt><b>HeyTAP</b></dt>
+  <dd>
+  HeyTAP is a conversational and semantic-powered triggeraction programming platform able to map abstract users’ needs to executable IF-THEN rules. By interacting with a conversational agent, the user communicates her personalization intentions and preferences. User’s inputs, along with contextual and semantic information related to the available connected entities, are then used to recommend a set of IF-THEN rules that satisfies the user’s needs.
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="" plays-inline="">
+    <source src="../assets/videos/HeyTAP.mp4" type="video/mp4" />
+    <source src="../assets/videos/HeyTAP.webm" type="video/webm" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+  <dt><b>HeyTAP<sup>2</sup></b></dt>
+  <dd>
+  HeyTAP<sup>2</sup> is a semantic Conversational Search and Recommendation (CSR) system that extends HeyTAP by applying a smarter recommendation algorithm and a navigation-by-preference approach. By exploiting a conversational agent, the user can communicate her current personalization intention by specifying a set of functionality at a high level, e.g., to decrease the temperature of a room when she left it. Stemming from this input, HeyTAP<sup>2</sup> implements a semantic recommendation process that takes into account a) the current user’s intention, b) the connected entities owned by the user, and c) the user's long-term preferences revealed by her profile. If not satisfied with the suggestions, the user can converse with the system to provide further feedback, i.e., a short-term preference, thus allowing HeyTAP<sup>2</sup> to provide refined recommendations that better align with the her original intention. 
+  <br /><br />
+  The HeyTAP<sup>2</sup> algorithm is hosted in this <a href="https://git.elite.polito.it/public-projects/intrec">repository</a>. HeyTAP<sup>2</sup> was presented at <a href="https://sigir.org/sigir2022">SIGIR 2022</a>:
+
+  <p><iframe style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" src="https://www.youtube.com/embed/C-LcCSGRHzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></p>
+  </dd>
+</dl>
+
+</p>
+<h4 id="references">References</h4>
+<ul>
+  <li><strong>From Users’ Intentions to IF-THEN Rules in the Internet of Things</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Information Systems (TOIS) <a href="https://iris.polito.it/retrieve/handle/11583/2860780/421331/hiot.pdf">[pdf]</a></li>
+  <li><strong>HeyTAP: Bridging the Gaps Between Users’ Needs and Technology in IF-THEN Rules via Conversation</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the International Conference on Advanced Visual Interfaces (AVI ‘20) <a href="https://iris.polito.it/handle/11583/2829354#.X7E_QRNKjlw">[pdf]</a></li>
+  <li><strong>TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 25th International Conference on Intelligent User Interfaces (IUI ‘20) <a href="https://iris.polito.it/handle/11583/2779432#.X7E_9xNKjlw">[pdf]</a></li>
+  <li><strong>RecRules: Recommending IF-THEN Rules for End-User Development</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, ACM Transactions on Intelligent Systems and Technology (TIST) <a href="https://iris.polito.it/handle/11583/2740094#.X7E_2BNKjlw">[pdf]</a></li>
+  <li><strong>EUDoptimizer: Assisting End Users in Composing IF-THEN Rules Through Optimization</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IEEE Access <a href="https://iris.polito.it/handle/11583/2728803#.X7E_HhNKjlw">[pdf]</a></li>
+</ul>
+
+    </div>
+    <div class="col-2"></div>
+
+  </div>
+</div>
+
+
+      </div>
+    </main>
+<div class = "container">
+  <footer class="py-5 mt-5 border-top">
+    <div class="row">
+
+      <div class ="col-6 col-md-3 text-muted">
+        <h2 class="footer-heading">Alberto Monge Roffarello</h2>
+        <ul class="contact-list"><li><a class="u-email" href="mailto:alberto.monge@polito.it">alberto.monge@polito.it</a></li></ul>
+      </div>
+      <div class ="col-6 col-md-4 text-muted"><ul class="social-media-list"><li><a href="https://github.com/alberto-mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#github"></use></svg> <span class="username">alberto-mr</span></a></li><li><a href="https://www.twitter.com/a1b3rt0_mr"><svg class="svg-icon p-0"><use xlink:href="/index/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">a1b3rt0_mr</span></a></li></ul>
+</div>
+      <div class ="col-6 col-md-5 text-muted">Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino</div>
+
+    </div>
+    
+
+  </footer>
+</div>
+</body>
+
+</html>

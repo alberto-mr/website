@@ -1,0 +1,60 @@
+I"v!<p>The last few years have seen the flourishing of Digital Self-Control Tools (DSCTs) both in academia and as off-the-shelf products. These tools allow users to self-regulate their technology use through interventions like timers and lock-out mechanisms. While these emerging technologies for behavior change hold great promise to support people’s digital wellbeing, we still have a limited understanding of their real effectiveness, as well as of how to best design and evaluate them. In our research, we conducted extensive reviews of contemporary DSCTs and attempts to improve their effectiveness.</p>
+
+<h4 id="dscts-and-smartphones">DSCTs and Smartphones</h4>
+<p style="text-align: justify;">
+Smartphones have become an integral part of our daily lives. Through smartphones, users can nowadays perform many different tasks such as browsing the web, reading emails, and using social networks. As smartphone use increases dramatically, however, so do studies about the negative impact of overusing technology. Smartphones, in particular, have been found to be a source of distraction, and their excessive use can be a problem for mental health and social interaction. Many different mobile apps for breaking "smartphone addiction" and achieving "digital wellbeing" are available. However, it is still not clear whether and how such solutions work. Which functionality do they have? Are they effective and appreciated? Do they have a relevant impact on users’ behavior? Can we do better?
+</p>
+
+<p><img style="float: left; margin-right: 10px; " height="300px" src="../assets/images/socialize.jpg" /></p>
+
+<p style="text-align: justify;">
+In our research, we conducted a functionality review of the 42 most popular digital wellbeing apps available in the <a href="https://play.google.com/">Google Play Store</a>, by highlighting which features are more common, and how such apps support a more conscious use of technology. Then, we extracted 1,128 reviews left by users for these 42 apps, and we conducted a thematic analysis to gain insight about the users’ experience with digital wellbeing apps and their features. Finally, we designed and implemented Socialize, our own digital wellbeing app, by integrating the most common digital wellbeing features extracted during our functionality review. We conducted a three-week in-the wild study of Socialize with 38 participants. Our aim was to gain a quantitative insight into the findings stemming from the first 2 qualitative studies, thus assessing whether the features that contemporary digital wellbeing solutions share are effective for changing behavior and promoting a more conscious use of the smartphone.
+<br /><br />
+These are the most interesting results extracted from the studies:
+</p>
+<ul>
+  <li>
+    <p style="text-align: justify;">Contemporary digital wellbeing apps are mainly focused on supporting self-monitoring, i.e., tracking user’s behavior and receiving feedback, but are not grounded in habit formation nor social support literature. Habit formation, in particular, could play an important role in digital wellbeing apps, supporting behavior change towards a more conscious use of technology, and ensuring the long-term effects of the new behavior.</p>
+  </li>
+  <li>
+    <p style="text-align: justify;">Contemporary digital wellbeing apps are liked by users and useful for some specific use cases, but they are not sufficient for effectively changing users’ behavior with smartphones. By using self-monitoring functionality, in particular, such apps are effective for temporary breaking some unhealthy behaviors, e.g., the excessive use of social networks, but they fail in other circumstances. For example, by offering functionality that can be easily bypassed, they do not prevent users from constantly checking their devices.</p>
+  </li>
+  <li>
+    <p style="text-align: justify;">Promising areas to go beyond self monitoring techniques include the design of digital wellbeing apps that support the formation of new habits and promote self regulation through social support</p>
+  </li>
+</ul>
+
+<p style="text-align: justify;">
+The source code of Socialize is freely available on <a href="https://git.elite.polito.it/public-projects/socialize-v1">GitLab</a>.
+If you are interested, you can also download the collected data and the resulting codebooks:
+</p>
+<ul>
+  <li><a href="https://elite.polito.it/files/releases/Digital-Wellbeing/functionality_codebook.json">Functionality codebook</a></li>
+  <li><a href="https://elite.polito.it/files/releases/Digital-Wellbeing/reviews_codebook.json">Reviews codebook</a></li>
+  <li><a href="https://elite.polito.it/files/releases/Digital-Wellbeing/reviews.rar">Reviews dataset</a></li>
+</ul>
+
+<p>The research was published in a full paper at <a href="https://chi2019.acm.org/">CHI ‘19</a>. Watch the video of the presentation!</p>
+<p><iframe style="display: block; margin-top:10px;margin-left: auto; margin-right: auto;" src="https://www.youtube-nocookie.com/embed/ToSG6rYCOJA" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+
+<h4 id="dscts-in-the-computing-literature">DSCTs in the Computing Literature</h4>
+
+<h4 id="from-self-monitoring-to-habit-formation">From Self-Monitoring to Habit-Formation</h4>
+<p><img style="float: right; margin-left: 10px; " height="350px" src="../assets/images/socialize2.png" /></p>
+
+<p style="text-align: justify;">
+
+While self-tracking plays an important role in the behavior change process, it strongly depends on the monitoring behavior: once the monitoring stops, e.g., because the app does not work or because users get bored, the behavior can revert to pre-interventions levels. To better assist users in personalizing their behavior with the smartphone, we started to analyze smartphone usage under the lens of <i>habits</i>. We first designed and implemented a data analytic methodlogy based on association rules mining to extract habits from smartphone usage data. By assessing the methodology
+over a dataset containing more than 130,000 phone usage sessions collected in-the-wild, we showed evidence that smartphone use can be characterized by different types of complex links between contextual situations and usage sessions, that are highly diversified across users. We therefore applied the data analytic methodlogy in a habit-forming version of our Socialize app. The new version makes use of implementation intentions and just-in-time reminders to assist users in replacing existing (and unwanted) smartphone habits, e.g., browsing Facebook at work, with new and desirable habits that do not involve the usage of the mobile device. Besides reducing the time spent on the mobile apps that are habitually checked, the new version of Socialize helps users reduce their overall smartphone use in a given context. An in-the-wild evaluation with 20 smartphone users (age 19-31) shows evidence that the app can effectively assist users in better controlling their smartphone use, with just-in-time reminders that can significantly reduce the impact of unwanted smartphone habits.
+<br /><br />
+</p>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><strong>The Race Towards Digital Wellbeing: Issues and Opportunities</strong>, Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI ‘19) <a href="https://iris.polito.it/handle/11583/2724317#.X7E_xhNKjlw">[pdf]</a></li>
+  <li><strong>Towards Detecting and Mitigating Smartphone Habits</strong>, Alberto Monge Roffarello and Luigi De Russis, Proceedings of the 2019 ACM International Joint Conference and 2019 International Symposium on Pervasive and Ubiquitous Computing and Wearable Computers (UbiComp 2019) <a href="https://iris.polito.it/handle/11583/2740100#.X7FAAhNKjlw">[pdf]</a></li>
+  <li><strong>Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults</strong>, Alberto Monge Roffarello, and Luigi De Russis, ACM Transactions on Interactive Intelligent Systems (TiiS) <a href="https://elite.polito.it/files/papers/habitsdetection.pdf">[pdf]</a></li>
+  <li><strong>Achieving Digital Wellbeing Through Digital Self-Control Tools: A Systematic Review and Meta-Analysis</strong><br /> Alberto Monge Roffarello and Luigi De Russis, Transactions on Computer-Himan Interaction (TOCHI)<br />
+<a href="https://iris.polito.it/retrieve/handle/11583/2972709/28c10713-3c1e-4084-83d0-0a9b2e8b2723/dwbreview.pdf">[pdf]</a></li>
+</ul>
+:ET

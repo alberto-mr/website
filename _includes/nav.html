@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+    {%- assign default_paths = site.pages | map: "path" -%}
+    {%- assign page_paths = site.header_pages | default: default_paths -%}
+    <a class="navbar-brand" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% assign links = site.data.navigation %}
+        {%- for link in links -%}
+            {% if link.sublinks %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="{{ link.title }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ link.title }}</a>
+                    <div class="dropdown-menu" aria-labelledby="{{ link.title }}">
+                        {% for sublink in link.sublinks %}
+                            {% if sublink.title == 'separator' %}
+                                <div class="dropdown-divider"></div>
+                            {% else %}
+                                <a class="dropdown-item text-secondary" href="{{ site.url }}{{ site.baseurl }}{{ sublink.url }}">{{ sublink.title }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="{{ link.url | relative_url }}">{{ link.title | escape }}</a>
+              </li>
+            {% endif %}
+        {%- endfor -%}
+      </ul>
+      
+    </div>
+    </div>
+  </nav>

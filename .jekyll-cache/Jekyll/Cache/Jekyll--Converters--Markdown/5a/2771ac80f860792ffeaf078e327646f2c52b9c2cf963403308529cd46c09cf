@@ -1,0 +1,31 @@
+I"�<p><img style="float: left; margin-right: 10px; " height="250px" src="../assets/images/debug.png" /></p>
+<p style="text-align: justify;">
+Finally, we explore the urgent need of assessing the correctness of IF-THEN rules. Problems in trigger-action programs, indeed, negatively influence users’ ability to correctly predict the outcomes of trigger-action programs, and can lead to unpredictable and dangerous behaviors, e.g., a door that is unexpectedly unlocked. To investigate end-user debugging in the trigger-action programming context, we presented two end-user debugging tools, namely EUDebug and My IoT Puzzle.
+<dl style="text-align: justify;">
+  <dt><b>EUDebug</b></dt>
+  <dd>
+  EUDebug is an end-user debugging tool built on top of an IFTTT-like interface that enables end users to debug their IF-THEN rules at composition time. It assists users in identifying rule conflicts, and it allows them to foresee the runtime behavior of their rules through step-by-step simulation. To model and check the run-time behavior of IF-THEN rules, we defined a novel formalism, named SCPN, based on Petri Nets and the EUPont model. With the help of EUDebug, users can successfully face computer-related concepts such as loops, inconsistencies, and redundancies. The step-by-step simulation, in particular, helps users understand why their rules might generate a specific problem.
+
+  <p><iframe style="display: block; margin-top:10px;margin-left: auto; margin-right: auto;" src="https://www.youtube-nocookie.com/embed/iE34A1agELI" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+
+  </dd>
+  <dt><b>My IoT Puzzle</b></dt>
+  <dd>
+  My IoT Puzzle is an end-user debugging tool to compose and debug IF-THEN rules based on the Jigsaw metaphor. As EUDebug, it exploits the SCPN formalism, and it is based on a set of design guidelines extracted from the literature. My IoT Puzzle represents triggers and actions as complementary puzzle pieces, and it provides users with different real-time feedback, textual and graphical explanations, by following established theories such as the interrogative debugging paradigm. The usage of different representations and visual languages facilitates users in analyzing problems and helps them understand, identify, and correct errors in IF-THEN rules.
+  <br />
+  <p><video style="display: block; margin-top:10px; margin-left: auto; margin-right: auto;" width="560" height="315" controls="controls" preload="none" plays-inline="">
+    <source type="video/mp4" src="../assets/videos/MyIoTPuzzle.mp4" />
+    <source type="video/webm" src="../assets/videos/MyIoTPuzzle.webm" />
+    Your browser does not support the video tag.
+  </video></p>
+  </dd>
+</dl>
+
+Check out the following papers for additional details!
+</p>
+<ul>
+  <li><strong>Empowering End Users in Debugging Trigger-Action Rules</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (CHI ‘19) <a href="https://iris.polito.it/handle/11583/2724318#.X7E-wRNKjlw">[pdf]</a></li>
+  <li><strong>My IoT Puzzle: Debugging IF-THEN Rules Through the Jigsaw Metaphor</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, IS-EUD: the 7th International Symposium on End-User Development <a href="https://iris.polito.it/handle/11583/2731417#.X7E_kRNKjlw">[pdf]</a></li>
+  <li><strong>A Debugging Approach for Trigger-Action Programming</strong>, Fulvio Corno, Luigi De Russis, and Alberto Monge Roffarello, Proceedings of the 2018 CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI ‘18) <a href="https://iris.polito.it/handle/11583/2701270#.X7E-phNKjlw">[pdf]</a></li>
+</ul>
+:ET
