@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Personal website of Alberto Monge Roffarello, Assistant Professor (RTDa) at Politecnico di Torino
 
 baseurl: / # the subpath of your site, e.g. /blog
-url: alberto-mr.github.io # the base hostname & protocol for your site, e.g. http://example.com
+url: https://albertomonge.com # the base hostname & protocol for your site, e.g. http://example.com
 
 # For local testing, only
 #baseurl: "/index" # the subpath of your site, e.g. /blog
