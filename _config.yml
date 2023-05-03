@@ -27,6 +27,7 @@ baseurl: / # the subpath of your site, e.g. /blog
 url: https://albertomonge.com/ # the base hostname & protocol for your site, e.g. http://example.com
 
 # For local testing, only
+# bundle exec jekyll serve
 #baseurl: "/index" # the subpath of your site, e.g. /blog
 #url: "localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
 
