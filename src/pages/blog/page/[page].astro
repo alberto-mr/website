@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Generate static paths for all possible pages
+export async function getStaticPaths() {
+  // Pagination configuration
+  const POSTS_PER_PAGE = 5;
+  
+  // Get all blog posts
+  const posts = await getCollection('posts');
+  const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  
+  // Calculate total pages
+  const totalPosts = sortedPosts.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+  
+  const paths = [];
+  
+  // Generate paths for all pages (starting from page 2, since page 1 is handled by /blog)
+  for (let i = 2; i <= totalPages; i++) {
+    paths.push({
+      params: { page: i.toString() }
+    });
+  }
+  
+  return paths;
+}
+
+// Pagination configuration
+const POSTS_PER_PAGE = 5;
+
+// Get all blog posts (for the main component logic)
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Calculate total pages
+const totalPosts = sortedPosts.length;
+const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+
+// Get current page from URL
+const currentPage = parseInt(Astro.params.page) || 1;
+
+// Validate page number
+if (currentPage < 1 || currentPage > totalPages) {
+  return Astro.redirect('/blog');
+}
+
+// Get posts for current page
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
+
+// Generate pagination pages
+const generatePaginationPages = (currentPage, totalPages) => {
+  const pages = [];
+  const maxVisiblePages = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  
+  if (endPage - startPage + 1 < maxVisiblePages) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  }
+  
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
+  
+  return pages;
+};
+
+const paginationPages = generatePaginationPages(currentPage, totalPages);
+---
+
+<BaseLayout title={`Blog - Page ${currentPage}`}>
+  <section class="blog-listing-section">
+    <div class="container">
+      <h1 class="page-title">Blog Posts</h1>
+      
+      {paginatedPosts.length > 0 && (
+        <div class="blog-posts-list">
+          {paginatedPosts.map((post) => (
+            <article class="blog-post-summary">
+              <div class="post-meta">
+                {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </div>
+              <h3 class="post-title">
+                <a href={`/blog/${post.slug}`}>
+                  {post.data.title}
+                </a>
+              </h3>
+              {post.data.excerpt && (
+                <p class="post-excerpt">{post.data.excerpt}</p>
+              )}
+              <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav class="pagination" aria-label="Blog pagination">
+          {currentPage > 1 && (
+            <a href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`} class="pagination-link">← Previous</a>
+          )}
+          
+          {paginationPages.map((page) => (
+            page === currentPage ? (
+              <span class="pagination-current">{page}</span>
+            ) : (
+              <a href={page === 1 ? "/blog" : `/blog/page/${page}`} class="pagination-link">
+                {page}
+              </a>
+            )
+          ))}
+          
+          {currentPage < totalPages && (
+            <a href={`/blog/page/${currentPage + 1}`} class="pagination-link">Next →</a>
+          )}
+        </nav>
+      )}
+
+      <div class="pagination-info">
+        <p>Showing {startIndex + 1}-{Math.min(endIndex, totalPosts)} of {totalPosts} posts</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

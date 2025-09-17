@@ -1,0 +1,337 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import rawPublicationsData from '../data/publications.json';
+import { generateBibTeX } from '../utils/publications';
+
+interface Publication {
+  title: string;
+  authors: string;
+  year: string;
+  venue: string;
+  link: string;
+  type: string;
+  doi?: string;
+  pages?: string;
+  volume?: string;
+  issue?: string;
+}
+
+interface PolitecnicoRecord {
+  name: string;
+  handle: string;
+  lookupValues: {
+    title: string;
+    year: string;
+    citation: string;
+    contributors: string;
+    jtitle?: string;
+    stitle?: string;
+    book?: string;
+    doi?: string;
+    isbn?: string;
+    volume?: string;
+    issue?: string;
+    spage?: string;
+    epage?: string;
+  };
+  collection: {
+    name: string;
+  };
+}
+
+interface PolitecnicoResponse {
+  TotalRecs: number;
+  records: PolitecnicoRecord[];
+}
+
+// Check if the data is already processed or raw API response
+let publications: Publication[] = [];
+
+if (Array.isArray(rawPublicationsData)) {
+  // Already processed data
+  publications = rawPublicationsData as Publication[];
+} else {
+  // Raw API response - need to process it
+  const apiData = rawPublicationsData as PolitecnicoResponse;
+  
+  const mapPolitecnicoToPublication = (record: PolitecnicoRecord): Publication => {
+    const { lookupValues, handle, collection } = record;
+    
+    // Determine publication type based on collection name
+    let type = 'misc';
+    if (collection.name.includes('Articolo in rivista')) {
+      type = 'journal';
+    } else if (collection.name.includes('Atti di convegno')) {
+      type = 'conference';
+    } else if (collection.name.includes('Doctoral thesis')) {
+      type = 'thesis';
+    } else if (collection.name.includes('volume')) {
+      type = 'book';
+    }
+
+    // Extract venue information
+    let venue = lookupValues.jtitle || lookupValues.stitle || lookupValues.book || 'Unknown venue';
+    
+    // Handle PhD thesis specifically
+    if (collection.name.includes('Doctoral thesis')) {
+      venue = 'PhD Thesis';
+    }
+    
+    // Clean up venue name
+    if (venue.includes('Proceedings of')) {
+      venue = venue.replace('Proceedings of', '').trim();
+    }
+    if (venue.includes('CHI')) {
+      venue = `Proceedings of the ${lookupValues.year} CHI Conference on Human Factors in Computing Systems`;
+    }
+
+    // Format pages
+    let pages = '';
+    if (lookupValues.spage && lookupValues.epage) {
+      pages = `${lookupValues.spage}-${lookupValues.epage}`;
+    } else if (lookupValues.spage) {
+      pages = lookupValues.spage;
+    }
+
+    // Create link to Politecnico repository
+    const link = `https://iris.polito.it/handle/${handle}`;
+
+    // Format authors from "SURNAME, NAME" to "Name Surname"
+    const formatAuthors = (authorsString: string): string => {
+      return authorsString
+        .split(';')
+        .map(author => {
+          const trimmed = author.trim();
+          if (trimmed.includes(',')) {
+            const [surname, ...nameParts] = trimmed.split(',').map(s => s.trim());
+            const name = nameParts.join(' ').trim();
+            return name && surname ? `${name} ${surname}` : trimmed;
+          }
+          return trimmed;
+        })
+        .join('; ');
+    };
+
+    // Extract year from date string (e.g., "2020-05-22" -> "2020")
+    const year = lookupValues.year ? lookupValues.year.split('-')[0] : lookupValues.year;
+
+    return {
+      title: lookupValues.title,
+      authors: formatAuthors(lookupValues.contributors),
+      year: year,
+      venue: venue,
+      link: link,
+      type: type,
+      doi: lookupValues.doi,
+      pages: pages,
+      volume: lookupValues.volume,
+      issue: lookupValues.issue
+    };
+  };
+
+  publications = apiData.records.map(mapPolitecnicoToPublication);
+  
+  // Sort by year (newest first)
+  publications.sort((a, b) => {
+    const yearA = parseInt(a.year) || 0;
+    const yearB = parseInt(b.year) || 0;
+    return yearB - yearA;
+  });
+}
+
+// Group publications by year
+const publicationsByYear: { [year: string]: Publication[] } = publications.reduce((acc, pub) => {
+  const year = pub.year;
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(pub);
+  return acc;
+}, {});
+
+// Sort years in descending order
+const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+---
+
+<BaseLayout title="Publications" description="Complete list of research publications in Human-Computer Interaction, Digital Wellbeing, and End-User Development.">
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Publications</h1>
+        <p class="page-subtitle">
+          Research contributions in Human-Computer Interaction, Digital Wellbeing, and End-User Development, 
+          published in top-tier conferences and journals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding: 2rem 0 4rem;">
+    <div class="publications-list">
+      {sortedYears.map(year => (
+        publicationsByYear[year].map(pub => {
+          const bibtex = generateBibTeX(pub);
+          const filename = `${pub.title.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').toLowerCase()}_${pub.year}.bib`;
+          
+          return (
+            <div class="publication-entry">
+              <div class="pub-year-badge">{pub.year}</div>
+              <div class="pub-details">
+                <h4><a href={pub.link} target="_blank" rel="noopener">{pub.title}</a></h4>
+                <p>{pub.authors}, {pub.venue}</p>
+                {pub.doi && (
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                    DOI: <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener" style="color: var(--accent-color);">{pub.doi}</a>
+                  </p>
+                )}
+                <div class="pub-actions" style="margin-top: 0.75rem; display: flex; gap: 0.75rem; align-items: center;">
+                  <button 
+                    class="bibtex-download-btn" 
+                    data-bibtex={JSON.stringify(bibtex)}
+                    title="Copy BibTeX to clipboard"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy BibTeX
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function copyBibTeXToClipboard(bibtex) {
+    navigator.clipboard.writeText(bibtex).then(() => {
+      showToast('BibTeX copied to clipboard!');
+    }).catch(err => {
+      console.error('Failed to copy BibTeX: ', err);
+      showToast('Failed to copy BibTeX', 'error');
+    });
+  }
+
+  function showToast(message, type = 'success') {
+    // Remove any existing toast
+    const existingToast = document.querySelector('.toast');
+    if (existingToast) {
+      existingToast.remove();
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    
+    // Add to page
+    document.body.appendChild(toast);
+    
+    // Force a reflow to ensure the element is rendered
+    toast.offsetHeight;
+    
+    // Show toast with animation
+    setTimeout(() => {
+      toast.classList.add('toast-show');
+    }, 10);
+    
+    // Hide and remove toast after 3 seconds
+    setTimeout(() => {
+      toast.classList.remove('toast-show');
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  }
+
+  // Add event listeners to all BibTeX copy buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    const bibtexButtons = document.querySelectorAll('.bibtex-download-btn');
+    
+    bibtexButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const bibtex = this.getAttribute('data-bibtex');
+        if (bibtex) {
+          copyBibTeXToClipboard(JSON.parse(bibtex));
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="300" r="200" fill="url(%23a)"/><circle cx="400" cy="700" r="250" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .page-header {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    animation: slideInLeft 1s ease-out;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    animation: slideInLeft 1s ease-out 0.2s both;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+

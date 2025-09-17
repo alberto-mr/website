@@ -1,0 +1,45 @@
+---
+import { navigation } from '../data/navigation';
+import { site } from '../data/site';
+
+// Get current URL path
+const currentPath = Astro.url.pathname;
+
+// Function to check if a link is active
+const isActive = (url: string) => {
+  if (url === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(url);
+};
+---
+
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">{site.title}</a>
+      <button class="navbar-toggle" type="button" aria-label="Toggle navigation">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      <div class="navbar-menu">
+        <ul class="navbar-nav">
+          {navigation.thematic.map((item) => (
+            <li class="nav-item">
+              <a class={`nav-link ${isActive(item.url) ? 'active' : ''}`} href={item.url}>{item.title}</a>
+            </li>
+          ))}
+          <li class="nav-separator"></li>
+          {navigation.personal.map((item) => (
+            <li class="nav-item">
+              <a class={`nav-link ${isActive(item.url) ? 'active' : ''}`} href={item.url}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

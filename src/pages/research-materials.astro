@@ -1,0 +1,1550 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllPublications } from '../utils/publications';
+
+const allPublications = getAllPublications();
+
+function normalizeTitle(text: string): string {
+  return (text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function titleTokens(text: string): string[] {
+  return normalizeTitle(text)
+    .split(' ')
+    .filter(w => w.length > 3);
+}
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  const intersection = new Set([...a].filter(x => b.has(x)));
+  const union = new Set([...a, ...b]);
+  return union.size === 0 ? 0 : intersection.size / union.size;
+}
+
+function findMatchingPublication(repoTitle: string): string | null {
+  const normRepo = normalizeTitle(repoTitle);
+  const repoSet = new Set(titleTokens(repoTitle));
+
+  let bestLink: string | null = null;
+  let bestScore = 0;
+
+  for (const pub of allPublications) {
+    const normPub = normalizeTitle(pub.title);
+
+    // Exact or substring match first
+    if (normPub === normRepo || normPub.includes(normRepo) || normRepo.includes(normPub)) {
+      console.log(`Exact match found for "${repoTitle}" -> "${pub.title}"`);
+      return pub.link;
+    }
+
+    // Token overlap similarity as fallback
+    const pubSet = new Set(titleTokens(pub.title));
+    const score = jaccard(repoSet, pubSet);
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestLink = pub.link;
+    }
+  }
+
+  console.log(`Best match for "${repoTitle}": score=${bestScore}, link=${bestLink}`);
+  // Require a reasonable similarity threshold
+  return bestScore >= 0.45 ? bestLink : null;
+}
+
+// Pagination parameters
+const talksPerPage = 6;
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
+
+// This could be moved to a data file later for easier management
+const researchMaterials = {
+  talks: [
+    {
+      title: "Defining and Identifying Attention Capture Deceptive Designs in Digital Interfaces",
+      type: "Conference Talk",
+      venue: "ACM CHI 2023",
+      date: "2023",
+      description: "Conference presentation of research work at CHI 2023.",
+      videoUrl: "https://www.youtube.com/watch?v=Bw9m8j3_jJ0"
+    },
+    {
+      title: "Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults",
+      type: "Conference Talk",
+      venue: "ACM IUI 2022",
+      date: "2022",
+      description: "Conference presentation of research work at IUI 2022.",
+      videoUrl: "https://www.youtube.com/watch?v=nC56Uqi6iC4"
+    },
+    {
+      title: "From Users' Intentions to IF-THEN Rules in the Internet of Things",
+      type: "Invited Talk",
+      venue: "ACM SIGIR 2022",
+      date: "2022",
+      description: "Conference presentation of research work at SIGIR 2022.",
+      videoUrl: "https://www.youtube.com/watch?v=C-LcCSGRHzg"
+    },
+    {
+      title: "Towards Understanding the Dark Patterns That Steal Our Attention",
+      type: "Conference Talk",
+      venue: "ACM CHI 2021",
+      date: "2021",
+      description: "Conference presentation of research work at CHI 2021.",
+      videoUrl: "https://www.youtube.com/watch?v=myUS8IJJlXA"
+    },
+    {
+      title: "Coping with Digital Wellbeing in a Multi-Device World",
+      type: "Conference Talk",
+      venue: "ACM CHI 2021",
+      date: "2021",
+      description: "Conference presentation of research work at CHI 2021.",
+      videoUrl: "https://www.youtube.com/watch?v=s3VEgVAUtQs"
+    },
+    {
+      title: "End-User Development in the Internet of Things",
+      type: "PhD Defense",
+      venue: "Politecnico di Torino",
+      date: "2020",
+      description: "PhD defense presentation on End-User Development in the Internet of Things.",
+      videoUrl: "https://www.youtube.com/watch?v=a-mkbNZhYtQ"
+    },
+    {
+      title: "The Race Towards Digital Wellbeing: Issues and Opportunities",
+      type: "Conference Talk",
+      venue: "ACM CHI 2019",
+      date: "2019",
+      description: "Conference presentation of research work at CHI 2019.",
+      videoUrl: "https://www.youtube.com/watch?v=ToSG6rYCOJA"
+    }
+  ],
+  osfRepositories: [
+    {
+      title: "Empowering End Users to Design for Their Digital Self-Control",
+      description: "Supplementary materials, datasets, and analysis code for research on digital self-control tools and end-user design approaches.",
+      repositoryUrl: "https://osf.io/2ntd6/files/osfstorage",
+      type: "Research Repository",
+      year: "2023"
+    },
+    {
+      title: "The Digital Attention Heuristics: Supporting the User's Attention by Design",
+      description: "Research materials including datasets, analysis scripts, and supplementary materials for attention-focused design research.",
+      repositoryUrl: "https://osf.io/tjc7x/files/osfstorage",
+      type: "Research Repository", 
+      year: "2022"
+    },
+    {
+      title: "Dialogues with Digital Wisdom: Can LLMs Help Us Put Down the Phone?",
+      description: "Complete research repository with datasets, experimental materials, and analysis code for LLM-based digital wellbeing interventions.",
+      repositoryUrl: "https://osf.io/q7rn5/files/osfstorage",
+      type: "Research Repository",
+      year: "2024"
+    },
+    {
+      title: "From Digital Self-Control Apps to iOS Shortcuts: Enabling Privacy-Centric Wellbeing Research Without Code",
+      description: "Research materials, datasets, and analysis tools for privacy-centric digital wellbeing research using iOS Shortcuts.",
+      repositoryUrl: "https://osf.io/yu5m8/files/osfstorage",
+      type: "Research Repository",
+      year: "2024"
+    },
+    {
+      title: "Trigger-action Programming for Wellbeing: Insights from 6,590 iOS Shortcuts",
+      description: "Large-scale dataset and analysis materials from 6,590 iOS Shortcuts related to digital wellbeing and trigger-action programming.",
+      repositoryUrl: "https://osf.io/p9udq/files/osfstorage",
+      type: "Research Repository",
+      year: "2024"
+    }
+  ],
+  tools: [
+    {
+      title: "Digital Wellbeing Lens",
+      description: "A Figma plugin that helps designers identify and avoid deceptive design patterns that harm user attention and autonomy.",
+      technologies: ["JavaScript", "Figma Plugin API", "UI/UX Design", "Design Tools"],
+      type: "Figma Plugin",
+      demoUrl: "https://www.figma.com/community/plugin/1310606990428971215/digital-wellbeing-lens",
+      githubUrl: "https://git.elite.polito.it/public-projects/digital-wellbeing-lens",
+      paperTitle: "Digital Wellbeing Lens"
+    },
+    {
+      title: "IntRec - Conversational Search for Trigger-Action Programming",
+      description: "A conversational search and recommender system that helps users discover and create IF-THEN rules for IoT devices.",
+      technologies: ["Java", "Semantic Search", "NLP", "IoT Integration"],
+      type: "Recommender System",
+      githubUrl: "https://git.elite.polito.it/public-projects/intrec",
+      paperTitle: "From Users' Intentions to IF-THEN Rules in the Internet of Things"
+    },
+    {
+      title: "RecRules - Hybrid Semantic Recommender System",
+      description: "A hybrid semantic recommender system that suggests IF-THEN rules based on user behavior and semantic similarity.",
+      technologies: ["Java", "Semantic Analysis", "Recommendation Systems", "Rule Mining"],
+      type: "Recommender System",
+      githubUrl: "https://git.elite.polito.it/public-projects/recrules",
+      paperTitle: "RecRules"
+    },
+    {
+      title: "Socialize v1 - Digital Wellbeing App",
+      description: "A digital wellbeing mobile application implementing common features to assist users in changing their smartphone behaviors.",
+      technologies: ["Android", "Java", "Mobile Development", "Behavioral Analytics"],
+      type: "Mobile App",
+      githubUrl: "https://git.elite.polito.it/public-projects/socialize-v1",
+      paperTitle: "The Race Towards Digital Wellbeing"
+    },
+    {
+      title: "Socialize v2 - Advanced Digital Wellbeing",
+      description: "An enhanced digital wellbeing mobile app that helps users avoid meaningless smartphone habits through advanced behavioral insights.",
+      technologies: ["Android", "Java", "Machine Learning", "Behavioral Design"],
+      type: "Mobile App",
+      githubUrl: "https://git.elite.polito.it/public-projects/socialize-v2",
+      paperTitle: "Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults"
+    },
+    {
+      title: "EUPont Ontology",
+      description: "A comprehensive ontology for End User Programming in IoT environments, providing semantic representations for trigger-action programming concepts.",
+      technologies: ["OWL", "RDF", "Semantic Web", "Ontology Engineering"],
+      type: "Semantic Ontology",
+      demoUrl: "https://lov.linkeddata.es/dataset/lov/vocabs/eupont",
+      paperTitle: "A High-Level Semantic Approach to End-User Development in the Internet of Things",
+      githubUrl: null
+    },
+    {
+      title: "EDDI - Ethical Digital Design Index",
+      description: "An ethical design platform prototype developed by Pietro Martina that helps designers identify and avoid deceptive patterns while balancing user experience with business goals.",
+      technologies: ["Design Tools", "Ethical Design", "User Experience", "Design Patterns"],
+      type: "Design Platform",
+      demoUrl: "https://www.figma.com/proto/VnUNKZiN7JWbzH4lmlWhkQ/EDDI-%F0%9F%9B%A0%EF%B8%8F?node-id=162-2227&t=i3iYlxDyFJVg5eeZ-1",
+      paperTitle: "EDDI by Pietro Martina",
+      githubUrl: null,
+      authorUrl: "https://piezmartin.framer.website/"
+    }
+  ]
+};
+
+// Pagination logic
+const totalTalks = researchMaterials.talks.length;
+const totalPages = Math.ceil(totalTalks / talksPerPage);
+const startIndex = (currentPage - 1) * talksPerPage;
+const endIndex = startIndex + talksPerPage;
+const currentTalks = researchMaterials.talks.slice(startIndex, endIndex);
+
+// Pagination helper functions
+function getPageNumbers(current: number, total: number) {
+  const pages = [];
+  const maxVisible = 5;
+  
+  if (total <= maxVisible) {
+    for (let i = 1; i <= total; i++) {
+      pages.push(i);
+    }
+  } else {
+    if (current <= 3) {
+      for (let i = 1; i <= 4; i++) {
+        pages.push(i);
+      }
+      pages.push('...');
+      pages.push(total);
+    } else if (current >= total - 2) {
+      pages.push(1);
+      pages.push('...');
+      for (let i = total - 3; i <= total; i++) {
+        pages.push(i);
+      }
+    } else {
+      pages.push(1);
+      pages.push('...');
+      for (let i = current - 1; i <= current + 1; i++) {
+        pages.push(i);
+      }
+      pages.push('...');
+      pages.push(total);
+    }
+  }
+  
+  return pages;
+}
+
+const pageNumbers = getPageNumbers(currentPage, totalPages);
+---
+
+<BaseLayout title="Research Materials">
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Research Materials</h1>
+        <p class="page-subtitle">
+          Tools, datasets, talks, and platforms developed through our research
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Talks & Presentations Section -->
+  <section class="materials-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="section-icon">🎤</span>
+        Talks & Presentations
+      </h2>
+      <div class="talks-scroll-container">
+        <button class="scroll-btn scroll-left" id="scroll-left">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+        </button>
+        
+        <div class="talks-scroll-wrapper" id="talks-scroll-wrapper">
+          <div class="talks-scroll-content" id="talks-scroll-content">
+            {researchMaterials.talks.map((talk, index) => (
+              <div class="material-card video-card" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div class="card-header">
+                  <div class="video-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="5,3 19,12 5,21"/>
+                    </svg>
+                  </div>
+                  <div class="card-meta">
+                    <span class="material-type">{talk.type}</span>
+                    <span class="material-venue">{talk.venue} • {talk.date}</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">{talk.title}</h3>
+                  <p class="card-description">{talk.description}</p>
+                  <div class="card-actions">
+                    <a href={talk.videoUrl} class="btn btn-primary btn-sm" target="_blank">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"/>
+                      </svg>
+                      Watch Video
+                    </a>
+                    {findMatchingPublication(talk.title) && (
+                      <a href={findMatchingPublication(talk.title)} class="btn btn-outline btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14,2 14,8 20,8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                          <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Access Paper
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <button class="scroll-btn scroll-right" id="scroll-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Scroll Indicators -->
+      <div class="scroll-indicators">
+        <div class="scroll-dots" id="scroll-dots"></div>
+        <div class="scroll-info" id="scroll-info">
+          Showing all {totalTalks} talks
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OSF Repositories Section -->
+  <section class="materials-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="section-icon">📁</span>
+        OSF Repositories
+      </h2>
+      <div class="talks-scroll-container">
+        <button class="scroll-btn scroll-left" id="osf-scroll-left">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+        </button>
+        
+        <div class="talks-scroll-wrapper" id="osf-scroll-wrapper">
+          <div class="talks-scroll-content" id="osf-scroll-content">
+            {researchMaterials.osfRepositories.map((repo, index) => (
+              <div class="material-card osf-card" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div class="card-header">
+                  <div class="osf-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14,2 14,8 20,8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                  </div>
+                  <div class="card-meta">
+                    <span class="material-type">{repo.type}</span>
+                    <span class="material-venue">OSF • {repo.year}</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">{repo.title}</h3>
+                  <p class="card-description">{repo.description}</p>
+                  <div class="card-actions">
+                    <a href={repo.repositoryUrl} class="btn btn-primary btn-sm" target="_blank">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15,3 21,3 21,9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                      View Repository
+                    </a>
+                    {findMatchingPublication(repo.title) && (
+                      <a href={findMatchingPublication(repo.title)} class="btn btn-outline btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14,2 14,8 20,8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                          <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Access Paper
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <button class="scroll-btn scroll-right" id="osf-scroll-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Scroll Indicators -->
+      <div class="scroll-indicators">
+        <div class="scroll-dots" id="osf-scroll-dots"></div>
+        <div class="scroll-info" id="osf-scroll-info">
+          Showing all {researchMaterials.osfRepositories.length} repositories
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools & Software Section -->
+  <section class="materials-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="section-icon">🛠️</span>
+        Tools & Software
+      </h2>
+      <div class="talks-scroll-container">
+        <button class="scroll-btn scroll-left" id="tools-scroll-left">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+        </button>
+        
+        <div class="talks-scroll-wrapper" id="tools-scroll-wrapper">
+          <div class="talks-scroll-content" id="tools-scroll-content">
+            {researchMaterials.tools.map((tool, index) => (
+              <div class="material-card tool-card" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div class="card-header">
+                  <div class="tool-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                  </div>
+                  <div class="card-meta">
+                    <span class="material-type">{tool.type}</span>
+                    <span class="material-venue">Research Tool</span>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">{tool.title}</h3>
+                  <p class="card-description">{tool.description}</p>
+                  <div class="tool-technologies">
+                    {tool.technologies.map(tech => (
+                      <span class="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                  <div class="card-actions">
+                    {tool.githubUrl && (
+                      <a href={tool.githubUrl} class="btn btn-primary btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                        View Code
+                      </a>
+                    )}
+                    {tool.demoUrl && (
+                      <a href={tool.demoUrl} class="btn btn-outline btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                          <polyline points="15,3 21,3 21,9"/>
+                          <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        {tool.type === "Figma Plugin" ? "Try the Plugin" : 
+                         tool.type === "Semantic Ontology" ? "View Ontology" :
+                         tool.type === "Design Platform" ? "Try Platform" : "View Demo"}
+                      </a>
+                    )}
+                    {tool.authorUrl && (
+                      <a href={tool.authorUrl} class="btn btn-outline btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                          <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Author
+                      </a>
+                    )}
+                    {findMatchingPublication(tool.paperTitle) && (
+                      <a href={findMatchingPublication(tool.paperTitle)} class="btn btn-outline btn-sm" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14,2 14,8 20,8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                          <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Access Paper
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <button class="scroll-btn scroll-right" id="tools-scroll-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Scroll Indicators -->
+      <div class="scroll-indicators">
+        <div class="scroll-dots" id="tools-scroll-dots"></div>
+        <div class="scroll-info" id="tools-scroll-info">
+          Showing all {researchMaterials.tools.length} tools
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</BaseLayout>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="300" r="200" fill="url(%23a)"/><circle cx="400" cy="700" r="250" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .page-header {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    animation: slideInLeft 1s ease-out;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    animation: slideInLeft 1s ease-out 0.2s both;
+  }
+
+  .materials-section {
+    padding: 5rem 0;
+  }
+
+  .materials-section:nth-child(even) {
+    background-color: var(--bg-secondary);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    font-size: 2rem;
+  }
+
+  /* Horizontal Scrollable Layout */
+  .talks-scroll-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .talks-scroll-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .talks-scroll-content {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.3s ease;
+    padding: 1rem 0;
+    width: max-content;
+  }
+
+  .scroll-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    z-index: 2;
+  }
+
+  .scroll-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .scroll-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .scroll-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .material-card {
+    flex-shrink: 0;
+    width: 380px;
+    margin-right: 0;
+  }
+
+  .talks-scroll-content:first-child {
+    margin-left: 0;
+  }
+
+  .scroll-indicators {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .scroll-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .scroll-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scroll-dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+  }
+
+  .scroll-info {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .material-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Video Cards */
+  .video-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .video-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .video-icon svg {
+    width: 22px;
+    height: 22px;
+    margin-left: 1px;
+  }
+
+  .video-card:hover .video-icon {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  /* OSF Cards */
+  .osf-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .osf-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .osf-card:hover .osf-icon {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .osf-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Tool Cards */
+  .tool-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .tool-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tool-card:hover .tool-icon {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .tool-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Card Content */
+  .card-header {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    flex: 1;
+  }
+
+  .material-type {
+    background: var(--bg-accent);
+    color: var(--text-primary);
+    padding: 0.35rem 0.8rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: fit-content;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .material-venue {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .card-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+    font-size: 0.95rem;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 1rem;
+    justify-content: flex-start;
+  }
+
+  .btn-sm {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-width: fit-content;
+    white-space: nowrap;
+  }
+
+  .btn-sm svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+  }
+
+  .btn-outline:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+
+  .card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .card-link:hover {
+    color: var(--primary-dark);
+  }
+
+  /* Dataset Cards */
+  .dataset-meta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .dataset-size,
+  .dataset-format,
+  .dataset-participants {
+    background: var(--bg-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  /* Tool Cards */
+  .tool-technologies {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0 1.25rem 0;
+    flex-wrap: wrap;
+  }
+
+  .tech-tag {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.35rem 0.85rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  /* Platform Cards */
+  .platform-features {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .feature-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .collaborators {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+
+  /* Pagination Styles */
+  .pagination-container {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .pagination-link,
+  .pagination-current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+  }
+
+  .pagination-link {
+    color: var(--text-primary);
+    background: white;
+  }
+
+  .pagination-link:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .pagination-current {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .pagination-prev svg,
+  .pagination-next svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  button.pagination-link:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .talks-scroll-container {
+      gap: 0.5rem;
+    }
+
+    .scroll-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .scroll-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .material-card {
+      width: 320px;
+      min-height: 360px;
+    }
+
+    .card-header {
+      padding: 1.25rem 1.25rem 0;
+    }
+
+    .card-content {
+      padding: 1.25rem;
+    }
+
+    .card-actions {
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    
+    .btn-sm {
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .scroll-dots {
+      gap: 0.25rem;
+    }
+
+    .scroll-dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .talks-scroll-container {
+      gap: 0.25rem;
+    }
+
+    .scroll-btn {
+      width: 36px;
+      height: 36px;
+    }
+
+    .material-card {
+      width: 280px;
+      min-height: 340px;
+    }
+
+    .card-header {
+      padding: 1rem 1rem 0;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .talks-scroll-content {
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Horizontal scroll functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollContent = document.getElementById('talks-scroll-content');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+    const scrollDots = document.getElementById('scroll-dots');
+    const scrollInfo = document.getElementById('scroll-info');
+    
+    if (!scrollContent || !scrollLeftBtn || !scrollRightBtn) return;
+    
+    const cardWidth = 400; // Card width + gap (380px card + 20px gap)
+    const totalTalks = scrollContent.children.length;
+    let currentIndex = 0;
+    
+    function getCardsPerView() {
+      const containerWidth = scrollContent.parentElement.offsetWidth;
+      return Math.floor(containerWidth / cardWidth);
+    }
+    
+    function getMaxIndex() {
+      const cardsPerView = getCardsPerView();
+      return Math.max(0, totalTalks - cardsPerView);
+    }
+    
+    function updateScroll() {
+      const maxIndex = getMaxIndex();
+      const translateX = -currentIndex * cardWidth;
+      scrollContent.style.transform = `translateX(${translateX}px)`;
+      
+      // Update button states
+      scrollLeftBtn.disabled = currentIndex === 0;
+      scrollRightBtn.disabled = currentIndex >= maxIndex;
+      
+      // Update dots
+      updateScrollDots();
+    }
+    
+    function updateScrollDots() {
+      scrollDots.innerHTML = '';
+      const cardsPerView = getCardsPerView();
+      const totalDots = Math.ceil(totalTalks / cardsPerView);
+      
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+        dot.onclick = () => {
+          currentIndex = i * cardsPerView;
+          updateScroll();
+        };
+        scrollDots.appendChild(dot);
+      }
+    }
+    
+    // Event listeners
+    scrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let isScrolling = false;
+    
+    scrollContent.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isScrolling = true;
+    });
+    
+    scrollContent.addEventListener('touchmove', (e) => {
+      if (!isScrolling) return;
+      e.preventDefault();
+    });
+    
+    scrollContent.addEventListener('touchend', (e) => {
+      if (!isScrolling) return;
+      isScrolling = false;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      
+      if (Math.abs(diffX) > 50) { // Minimum swipe distance
+        const maxIndex = getMaxIndex();
+        if (diffX > 0 && currentIndex < maxIndex) {
+          // Swipe left - go right
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+        } else if (diffX < 0 && currentIndex > 0) {
+          // Swipe right - go left
+          currentIndex = Math.max(0, currentIndex - 1);
+        }
+        updateScroll();
+      }
+    });
+    
+    // Initialize
+    updateScroll();
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const newMaxIndex = getMaxIndex();
+      
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+      
+      updateScroll();
+    });
+  });
+
+  // OSF Repositories scroll functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const osfScrollContent = document.getElementById('osf-scroll-content');
+    const osfScrollLeftBtn = document.getElementById('osf-scroll-left');
+    const osfScrollRightBtn = document.getElementById('osf-scroll-right');
+    const osfScrollDots = document.getElementById('osf-scroll-dots');
+    const osfScrollInfo = document.getElementById('osf-scroll-info');
+    
+    if (!osfScrollContent || !osfScrollLeftBtn || !osfScrollRightBtn) return;
+    
+    const cardWidth = 400; // Card width + gap (380px card + 20px gap)
+    const totalRepos = osfScrollContent.children.length;
+    let currentIndex = 0;
+    
+    function getCardsPerView() {
+      const containerWidth = osfScrollContent.parentElement.offsetWidth;
+      return Math.floor(containerWidth / cardWidth);
+    }
+    
+    function getMaxIndex() {
+      const cardsPerView = getCardsPerView();
+      return Math.max(0, totalRepos - cardsPerView);
+    }
+    
+    function updateScroll() {
+      const maxIndex = getMaxIndex();
+      const translateX = -currentIndex * cardWidth;
+      osfScrollContent.style.transform = `translateX(${translateX}px)`;
+      
+      // Update button states
+      osfScrollLeftBtn.disabled = currentIndex === 0;
+      osfScrollRightBtn.disabled = currentIndex >= maxIndex;
+      
+      // Update dots
+      updateScrollDots();
+    }
+    
+    function updateScrollDots() {
+      osfScrollDots.innerHTML = '';
+      const cardsPerView = getCardsPerView();
+      const totalDots = Math.ceil(totalRepos / cardsPerView);
+      
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+        dot.onclick = () => {
+          currentIndex = i * cardsPerView;
+          updateScroll();
+        };
+        osfScrollDots.appendChild(dot);
+      }
+    }
+    
+    // Event listeners
+    osfScrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
+    
+    osfScrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let isScrolling = false;
+    
+    osfScrollContent.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isScrolling = true;
+    });
+    
+    osfScrollContent.addEventListener('touchmove', (e) => {
+      if (!isScrolling) return;
+      e.preventDefault();
+    });
+    
+    osfScrollContent.addEventListener('touchend', (e) => {
+      if (!isScrolling) return;
+      isScrolling = false;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      
+      if (Math.abs(diffX) > 50) { // Minimum swipe distance
+        const maxIndex = getMaxIndex();
+        if (diffX > 0 && currentIndex < maxIndex) {
+          // Swipe left - go right
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+        } else if (diffX < 0 && currentIndex > 0) {
+          // Swipe right - go left
+          currentIndex = Math.max(0, currentIndex - 1);
+        }
+        updateScroll();
+      }
+    });
+    
+    // Initialize
+    updateScroll();
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const newMaxIndex = getMaxIndex();
+      
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+      
+      updateScroll();
+    });
+  });
+
+  // Tools scroll functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const toolsScrollContent = document.getElementById('tools-scroll-content');
+    const toolsScrollLeftBtn = document.getElementById('tools-scroll-left');
+    const toolsScrollRightBtn = document.getElementById('tools-scroll-right');
+    const toolsScrollDots = document.getElementById('tools-scroll-dots');
+    const toolsScrollInfo = document.getElementById('tools-scroll-info');
+    
+    if (!toolsScrollContent || !toolsScrollLeftBtn || !toolsScrollRightBtn) return;
+    
+    const cardWidth = 400; // Card width + gap (380px card + 20px gap)
+    const totalTools = toolsScrollContent.children.length;
+    let currentIndex = 0;
+    
+    function getCardsPerView() {
+      const containerWidth = toolsScrollContent.parentElement.offsetWidth;
+      return Math.floor(containerWidth / cardWidth);
+    }
+    
+    function getMaxIndex() {
+      const cardsPerView = getCardsPerView();
+      return Math.max(0, totalTools - cardsPerView);
+    }
+    
+    function updateScroll() {
+      const maxIndex = getMaxIndex();
+      const translateX = -currentIndex * cardWidth;
+      toolsScrollContent.style.transform = `translateX(${translateX}px)`;
+      
+      // Update button states
+      toolsScrollLeftBtn.disabled = currentIndex === 0;
+      toolsScrollRightBtn.disabled = currentIndex >= maxIndex;
+      
+      // Update dots
+      updateScrollDots();
+    }
+    
+    function updateScrollDots() {
+      toolsScrollDots.innerHTML = '';
+      const cardsPerView = getCardsPerView();
+      const totalDots = Math.ceil(totalTools / cardsPerView);
+      
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+        dot.onclick = () => {
+          currentIndex = i * cardsPerView;
+          updateScroll();
+        };
+        toolsScrollDots.appendChild(dot);
+      }
+    }
+    
+    // Event listeners
+    toolsScrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
+    
+    toolsScrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let isScrolling = false;
+    
+    toolsScrollContent.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isScrolling = true;
+    });
+    
+    toolsScrollContent.addEventListener('touchmove', (e) => {
+      if (!isScrolling) return;
+      e.preventDefault();
+    });
+    
+    toolsScrollContent.addEventListener('touchend', (e) => {
+      if (!isScrolling) return;
+      isScrolling = false;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      
+      if (Math.abs(diffX) > 50) { // Minimum swipe distance
+        const maxIndex = getMaxIndex();
+        if (diffX > 0 && currentIndex < maxIndex) {
+          // Swipe left - go right
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+        } else if (diffX < 0 && currentIndex > 0) {
+          // Swipe right - go left
+          currentIndex = Math.max(0, currentIndex - 1);
+        }
+        updateScroll();
+      }
+    });
+    
+    // Initialize
+    updateScroll();
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const newMaxIndex = getMaxIndex();
+      
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+      
+      updateScroll();
+    });
+  });
+</script>
