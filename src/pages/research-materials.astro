@@ -1331,15 +1331,16 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       scrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states
-      scrollLeftBtn.disabled = currentIndex === 0;
-      scrollRightBtn.disabled = currentIndex >= maxIndex;
+      // Update button states only if buttons exist
+      if (scrollLeftBtn) scrollLeftBtn.disabled = currentIndex === 0;
+      if (scrollRightBtn) scrollRightBtn.disabled = currentIndex >= maxIndex;
       
       // Update dots
       updateScrollDots();
     }
     
     function updateScrollDots() {
+      if (!scrollDots) return;
       scrollDots.innerHTML = '';
       const cardsPerView = getCardsPerView();
       const totalDots = Math.ceil(totalTalks / cardsPerView);
@@ -1421,15 +1422,16 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       osfScrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states
-      osfScrollLeftBtn.disabled = currentIndex === 0;
-      osfScrollRightBtn.disabled = currentIndex >= maxIndex;
+      // Update button states only if buttons exist
+      if (osfScrollLeftBtn) osfScrollLeftBtn.disabled = currentIndex === 0;
+      if (osfScrollRightBtn) osfScrollRightBtn.disabled = currentIndex >= maxIndex;
       
       // Update dots
       updateScrollDots();
     }
     
     function updateScrollDots() {
+      if (!osfScrollDots) return;
       osfScrollDots.innerHTML = '';
       const cardsPerView = getCardsPerView();
       const totalDots = Math.ceil(totalRepos / cardsPerView);
@@ -1511,15 +1513,16 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       toolsScrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states
-      toolsScrollLeftBtn.disabled = currentIndex === 0;
-      toolsScrollRightBtn.disabled = currentIndex >= maxIndex;
+      // Update button states only if buttons exist
+      if (toolsScrollLeftBtn) toolsScrollLeftBtn.disabled = currentIndex === 0;
+      if (toolsScrollRightBtn) toolsScrollRightBtn.disabled = currentIndex >= maxIndex;
       
       // Update dots
       updateScrollDots();
     }
     
     function updateScrollDots() {
+      if (!toolsScrollDots) return;
       toolsScrollDots.innerHTML = '';
       const cardsPerView = getCardsPerView();
       const totalDots = Math.ceil(totalTools / cardsPerView);
