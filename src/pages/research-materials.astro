@@ -1275,7 +1275,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     scrollContent.addEventListener('touchmove', (e) => {
       if (!isScrolling) return;
       e.preventDefault();
-    });
+    }, { passive: false });
     
     scrollContent.addEventListener('touchend', (e) => {
       if (!isScrolling) return;
@@ -1393,7 +1393,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     osfScrollContent.addEventListener('touchmove', (e) => {
       if (!isScrolling) return;
       e.preventDefault();
-    });
+    }, { passive: false });
     
     osfScrollContent.addEventListener('touchend', (e) => {
       if (!isScrolling) return;
@@ -1511,7 +1511,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     toolsScrollContent.addEventListener('touchmove', (e) => {
       if (!isScrolling) return;
       e.preventDefault();
-    });
+    }, { passive: false });
     
     toolsScrollContent.addEventListener('touchend', (e) => {
       if (!isScrolling) return;
