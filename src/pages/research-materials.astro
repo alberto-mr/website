@@ -1302,17 +1302,19 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
 </style>
 
 <script>
-  // Horizontal scroll functionality
+  // Horizontal scroll functionality - DESKTOP ONLY
   document.addEventListener('DOMContentLoaded', function() {
+    // Skip entirely on mobile/tablet
+    if (window.innerWidth <= 768) return;
+    
     const scrollContent = document.getElementById('talks-scroll-content');
     const scrollLeftBtn = document.getElementById('scroll-left');
     const scrollRightBtn = document.getElementById('scroll-right');
     const scrollDots = document.getElementById('scroll-dots');
-    const scrollInfo = document.getElementById('scroll-info');
     
-    if (!scrollContent) return;
+    if (!scrollContent || !scrollLeftBtn || !scrollRightBtn) return;
     
-    const cardWidth = 400; // Card width + gap (380px card + 20px gap)
+    const cardWidth = 400;
     const totalTalks = scrollContent.children.length;
     let currentIndex = 0;
     
@@ -1331,77 +1333,63 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       scrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states only if buttons exist
-      if (scrollLeftBtn) scrollLeftBtn.disabled = currentIndex === 0;
-      if (scrollRightBtn) scrollRightBtn.disabled = currentIndex >= maxIndex;
+      scrollLeftBtn.disabled = currentIndex === 0;
+      scrollRightBtn.disabled = currentIndex >= maxIndex;
       
-      // Update dots
-      updateScrollDots();
-    }
-    
-    function updateScrollDots() {
-      if (!scrollDots) return;
-      scrollDots.innerHTML = '';
-      const cardsPerView = getCardsPerView();
-      const totalDots = Math.ceil(totalTalks / cardsPerView);
-      
-      for (let i = 0; i < totalDots; i++) {
-        const dot = document.createElement('div');
-        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
-        dot.onclick = () => {
-          currentIndex = i * cardsPerView;
-          updateScroll();
-        };
-        scrollDots.appendChild(dot);
+      if (scrollDots) {
+        scrollDots.innerHTML = '';
+        const cardsPerView = getCardsPerView();
+        const totalDots = Math.ceil(totalTalks / cardsPerView);
+        
+        for (let i = 0; i < totalDots; i++) {
+          const dot = document.createElement('div');
+          dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+          dot.onclick = () => {
+            currentIndex = i * cardsPerView;
+            updateScroll();
+          };
+          scrollDots.appendChild(dot);
+        }
       }
     }
     
-    // Event listeners for desktop buttons
-    if (scrollLeftBtn) {
-      scrollLeftBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex = Math.max(0, currentIndex - 1);
-          updateScroll();
-        }
-      });
-    }
+    scrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
     
-    if (scrollRightBtn) {
-      scrollRightBtn.addEventListener('click', () => {
-        const maxIndex = getMaxIndex();
-        if (currentIndex < maxIndex) {
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-          updateScroll();
-        }
-      });
-    }
+    scrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
     
-    // Initialize only on desktop (where buttons exist)
-    if (scrollLeftBtn && scrollRightBtn) {
-      updateScroll();
-    }
+    updateScroll();
     
-    // Handle window resize
     window.addEventListener('resize', () => {
       const newMaxIndex = getMaxIndex();
-      
       if (currentIndex > newMaxIndex) {
         currentIndex = newMaxIndex;
       }
-      
       updateScroll();
     });
   });
 
-  // OSF Repositories scroll functionality
+  // OSF Repositories scroll functionality - DESKTOP ONLY
   document.addEventListener('DOMContentLoaded', function() {
+    // Skip entirely on mobile/tablet
+    if (window.innerWidth <= 768) return;
+    
     const osfScrollContent = document.getElementById('osf-scroll-content');
     const osfScrollLeftBtn = document.getElementById('osf-scroll-left');
     const osfScrollRightBtn = document.getElementById('osf-scroll-right');
     const osfScrollDots = document.getElementById('osf-scroll-dots');
-    const osfScrollInfo = document.getElementById('osf-scroll-info');
     
-    if (!osfScrollContent) return;
+    if (!osfScrollContent || !osfScrollLeftBtn || !osfScrollRightBtn) return;
     
     const cardWidth = 400; // Card width + gap (380px card + 20px gap)
     const totalRepos = osfScrollContent.children.length;
@@ -1422,55 +1410,42 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       osfScrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states only if buttons exist
-      if (osfScrollLeftBtn) osfScrollLeftBtn.disabled = currentIndex === 0;
-      if (osfScrollRightBtn) osfScrollRightBtn.disabled = currentIndex >= maxIndex;
+      osfScrollLeftBtn.disabled = currentIndex === 0;
+      osfScrollRightBtn.disabled = currentIndex >= maxIndex;
       
-      // Update dots
-      updateScrollDots();
-    }
-    
-    function updateScrollDots() {
-      if (!osfScrollDots) return;
-      osfScrollDots.innerHTML = '';
-      const cardsPerView = getCardsPerView();
-      const totalDots = Math.ceil(totalRepos / cardsPerView);
-      
-      for (let i = 0; i < totalDots; i++) {
-        const dot = document.createElement('div');
-        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
-        dot.onclick = () => {
-          currentIndex = i * cardsPerView;
-          updateScroll();
-        };
-        osfScrollDots.appendChild(dot);
+      if (osfScrollDots) {
+        osfScrollDots.innerHTML = '';
+        const cardsPerView = getCardsPerView();
+        const totalDots = Math.ceil(totalRepos / cardsPerView);
+        
+        for (let i = 0; i < totalDots; i++) {
+          const dot = document.createElement('div');
+          dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+          dot.onclick = () => {
+            currentIndex = i * cardsPerView;
+            updateScroll();
+          };
+          osfScrollDots.appendChild(dot);
+        }
       }
     }
     
-    // Event listeners for desktop buttons
-    if (osfScrollLeftBtn) {
-      osfScrollLeftBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex = Math.max(0, currentIndex - 1);
-          updateScroll();
-        }
-      });
-    }
+    osfScrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
     
-    if (osfScrollRightBtn) {
-      osfScrollRightBtn.addEventListener('click', () => {
-        const maxIndex = getMaxIndex();
-        if (currentIndex < maxIndex) {
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-          updateScroll();
-        }
-      });
-    }
+    osfScrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
     
-    // Initialize only on desktop (where buttons exist)
-    if (osfScrollLeftBtn && osfScrollRightBtn) {
-      updateScroll();
-    }
+    updateScroll();
     
     // Handle window resize
     window.addEventListener('resize', () => {
@@ -1484,15 +1459,17 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     });
   });
 
-  // Tools scroll functionality
+  // Tools scroll functionality - DESKTOP ONLY
   document.addEventListener('DOMContentLoaded', function() {
+    // Skip entirely on mobile/tablet
+    if (window.innerWidth <= 768) return;
+    
     const toolsScrollContent = document.getElementById('tools-scroll-content');
     const toolsScrollLeftBtn = document.getElementById('tools-scroll-left');
     const toolsScrollRightBtn = document.getElementById('tools-scroll-right');
     const toolsScrollDots = document.getElementById('tools-scroll-dots');
-    const toolsScrollInfo = document.getElementById('tools-scroll-info');
     
-    if (!toolsScrollContent) return;
+    if (!toolsScrollContent || !toolsScrollLeftBtn || !toolsScrollRightBtn) return;
     
     const cardWidth = 400; // Card width + gap (380px card + 20px gap)
     const totalTools = toolsScrollContent.children.length;
@@ -1513,55 +1490,42 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       const translateX = -currentIndex * cardWidth;
       toolsScrollContent.style.transform = `translateX(${translateX}px)`;
       
-      // Update button states only if buttons exist
-      if (toolsScrollLeftBtn) toolsScrollLeftBtn.disabled = currentIndex === 0;
-      if (toolsScrollRightBtn) toolsScrollRightBtn.disabled = currentIndex >= maxIndex;
+      toolsScrollLeftBtn.disabled = currentIndex === 0;
+      toolsScrollRightBtn.disabled = currentIndex >= maxIndex;
       
-      // Update dots
-      updateScrollDots();
-    }
-    
-    function updateScrollDots() {
-      if (!toolsScrollDots) return;
-      toolsScrollDots.innerHTML = '';
-      const cardsPerView = getCardsPerView();
-      const totalDots = Math.ceil(totalTools / cardsPerView);
-      
-      for (let i = 0; i < totalDots; i++) {
-        const dot = document.createElement('div');
-        dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
-        dot.onclick = () => {
-          currentIndex = i * cardsPerView;
-          updateScroll();
-        };
-        toolsScrollDots.appendChild(dot);
+      if (toolsScrollDots) {
+        toolsScrollDots.innerHTML = '';
+        const cardsPerView = getCardsPerView();
+        const totalDots = Math.ceil(totalTools / cardsPerView);
+        
+        for (let i = 0; i < totalDots; i++) {
+          const dot = document.createElement('div');
+          dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
+          dot.onclick = () => {
+            currentIndex = i * cardsPerView;
+            updateScroll();
+          };
+          toolsScrollDots.appendChild(dot);
+        }
       }
     }
     
-    // Event listeners for desktop buttons
-    if (toolsScrollLeftBtn) {
-      toolsScrollLeftBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex = Math.max(0, currentIndex - 1);
-          updateScroll();
-        }
-      });
-    }
+    toolsScrollLeftBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateScroll();
+      }
+    });
     
-    if (toolsScrollRightBtn) {
-      toolsScrollRightBtn.addEventListener('click', () => {
-        const maxIndex = getMaxIndex();
-        if (currentIndex < maxIndex) {
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-          updateScroll();
-        }
-      });
-    }
+    toolsScrollRightBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateScroll();
+      }
+    });
     
-    // Initialize only on desktop (where buttons exist)
-    if (toolsScrollLeftBtn && toolsScrollRightBtn) {
-      updateScroll();
-    }
+    updateScroll();
     
     // Handle window resize
     window.addEventListener('resize', () => {
