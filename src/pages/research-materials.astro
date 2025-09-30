@@ -1310,7 +1310,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     const scrollDots = document.getElementById('scroll-dots');
     const scrollInfo = document.getElementById('scroll-info');
     
-    if (!scrollContent || !scrollLeftBtn || !scrollRightBtn) return;
+    if (!scrollContent) return;
     
     const cardWidth = 400; // Card width + gap (380px card + 20px gap)
     const totalTalks = scrollContent.children.length;
@@ -1355,58 +1355,30 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       }
     }
     
-    // Event listeners
-    scrollLeftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateScroll();
-      }
-    });
-    
-    scrollRightBtn.addEventListener('click', () => {
-      const maxIndex = getMaxIndex();
-      if (currentIndex < maxIndex) {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
-        updateScroll();
-      }
-    });
-    
-    // Touch/swipe support for mobile
-    let startX = 0;
-    let isScrolling = false;
-    
-    scrollContent.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isScrolling = true;
-    });
-    
-    scrollContent.addEventListener('touchmove', (e) => {
-      if (!isScrolling) return;
-      e.preventDefault();
-    }, { passive: false });
-    
-    scrollContent.addEventListener('touchend', (e) => {
-      if (!isScrolling) return;
-      isScrolling = false;
-      
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      
-      if (Math.abs(diffX) > 50) { // Minimum swipe distance
-        const maxIndex = getMaxIndex();
-        if (diffX > 0 && currentIndex < maxIndex) {
-          // Swipe left - go right
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-        } else if (diffX < 0 && currentIndex > 0) {
-          // Swipe right - go left
+    // Event listeners for desktop buttons
+    if (scrollLeftBtn) {
+      scrollLeftBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
           currentIndex = Math.max(0, currentIndex - 1);
+          updateScroll();
         }
-        updateScroll();
-      }
-    });
+      });
+    }
     
-    // Initialize
-    updateScroll();
+    if (scrollRightBtn) {
+      scrollRightBtn.addEventListener('click', () => {
+        const maxIndex = getMaxIndex();
+        if (currentIndex < maxIndex) {
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+          updateScroll();
+        }
+      });
+    }
+    
+    // Initialize only on desktop (where buttons exist)
+    if (scrollLeftBtn && scrollRightBtn) {
+      updateScroll();
+    }
     
     // Handle window resize
     window.addEventListener('resize', () => {
@@ -1428,7 +1400,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     const osfScrollDots = document.getElementById('osf-scroll-dots');
     const osfScrollInfo = document.getElementById('osf-scroll-info');
     
-    if (!osfScrollContent || !osfScrollLeftBtn || !osfScrollRightBtn) return;
+    if (!osfScrollContent) return;
     
     const cardWidth = 400; // Card width + gap (380px card + 20px gap)
     const totalRepos = osfScrollContent.children.length;
@@ -1473,58 +1445,30 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       }
     }
     
-    // Event listeners
-    osfScrollLeftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateScroll();
-      }
-    });
-    
-    osfScrollRightBtn.addEventListener('click', () => {
-      const maxIndex = getMaxIndex();
-      if (currentIndex < maxIndex) {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
-        updateScroll();
-      }
-    });
-    
-    // Touch/swipe support for mobile
-    let startX = 0;
-    let isScrolling = false;
-    
-    osfScrollContent.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isScrolling = true;
-    });
-    
-    osfScrollContent.addEventListener('touchmove', (e) => {
-      if (!isScrolling) return;
-      e.preventDefault();
-    }, { passive: false });
-    
-    osfScrollContent.addEventListener('touchend', (e) => {
-      if (!isScrolling) return;
-      isScrolling = false;
-      
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      
-      if (Math.abs(diffX) > 50) { // Minimum swipe distance
-        const maxIndex = getMaxIndex();
-        if (diffX > 0 && currentIndex < maxIndex) {
-          // Swipe left - go right
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-        } else if (diffX < 0 && currentIndex > 0) {
-          // Swipe right - go left
+    // Event listeners for desktop buttons
+    if (osfScrollLeftBtn) {
+      osfScrollLeftBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
           currentIndex = Math.max(0, currentIndex - 1);
+          updateScroll();
         }
-        updateScroll();
-      }
-    });
+      });
+    }
     
-    // Initialize
-    updateScroll();
+    if (osfScrollRightBtn) {
+      osfScrollRightBtn.addEventListener('click', () => {
+        const maxIndex = getMaxIndex();
+        if (currentIndex < maxIndex) {
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+          updateScroll();
+        }
+      });
+    }
+    
+    // Initialize only on desktop (where buttons exist)
+    if (osfScrollLeftBtn && osfScrollRightBtn) {
+      updateScroll();
+    }
     
     // Handle window resize
     window.addEventListener('resize', () => {
@@ -1546,7 +1490,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
     const toolsScrollDots = document.getElementById('tools-scroll-dots');
     const toolsScrollInfo = document.getElementById('tools-scroll-info');
     
-    if (!toolsScrollContent || !toolsScrollLeftBtn || !toolsScrollRightBtn) return;
+    if (!toolsScrollContent) return;
     
     const cardWidth = 400; // Card width + gap (380px card + 20px gap)
     const totalTools = toolsScrollContent.children.length;
@@ -1591,58 +1535,30 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       }
     }
     
-    // Event listeners
-    toolsScrollLeftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateScroll();
-      }
-    });
-    
-    toolsScrollRightBtn.addEventListener('click', () => {
-      const maxIndex = getMaxIndex();
-      if (currentIndex < maxIndex) {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
-        updateScroll();
-      }
-    });
-    
-    // Touch/swipe support for mobile
-    let startX = 0;
-    let isScrolling = false;
-    
-    toolsScrollContent.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isScrolling = true;
-    });
-    
-    toolsScrollContent.addEventListener('touchmove', (e) => {
-      if (!isScrolling) return;
-      e.preventDefault();
-    }, { passive: false });
-    
-    toolsScrollContent.addEventListener('touchend', (e) => {
-      if (!isScrolling) return;
-      isScrolling = false;
-      
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      
-      if (Math.abs(diffX) > 50) { // Minimum swipe distance
-        const maxIndex = getMaxIndex();
-        if (diffX > 0 && currentIndex < maxIndex) {
-          // Swipe left - go right
-          currentIndex = Math.min(maxIndex, currentIndex + 1);
-        } else if (diffX < 0 && currentIndex > 0) {
-          // Swipe right - go left
+    // Event listeners for desktop buttons
+    if (toolsScrollLeftBtn) {
+      toolsScrollLeftBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
           currentIndex = Math.max(0, currentIndex - 1);
+          updateScroll();
         }
-        updateScroll();
-      }
-    });
+      });
+    }
     
-    // Initialize
-    updateScroll();
+    if (toolsScrollRightBtn) {
+      toolsScrollRightBtn.addEventListener('click', () => {
+        const maxIndex = getMaxIndex();
+        if (currentIndex < maxIndex) {
+          currentIndex = Math.min(maxIndex, currentIndex + 1);
+          updateScroll();
+        }
+      });
+    }
+    
+    // Initialize only on desktop (where buttons exist)
+    if (toolsScrollLeftBtn && toolsScrollRightBtn) {
+      updateScroll();
+    }
     
     // Handle window resize
     window.addEventListener('resize', () => {
