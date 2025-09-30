@@ -1108,31 +1108,73 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
 
   /* Responsive Design */
   @media (max-width: 768px) {
+    .hero-section {
+      min-height: 40vh;
+    }
+
     .page-title {
       font-size: 2.5rem;
     }
 
-    .section-title {
-      font-size: 2rem;
+    .page-subtitle {
+      font-size: 1.1rem;
     }
 
-    .talks-scroll-container {
+    .section-title {
+      font-size: 1.75rem;
+      flex-direction: column;
       gap: 0.5rem;
     }
 
-    .scroll-btn {
-      width: 40px;
-      height: 40px;
+    .section-icon {
+      font-size: 1.5rem;
     }
 
-    .scroll-btn svg {
-      width: 16px;
-      height: 16px;
+    .materials-section {
+      padding: 3rem 0;
+    }
+
+    /* Hide scroll buttons on mobile, use native scroll */
+    .scroll-btn {
+      display: none;
+    }
+
+    .talks-scroll-container {
+      gap: 0;
+      max-width: 100%;
+    }
+
+    .talks-scroll-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--bg-secondary);
+    }
+
+    .talks-scroll-wrapper::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .talks-scroll-wrapper::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 4px;
+    }
+
+    .talks-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+
+    .talks-scroll-content {
+      gap: 1rem;
+      padding: 1rem 1rem;
     }
 
     .material-card {
-      width: 320px;
-      min-height: 360px;
+      width: 85vw;
+      max-width: 400px;
+      min-height: auto;
     }
 
     .card-header {
@@ -1143,40 +1185,69 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       padding: 1.25rem;
     }
 
+    .card-title {
+      font-size: 1.15rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+    }
+
     .card-actions {
       flex-direction: column;
       gap: 0.5rem;
-      justify-content: center;
     }
     
     .btn-sm {
-      padding: 0.6rem 1rem;
+      padding: 0.65rem 1rem;
       font-size: 0.85rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .scroll-indicators {
+      margin-top: 1.5rem;
     }
 
     .scroll-dots {
-      gap: 0.25rem;
+      gap: 0.5rem;
     }
 
     .scroll-dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
+    }
+
+    .scroll-info {
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    .tech-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .tool-technologies {
+      margin: 0.75rem 0 1rem 0;
     }
   }
 
   @media (max-width: 480px) {
-    .talks-scroll-container {
-      gap: 0.25rem;
+    .page-title {
+      font-size: 2rem;
     }
 
-    .scroll-btn {
-      width: 36px;
-      height: 36px;
+    .page-subtitle {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
     }
 
     .material-card {
-      width: 280px;
-      min-height: 340px;
+      width: 90vw;
     }
 
     .card-header {
@@ -1187,8 +1258,45 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
       padding: 1rem;
     }
 
+    .card-title {
+      font-size: 1.1rem;
+    }
+
+    .card-description {
+      font-size: 0.85rem;
+    }
+
     .talks-scroll-content {
-      gap: 1rem;
+      gap: 0.75rem;
+      padding: 0.75rem 0.5rem;
+    }
+
+    .btn-sm {
+      padding: 0.6rem 0.875rem;
+      font-size: 0.8rem;
+    }
+
+    .video-icon,
+    .osf-icon,
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .video-icon svg,
+    .osf-icon svg,
+    .tool-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .material-type {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .material-venue {
+      font-size: 0.8rem;
     }
   }
 </style>
