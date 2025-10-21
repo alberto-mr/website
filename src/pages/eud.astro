@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPublicationsByResearchArea, generateBibTeX } from '../utils/publications';
+import { getPublicationsByResearchArea, generateBibTeX, getDisplayYear } from '../utils/publications';
 
 const relatedPublications = getPublicationsByResearchArea('eud', 1000);
 ---
@@ -108,7 +108,7 @@ const relatedPublications = getPublicationsByResearchArea('eud', 1000);
           
           return (
             <div class="publication-entry">
-              <div class="pub-year-badge">{pub.year}</div>
+              <div class="pub-year-badge">{getDisplayYear(pub)}</div>
               <div class="pub-details">
                 <h4><a href={pub.link} target="_blank" rel="noopener">{pub.title}</a></h4>
                 <p>{pub.authors}, {pub.venue}</p>

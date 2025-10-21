@@ -11,6 +11,7 @@ interface Publication {
   pages?: string;
   volume?: string;
   issue?: string;
+  isInPress?: boolean;
 }
 
 interface PolitecnicoRecord {
@@ -64,6 +65,20 @@ const AREA_SEEDS: Record<'eud' | 'dwb' | 'deceptive', string> = {
 const STOPWORDS = new Set([
   'the','and','of','in','on','a','an','to','for','with','by','at','from','as','that','this','these','those','into','across','over','under','within','without','is','are','was','were','be','been','or','it','its','their','our','your','you','we'
 ]);
+
+/**
+ * Determines if a publication is "in press" based on year and DOI
+ */
+function isInPress(year: string, doi?: string): boolean {
+  return year === '9999' || !doi;
+}
+
+/**
+ * Gets the display year for a publication (shows "in press" for in press publications)
+ */
+export function getDisplayYear(publication: Publication): string {
+  return publication.isInPress ? 'in press' : publication.year;
+}
 
 function tokenize(text: string): string[] {
   return (text || '')
@@ -130,7 +145,11 @@ function adjustAreaSims(text: string, sims: Record<'eud' | 'dwb' | 'deceptive', 
 
 function processPublications(): Publication[] {
   if (Array.isArray(rawPublicationsData)) {
-    return rawPublicationsData as Publication[];
+    // If data is already processed, ensure isInPress is set correctly
+    return (rawPublicationsData as Publication[]).map(pub => ({
+      ...pub,
+      isInPress: pub.isInPress ?? isInPress(pub.year, pub.doi)
+    }));
   } else {
     const apiData = rawPublicationsData as PolitecnicoResponse;
     
@@ -188,6 +207,9 @@ function processPublications(): Publication[] {
 
       // Extract year from date string (e.g., "2020-05-22" -> "2020")
       const year = lookupValues.year ? lookupValues.year.split('-')[0] : lookupValues.year;
+      
+      // Determine if publication is in press
+      const inPress = isInPress(year, lookupValues.doi);
 
       return {
         title: lookupValues.title,
@@ -199,13 +221,19 @@ function processPublications(): Publication[] {
         doi: lookupValues.doi,
         pages: pages,
         volume: lookupValues.volume,
-        issue: lookupValues.issue
+        issue: lookupValues.issue,
+        isInPress: inPress
       };
     };
 
     const publications = apiData.records.map(mapPolitecnicoToPublication);
     
     publications.sort((a, b) => {
+      // In press publications come first
+      if (a.isInPress && !b.isInPress) return -1;
+      if (!a.isInPress && b.isInPress) return 1;
+      
+      // Then sort by year (most recent first)
       const yearA = parseInt(a.year) || 0;
       const yearB = parseInt(b.year) || 0;
       return yearB - yearA;
@@ -243,12 +271,16 @@ export function getPublicationsByResearchArea(area: 'eud' | 'dwb' | 'deceptive',
   const filtered = scored
     .filter(({ simToArea, maxOther }) => simToArea >= 0.05 && simToArea >= maxOther + 0.02)
     .sort((a, b) => {
-      // Primary sort: by year (most recent first)
+      // Primary sort: in press publications first
+      if (a.pub.isInPress && !b.pub.isInPress) return -1;
+      if (!a.pub.isInPress && b.pub.isInPress) return 1;
+      
+      // Secondary sort: by year (most recent first)
       const yearA = parseInt(a.pub.year) || 0;
       const yearB = parseInt(b.pub.year) || 0;
       if (yearB !== yearA) return yearB - yearA;
       
-      // Secondary sort: by similarity score (highest first)
+      // Tertiary sort: by similarity score (highest first)
       return b.simToArea - a.simToArea;
     })
     .map(({ pub }) => pub);

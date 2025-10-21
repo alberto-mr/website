@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import rawPublicationsData from '../data/publications.json';
-import { generateBibTeX } from '../utils/publications';
+import { generateBibTeX, getDisplayYear } from '../utils/publications';
 
 interface Publication {
   title: string;
@@ -14,6 +14,7 @@ interface Publication {
   pages?: string;
   volume?: string;
   issue?: string;
+  isInPress?: boolean;
 }
 
 interface PolitecnicoRecord {
@@ -44,113 +45,26 @@ interface PolitecnicoResponse {
   records: PolitecnicoRecord[];
 }
 
-// Check if the data is already processed or raw API response
-let publications: Publication[] = [];
+// Use the utility function to process publications
+import { getAllPublications } from '../utils/publications';
+const publications = getAllPublications();
 
-if (Array.isArray(rawPublicationsData)) {
-  // Already processed data
-  publications = rawPublicationsData as Publication[];
-} else {
-  // Raw API response - need to process it
-  const apiData = rawPublicationsData as PolitecnicoResponse;
-  
-  const mapPolitecnicoToPublication = (record: PolitecnicoRecord): Publication => {
-    const { lookupValues, handle, collection } = record;
-    
-    // Determine publication type based on collection name
-    let type = 'misc';
-    if (collection.name.includes('Articolo in rivista')) {
-      type = 'journal';
-    } else if (collection.name.includes('Atti di convegno')) {
-      type = 'conference';
-    } else if (collection.name.includes('Doctoral thesis')) {
-      type = 'thesis';
-    } else if (collection.name.includes('volume')) {
-      type = 'book';
-    }
-
-    // Extract venue information
-    let venue = lookupValues.jtitle || lookupValues.stitle || lookupValues.book || 'Unknown venue';
-    
-    // Handle PhD thesis specifically
-    if (collection.name.includes('Doctoral thesis')) {
-      venue = 'PhD Thesis';
-    }
-    
-    // Clean up venue name
-    if (venue.includes('Proceedings of')) {
-      venue = venue.replace('Proceedings of', '').trim();
-    }
-    if (venue.includes('CHI')) {
-      venue = `Proceedings of the ${lookupValues.year} CHI Conference on Human Factors in Computing Systems`;
-    }
-
-    // Format pages
-    let pages = '';
-    if (lookupValues.spage && lookupValues.epage) {
-      pages = `${lookupValues.spage}-${lookupValues.epage}`;
-    } else if (lookupValues.spage) {
-      pages = lookupValues.spage;
-    }
-
-    // Create link to Politecnico repository
-    const link = `https://iris.polito.it/handle/${handle}`;
-
-    // Format authors from "SURNAME, NAME" to "Name Surname"
-    const formatAuthors = (authorsString: string): string => {
-      return authorsString
-        .split(';')
-        .map(author => {
-          const trimmed = author.trim();
-          if (trimmed.includes(',')) {
-            const [surname, ...nameParts] = trimmed.split(',').map(s => s.trim());
-            const name = nameParts.join(' ').trim();
-            return name && surname ? `${name} ${surname}` : trimmed;
-          }
-          return trimmed;
-        })
-        .join('; ');
-    };
-
-    // Extract year from date string (e.g., "2020-05-22" -> "2020")
-    const year = lookupValues.year ? lookupValues.year.split('-')[0] : lookupValues.year;
-
-    return {
-      title: lookupValues.title,
-      authors: formatAuthors(lookupValues.contributors),
-      year: year,
-      venue: venue,
-      link: link,
-      type: type,
-      doi: lookupValues.doi,
-      pages: pages,
-      volume: lookupValues.volume,
-      issue: lookupValues.issue
-    };
-  };
-
-  publications = apiData.records.map(mapPolitecnicoToPublication);
-  
-  // Sort by year (newest first)
-  publications.sort((a, b) => {
-    const yearA = parseInt(a.year) || 0;
-    const yearB = parseInt(b.year) || 0;
-    return yearB - yearA;
-  });
-}
-
-// Group publications by year
+// Group publications by display year
 const publicationsByYear: { [year: string]: Publication[] } = publications.reduce((acc, pub) => {
-  const year = pub.year;
-  if (!acc[year]) {
-    acc[year] = [];
+  const displayYear = getDisplayYear(pub);
+  if (!acc[displayYear]) {
+    acc[displayYear] = [];
   }
-  acc[year].push(pub);
+  acc[displayYear].push(pub);
   return acc;
 }, {});
 
-// Sort years in descending order
-const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+// Sort years in descending order, with "in press" first
+const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
+  if (a === 'in press') return -1;
+  if (b === 'in press') return 1;
+  return parseInt(b) - parseInt(a);
+});
 ---
 
 <BaseLayout title="Publications" description="Complete list of research publications in Human-Computer Interaction, Digital Wellbeing, and End-User Development.">
@@ -172,11 +86,12 @@ const sortedYears = Object.keys(publicationsByYear).sort((a, b) => parseInt(b) -
       {sortedYears.map(year => (
         publicationsByYear[year].map(pub => {
           const bibtex = generateBibTeX(pub);
+          const displayYear = getDisplayYear(pub);
           const filename = `${pub.title.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').toLowerCase()}_${pub.year}.bib`;
           
           return (
             <div class="publication-entry">
-              <div class="pub-year-badge">{pub.year}</div>
+              <div class="pub-year-badge">{displayYear}</div>
               <div class="pub-details">
                 <h4><a href={pub.link} target="_blank" rel="noopener">{pub.title}</a></h4>
                 <p>{pub.authors}, {pub.venue}</p>
