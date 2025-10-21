@@ -70,7 +70,7 @@ const STOPWORDS = new Set([
  * Determines if a publication is "in press" based on year and DOI
  */
 function isInPress(year: string, doi?: string): boolean {
-  return year === '9999' || !doi;
+  return year === '9999';
 }
 
 /**
