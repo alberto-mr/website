@@ -37,3 +37,302 @@ const { Content } = await post.render();
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // PDF Viewer script - loads when PDF viewer container is present
+  (function() {
+    function initPDFViewer() {
+      const container = document.getElementById('pdf-viewer-container-ecat');
+      if (!container) return;
+      
+      const pdfPath = '/assets/pdfs/ECAT-presentation.pdf';
+      const uniqueId = 'ecat';
+      
+      // Load PDF.js if not already loaded
+      if (typeof pdfjsLib === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        script.onload = function() {
+          setupViewer();
+        };
+        document.head.appendChild(script);
+      } else {
+        setupViewer();
+      }
+
+      function setupViewer() {
+        // Set up PDF.js worker
+        if (typeof pdfjsLib !== 'undefined') {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
+        const canvas = document.getElementById(`pdf-canvas-${uniqueId}`);
+        if (!canvas) {
+          console.error('Canvas not found');
+          return;
+        }
+        
+        const ctx = canvas.getContext('2d');
+        const prevBtn = document.getElementById(`prev-btn-${uniqueId}`);
+        const nextBtn = document.getElementById(`next-btn-${uniqueId}`);
+        const pageInfo = document.getElementById(`page-info-${uniqueId}`);
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+
+        // Calculate responsive scale based on screen width
+        function getScale() {
+          const container = document.getElementById('pdf-viewer-container-ecat');
+          if (!container) return 1.5;
+          const containerWidth = container.offsetWidth;
+          if (containerWidth < 480) {
+            return 0.8; // Mobile
+          } else if (containerWidth < 768) {
+            return 1.0; // Tablet
+          } else {
+            return 1.5; // Desktop
+          }
+        }
+
+        function renderPage(num) {
+          pageRendering = true;
+          pdfDoc.getPage(num).then(function(page) {
+            const container = document.querySelector('.pdf-canvas-container');
+            if (!container) return;
+            
+            // Get actual container width accounting for padding
+            const containerStyle = window.getComputedStyle(container);
+            const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
+            const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+            const containerWidth = container.offsetWidth - paddingLeft - paddingRight;
+            
+            // Get base viewport to calculate proper scale
+            const baseViewport = page.getViewport({scale: 1});
+            
+            // Calculate scale to fit container width with small margin
+            const maxWidth = containerWidth * 0.98; // 98% to leave small margin
+            const calculatedScale = maxWidth / baseViewport.width;
+            
+            // Use the smaller of calculated scale or the responsive scale
+            const responsiveScale = getScale();
+            const finalScale = Math.min(calculatedScale, responsiveScale);
+            
+            const finalViewport = page.getViewport({scale: finalScale});
+            canvas.height = finalViewport.height;
+            canvas.width = finalViewport.width;
+
+            const renderContext = {
+              canvasContext: ctx,
+              viewport: finalViewport
+            };
+            const renderTask = page.render(renderContext);
+
+            renderTask.promise.then(function() {
+              pageRendering = false;
+              if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+              }
+            });
+          });
+
+          pageInfo.textContent = `Slide ${num} of ${pdfDoc.numPages}`;
+          
+          // Update button states
+          const isFirstPage = num <= 1;
+          const isLastPage = num >= pdfDoc.numPages;
+          
+          prevBtn.disabled = isFirstPage;
+          nextBtn.disabled = isLastPage;
+          
+          // Button states are handled by CSS :disabled selector
+        }
+
+        function queueRenderPage(num) {
+          if (pageRendering) {
+            pageNumPending = num;
+          } else {
+            renderPage(num);
+          }
+        }
+
+        function onPrevPage() {
+          if (pageNum <= 1) return;
+          pageNum--;
+          queueRenderPage(pageNum);
+        }
+
+        function onNextPage() {
+          if (pageNum >= pdfDoc.numPages) return;
+          pageNum++;
+          queueRenderPage(pageNum);
+        }
+
+        // Add event listeners
+        prevBtn.addEventListener('click', onPrevPage);
+        nextBtn.addEventListener('click', onNextPage);
+
+        // Load the PDF
+        pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
+          pdfDoc = pdf;
+          renderPage(pageNum);
+        }).catch(function(error) {
+          console.error('Error loading PDF:', error);
+          pageInfo.textContent = 'Error loading PDF. Please try downloading it instead.';
+        });
+
+        // Keyboard navigation
+        container.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft') onPrevPage();
+          if (e.key === 'ArrowRight') onNextPage();
+        });
+        container.setAttribute('tabindex', '0');
+        
+        // Hover effects are handled by CSS
+
+        // Handle window resize to re-render at appropriate scale
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function() {
+            if (pdfDoc) {
+              queueRenderPage(pageNum);
+            }
+          }, 250); // Debounce resize events
+        });
+      }
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPDFViewer);
+    } else {
+      initPDFViewer();
+    }
+  })();
+</script>
+
+<style>
+  .pdf-viewer-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: #f8fafc;
+    box-sizing: border-box;
+  }
+
+  .pdf-canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .pdf-canvas {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .blog-content .pdf-controls,
+  .pdf-controls {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 1rem !important;
+    background: white;
+    border-top: 1px solid var(--border-color);
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .blog-content .pdf-controls > *,
+  .pdf-controls > * {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+
+  /* PDF button styles are in main.css */
+
+  .pdf-page-info {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .pdf-viewer-wrapper {
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .pdf-canvas-container {
+      padding: 1rem;
+      min-height: 300px;
+    }
+
+    .pdf-canvas {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+    }
+
+    .pdf-controls {
+      padding: 0.75rem;
+      flex-wrap: nowrap;
+      justify-content: center !important;
+    }
+
+    .pdf-nav-btn {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .pdf-page-info {
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Small mobile */
+  @media (max-width: 480px) {
+    .pdf-canvas-container {
+      padding: 0.5rem;
+      min-height: 250px;
+    }
+
+    .pdf-controls {
+      padding: 0.5rem;
+      gap: 0.5rem;
+      justify-content: center !important;
+    }
+
+    .pdf-nav-btn {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .pdf-page-info {
+      font-size: 0.8rem;
+    }
+  }
+</style>

@@ -10,7 +10,9 @@ export default defineConfig({
     shikiConfig: {
       theme: 'github-light',
       wrap: true
-    }
+    },
+    rehypePlugins: [],
+    remarkPlugins: []
   },
   output: 'static'
 });
