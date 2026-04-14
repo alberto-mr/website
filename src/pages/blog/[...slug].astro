@@ -39,97 +39,80 @@ const { Content } = await post.render();
 </BaseLayout>
 
 <script>
-  // PDF Viewer script - loads when PDF viewer container is present
+  // Generic PDF Viewer script - initializes all PDF viewers on the page
   (function() {
-    function initPDFViewer() {
-      const container = document.getElementById('pdf-viewer-container-ecat');
-      if (!container) return;
-      
-      const pdfPath = '/assets/pdfs/ECAT-presentation.pdf';
-      const uniqueId = 'ecat';
-      
-      // Load PDF.js if not already loaded
-      if (typeof pdfjsLib === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-        script.onload = function() {
-          setupViewer();
-        };
-        document.head.appendChild(script);
-      } else {
-        setupViewer();
-      }
+    var viewerConfigs = [
+      { uniqueId: 'ecat', pdfPath: '/assets/pdfs/ECAT-presentation.pdf' },
+      { uniqueId: 'chi2026', pdfPath: '/assets/pdfs/CHI-2026-digital-attention-heuristics.pdf' }
+    ];
 
-      function setupViewer() {
-        // Set up PDF.js worker
+    function initAllPDFViewers() {
+      viewerConfigs.forEach(function(config) {
+        var container = document.getElementById('pdf-viewer-container-' + config.uniqueId);
+        if (container) {
+          initSingleViewer(config.uniqueId, config.pdfPath, container);
+        }
+      });
+    }
+
+    function loadPdfJs(callback) {
+      if (typeof pdfjsLib !== 'undefined') {
+        callback();
+      } else {
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+      }
+    }
+
+    function initSingleViewer(uniqueId, pdfPath, container) {
+      loadPdfJs(function() {
         if (typeof pdfjsLib !== 'undefined') {
           pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         }
 
-        const canvas = document.getElementById(`pdf-canvas-${uniqueId}`);
-        if (!canvas) {
-          console.error('Canvas not found');
-          return;
-        }
-        
-        const ctx = canvas.getContext('2d');
-        const prevBtn = document.getElementById(`prev-btn-${uniqueId}`);
-        const nextBtn = document.getElementById(`next-btn-${uniqueId}`);
-        const pageInfo = document.getElementById(`page-info-${uniqueId}`);
+        var canvas = document.getElementById('pdf-canvas-' + uniqueId);
+        if (!canvas) return;
 
-        let pdfDoc = null;
-        let pageNum = 1;
-        let pageRendering = false;
-        let pageNumPending = null;
+        var ctx = canvas.getContext('2d');
+        var prevBtn = document.getElementById('prev-btn-' + uniqueId);
+        var nextBtn = document.getElementById('next-btn-' + uniqueId);
+        var pageInfo = document.getElementById('page-info-' + uniqueId);
 
-        // Calculate responsive scale based on screen width
+        var pdfDoc = null;
+        var pageNum = 1;
+        var pageRendering = false;
+        var pageNumPending = null;
+
         function getScale() {
-          const container = document.getElementById('pdf-viewer-container-ecat');
-          if (!container) return 1.5;
-          const containerWidth = container.offsetWidth;
-          if (containerWidth < 480) {
-            return 0.8; // Mobile
-          } else if (containerWidth < 768) {
-            return 1.0; // Tablet
-          } else {
-            return 1.5; // Desktop
-          }
+          var containerWidth = container.offsetWidth;
+          if (containerWidth < 480) return 0.8;
+          if (containerWidth < 768) return 1.0;
+          return 1.5;
         }
 
         function renderPage(num) {
           pageRendering = true;
           pdfDoc.getPage(num).then(function(page) {
-            const container = document.querySelector('.pdf-canvas-container');
-            if (!container) return;
-            
-            // Get actual container width accounting for padding
-            const containerStyle = window.getComputedStyle(container);
-            const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
-            const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
-            const containerWidth = container.offsetWidth - paddingLeft - paddingRight;
-            
-            // Get base viewport to calculate proper scale
-            const baseViewport = page.getViewport({scale: 1});
-            
-            // Calculate scale to fit container width with small margin
-            const maxWidth = containerWidth * 0.98; // 98% to leave small margin
-            const calculatedScale = maxWidth / baseViewport.width;
-            
-            // Use the smaller of calculated scale or the responsive scale
-            const responsiveScale = getScale();
-            const finalScale = Math.min(calculatedScale, responsiveScale);
-            
-            const finalViewport = page.getViewport({scale: finalScale});
+            var canvasContainer = container.querySelector('.pdf-canvas-container');
+            if (!canvasContainer) return;
+
+            var style = window.getComputedStyle(canvasContainer);
+            var padLeft = parseFloat(style.paddingLeft) || 0;
+            var padRight = parseFloat(style.paddingRight) || 0;
+            var availableWidth = canvasContainer.offsetWidth - padLeft - padRight;
+
+            var baseViewport = page.getViewport({scale: 1});
+            var maxWidth = availableWidth * 0.98;
+            var calculatedScale = maxWidth / baseViewport.width;
+            var finalScale = Math.min(calculatedScale, getScale());
+
+            var finalViewport = page.getViewport({scale: finalScale});
             canvas.height = finalViewport.height;
             canvas.width = finalViewport.width;
 
-            const renderContext = {
-              canvasContext: ctx,
-              viewport: finalViewport
-            };
-            const renderTask = page.render(renderContext);
-
-            renderTask.promise.then(function() {
+            page.render({ canvasContext: ctx, viewport: finalViewport }).promise.then(function() {
               pageRendering = false;
               if (pageNumPending !== null) {
                 renderPage(pageNumPending);
@@ -138,43 +121,21 @@ const { Content } = await post.render();
             });
           });
 
-          pageInfo.textContent = `Slide ${num} of ${pdfDoc.numPages}`;
-          
-          // Update button states
-          const isFirstPage = num <= 1;
-          const isLastPage = num >= pdfDoc.numPages;
-          
-          prevBtn.disabled = isFirstPage;
-          nextBtn.disabled = isLastPage;
-          
-          // Button states are handled by CSS :disabled selector
+          pageInfo.textContent = 'Slide ' + num + ' of ' + pdfDoc.numPages;
+          prevBtn.disabled = num <= 1;
+          nextBtn.disabled = num >= pdfDoc.numPages;
         }
 
         function queueRenderPage(num) {
-          if (pageRendering) {
-            pageNumPending = num;
-          } else {
-            renderPage(num);
-          }
+          if (pageRendering) { pageNumPending = num; } else { renderPage(num); }
         }
 
-        function onPrevPage() {
-          if (pageNum <= 1) return;
-          pageNum--;
-          queueRenderPage(pageNum);
-        }
+        function onPrevPage() { if (pageNum > 1) { pageNum--; queueRenderPage(pageNum); } }
+        function onNextPage() { if (pdfDoc && pageNum < pdfDoc.numPages) { pageNum++; queueRenderPage(pageNum); } }
 
-        function onNextPage() {
-          if (pageNum >= pdfDoc.numPages) return;
-          pageNum++;
-          queueRenderPage(pageNum);
-        }
-
-        // Add event listeners
         prevBtn.addEventListener('click', onPrevPage);
         nextBtn.addEventListener('click', onNextPage);
 
-        // Load the PDF
         pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
           pdfDoc = pdf;
           renderPage(pageNum);
@@ -183,33 +144,26 @@ const { Content } = await post.render();
           pageInfo.textContent = 'Error loading PDF. Please try downloading it instead.';
         });
 
-        // Keyboard navigation
         container.addEventListener('keydown', function(e) {
           if (e.key === 'ArrowLeft') onPrevPage();
           if (e.key === 'ArrowRight') onNextPage();
         });
         container.setAttribute('tabindex', '0');
-        
-        // Hover effects are handled by CSS
 
-        // Handle window resize to re-render at appropriate scale
-        let resizeTimeout;
+        var resizeTimeout;
         window.addEventListener('resize', function() {
           clearTimeout(resizeTimeout);
           resizeTimeout = setTimeout(function() {
-            if (pdfDoc) {
-              queueRenderPage(pageNum);
-            }
-          }, 250); // Debounce resize events
+            if (pdfDoc) queueRenderPage(pageNum);
+          }, 250);
         });
-      }
+      });
     }
 
-    // Run when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPDFViewer);
+      document.addEventListener('DOMContentLoaded', initAllPDFViewers);
     } else {
-      initPDFViewer();
+      initAllPDFViewers();
     }
   })();
 </script>

@@ -777,7 +777,7 @@ section {
 
 /* Contact Section */
 .contact-section {
-  background: white;
+  background: var(--bg-accent);
   margin: 0;
   padding: 4rem 0;
 }

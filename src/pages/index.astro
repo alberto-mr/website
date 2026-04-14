@@ -24,8 +24,8 @@ const highlights = sortedPosts.slice(0, 3);
             Assistant Professor (RTDb) at Politecnico di Torino
           </p>
           <p class="hero-description">
-            I research <strong>end-user personalization</strong> of smart devices and 
-            <strong>Digital Wellbeing</strong> technologies to empower users in our connected world.
+            I research <strong>Digital Wellbeing</strong> and <strong>Deceptive Designs</strong>,
+            building knowledge and tools that support healthier, more autonomous digital experiences.
           </p>
           <div class="hero-actions">
             <a href="/cv/" class="btn btn-primary btn-animated">View CV</a>
@@ -42,77 +42,8 @@ const highlights = sortedPosts.slice(0, 3);
     </div>
   </section>
 
-  <!-- Research Areas Section -->
-  <section class="research-section">
-    <div class="container">
-      <h2 class="section-title">Research Areas</h2>
-      <div class="research-grid">
-        <div class="research-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <h3>End User Development</h3>
-          <p>Empowering non-programmers to create, modify, and debug software through intuitive tools and interfaces. My research focuses on making technology more accessible and customizable for end users.</p>
-          <div class="research-highlights">
-            <span class="highlight-tag">Trigger-Action Rules</span>
-            <span class="highlight-tag">IoT Personalization</span>
-            <span class="highlight-tag">User Debugging</span>
-          </div>
-          <a href="/eud/" class="card-link">Explore EUD Research →</a>
-        </div>
-        
-        <div class="research-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
-          <h3>Digital Wellbeing</h3>
-          <p>Investigating how digital technologies impact users' mental and physical health, and developing tools to promote healthier digital habits and self-control in our connected world.</p>
-          <div class="research-highlights">
-            <span class="highlight-tag">Digital Self-Control</span>
-            <span class="highlight-tag">Multi-Device DWB</span>
-            <span class="highlight-tag">Behavioral Design</span>
-          </div>
-          <a href="/dwb/" class="card-link">Explore DWB Research →</a>
-        </div>
-        
-        <div class="research-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 3h18v4H3z"/>
-              <path d="M3 11h18v10H3z"/>
-              <path d="M7 7v4"/>
-              <path d="M12 7v4"/>
-              <path d="M17 7v4"/>
-            </svg>
-          </div>
-          <h3>Deceptive Designs</h3>
-          <p>Studying dark patterns and deceptive interface strategies, their impact on user autonomy, and design approaches to identify, measure, and mitigate them.</p>
-          <div class="research-highlights">
-            <span class="highlight-tag">Dark Patterns</span>
-            <span class="highlight-tag">Manipulative UX</span>
-            <span class="highlight-tag">User Autonomy</span>
-          </div>
-          <a href="/deceptive-designs/" class="card-link">Explore Deceptive Designs →</a>
-        </div>
-      </div>
-      
-      <!-- View All Publications Button -->
-      <div class="view-all-pubs" style="text-align: center; margin-top: 3rem;">
-        <a href="/publications/" class="btn btn-outline">View All Publications →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Latest Highlights Section -->
-  <section class="highlights-section">
+  <section class="highlights-section" style="background: #ffffff;">
     <div class="container">
       <h2 class="section-title">Latest Highlights</h2>
       {highlights.length > 0 ? (
@@ -150,8 +81,80 @@ const highlights = sortedPosts.slice(0, 3);
     </div>
   </section>
 
+  <!-- Research Areas Section -->
+  <section class="research-section" style="background: #f1f5f9;">
+    <div class="container">
+      <h2 class="section-title">Research Themes</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin: 0 auto 2rem; max-width: 70ch;">
+        My current work focuses on Digital Wellbeing and Deceptive Designs, with prior contributions in End User Development.
+      </p>
+      <div class="research-grid">
+        <div class="research-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Digital Wellbeing</h3>
+          <p>Investigating how digital technologies impact users' mental and physical health, and developing tools to promote healthier digital habits and self-control in our connected world.</p>
+          <div class="research-highlights">
+            <span class="highlight-tag">Digital Self-Control</span>
+            <span class="highlight-tag">Multi-Device DWB</span>
+            <span class="highlight-tag">Behavioral Design</span>
+          </div>
+          <a href="/dwb/" class="card-link">Explore DWB Research →</a>
+        </div>
+        
+        <div class="research-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v4H3z"/>
+              <path d="M3 11h18v10H3z"/>
+              <path d="M7 7v4"/>
+              <path d="M12 7v4"/>
+              <path d="M17 7v4"/>
+            </svg>
+          </div>
+          <h3>Deceptive Designs</h3>
+          <p>Studying dark patterns and deceptive interface strategies, their impact on user autonomy, and design approaches to identify, measure, and mitigate them.</p>
+          <div class="research-highlights">
+            <span class="highlight-tag">Dark Patterns</span>
+            <span class="highlight-tag">Manipulative UX</span>
+            <span class="highlight-tag">User Autonomy</span>
+          </div>
+          <a href="/deceptive-designs/" class="card-link">Explore Deceptive Designs →</a>
+        </div>
+        
+        <div class="research-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>End User Development (Previous Focus)</h3>
+          <p>Earlier work explored how non-programmers can create, modify, and debug interactive behaviors through intuitive end-user tools and interfaces.</p>
+          <div class="research-highlights">
+            <span class="highlight-tag">Trigger-Action Rules</span>
+            <span class="highlight-tag">IoT Personalization</span>
+            <span class="highlight-tag">User Debugging</span>
+          </div>
+          <a href="/eud/" class="card-link">See Earlier EUD Research →</a>
+        </div>
+      </div>
+      
+      <!-- View All Publications Button -->
+      <div class="view-all-pubs" style="text-align: center; margin-top: 3rem;">
+        <a href="/publications/" class="btn btn-outline">View All Publications →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
-  <section class="contact-section">
+  <section class="contact-section" style="background: #ffffff;">
     <div class="container">
       <div class="contact-content">
         <div class="contact-info">
@@ -183,36 +186,7 @@ const highlights = sortedPosts.slice(0, 3);
               </div>
             </div>
           </div>
-          <div class="social-links">
-            <h3>Follow My Work</h3>
-            <div class="social-grid">
-              <a href="https://twitter.com/albertomongeroffarello" target="_blank" rel="noopener" class="social-link">
-                <div class="social-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                  </svg>
-                </div>
-                <span>Twitter</span>
-              </a>
-              <a href="https://github.com/albertomongeroffarello" target="_blank" rel="noopener" class="social-link">
-                <div class="social-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                  </svg>
-                </div>
-                <span>GitHub</span>
-              </a>
-              <a href="https://youtube.com/@albertomongeroffarello" target="_blank" rel="noopener" class="social-link">
-                <div class="social-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                    <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"/>
-                  </svg>
-                </div>
-                <span>YouTube</span>
-              </a>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

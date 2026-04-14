@@ -1,16 +1,16 @@
 export const navigation = {
   thematic: [
     {
-      title: 'End User Development',
-      url: '/eud/'
-    },
-    {
       title: 'Digital Wellbeing',
       url: '/dwb/'
     },
     {
       title: 'Deceptive Designs',
       url: '/deceptive-designs/'
+    },
+    {
+      title: 'End User Development',
+      url: '/eud/'
     }
   ],
   personal: [

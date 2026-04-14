@@ -48,23 +48,6 @@ interface PolitecnicoResponse {
 // Use the utility function to process publications
 import { getAllPublications } from '../utils/publications';
 const publications = getAllPublications();
-
-// Group publications by display year
-const publicationsByYear: { [year: string]: Publication[] } = publications.reduce((acc, pub) => {
-  const displayYear = getDisplayYear(pub);
-  if (!acc[displayYear]) {
-    acc[displayYear] = [];
-  }
-  acc[displayYear].push(pub);
-  return acc;
-}, {});
-
-// Sort years in descending order, with "in press" first
-const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
-  if (a === 'in press') return -1;
-  if (b === 'in press') return 1;
-  return parseInt(b) - parseInt(a);
-});
 ---
 
 <BaseLayout title="Publications" description="Complete list of research publications in Human-Computer Interaction, Digital Wellbeing, and End-User Development.">
@@ -83,11 +66,9 @@ const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
 
   <section class="container" style="padding: 2rem 0 4rem;">
     <div class="publications-list">
-      {sortedYears.map(year => (
-        publicationsByYear[year].map(pub => {
+      {publications.map(pub => {
           const bibtex = generateBibTeX(pub);
           const displayYear = getDisplayYear(pub);
-          const filename = `${pub.title.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_').toLowerCase()}_${pub.year}.bib`;
           
           return (
             <div class="publication-entry">
@@ -116,9 +97,10 @@ const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
               </div>
             </div>
           );
-        })
-      ))}
+        })}
     </div>
+    <div class="pagination" id="publications-pagination"></div>
+    <div class="pagination-info" id="publications-pagination-info"></div>
   </section>
 </BaseLayout>
 
@@ -166,6 +148,95 @@ const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
     }, 3000);
   }
 
+  function getPageNumbers(current, total) {
+    const pages = [];
+    const maxVisible = 5;
+
+    if (total <= maxVisible) {
+      for (let i = 1; i <= total; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
+
+    if (current <= 3) {
+      for (let i = 1; i <= 4; i++) {
+        pages.push(i);
+      }
+      pages.push('...');
+      pages.push(total);
+      return pages;
+    }
+
+    if (current >= total - 2) {
+      pages.push(1);
+      pages.push('...');
+      for (let i = total - 3; i <= total; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
+
+    pages.push(1);
+    pages.push('...');
+    for (let i = current - 1; i <= current + 1; i++) {
+      pages.push(i);
+    }
+    pages.push('...');
+    pages.push(total);
+
+    return pages;
+  }
+
+  function initClientPagination() {
+    const publicationsPerPage = 10;
+    const entries = Array.from(document.querySelectorAll('.publications-list .publication-entry'));
+    const paginationEl = document.getElementById('publications-pagination');
+    const infoEl = document.getElementById('publications-pagination-info');
+
+    if (!paginationEl || !infoEl || entries.length === 0) {
+      return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(entries.length / publicationsPerPage));
+    const requestedPage = Number(new URLSearchParams(window.location.search).get('page') || '1');
+    const safePage = Number.isFinite(requestedPage) && requestedPage > 0 ? Math.floor(requestedPage) : 1;
+    const currentPage = Math.min(safePage, totalPages);
+    const startIndex = (currentPage - 1) * publicationsPerPage;
+    const endIndex = startIndex + publicationsPerPage;
+
+    entries.forEach((entry, index) => {
+      entry.style.display = index >= startIndex && index < endIndex ? '' : 'none';
+    });
+
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      infoEl.innerHTML = '';
+      return;
+    }
+
+    const buildPageHref = (page) => (page <= 1 ? `${window.location.pathname}` : `${window.location.pathname}?page=${page}`);
+    const pageLinks = getPageNumbers(currentPage, totalPages).map(page => {
+      if (page === '...') {
+        return '<em>...</em>';
+      }
+      if (page === currentPage) {
+        return `<span class="pagination-current">${page}</span>`;
+      }
+      return `<a class="pagination-link" href="${buildPageHref(page)}">${page}</a>`;
+    }).join('');
+
+    const previousLink = currentPage > 1
+      ? `<a class="pagination-link" href="${buildPageHref(currentPage - 1)}" aria-label="Go to previous page">← Previous</a>`
+      : '';
+    const nextLink = currentPage < totalPages
+      ? `<a class="pagination-link" href="${buildPageHref(currentPage + 1)}" aria-label="Go to next page">Next →</a>`
+      : '';
+
+    paginationEl.innerHTML = `${previousLink}${pageLinks}${nextLink}`;
+    infoEl.innerHTML = `<p>Page ${currentPage} of ${totalPages} (${entries.length} publications total)</p>`;
+  }
+
   // Add event listeners to all BibTeX copy buttons
   document.addEventListener('DOMContentLoaded', function() {
     const bibtexButtons = document.querySelectorAll('.bibtex-download-btn');
@@ -178,6 +249,8 @@ const sortedYears = Object.keys(publicationsByYear).sort((a, b) => {
         }
       });
     });
+
+    initClientPagination();
   });
 </script>
 
