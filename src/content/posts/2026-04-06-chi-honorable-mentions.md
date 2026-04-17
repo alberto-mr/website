@@ -20,6 +20,8 @@ In this work, we address a core challenge in HCI: digital wellbeing is widely di
 
 The goal is to offer an actionable conceptual model that better captures how people experience digital technologies over time, including emerging AI-mediated contexts, and how broader social and political conditions shape those experiences.
 
+I also released an interactive version of this framework to support exploration and practical use: [Digital Wellbeing Leverage Points](https://lys.polito.it/dwb-leverage-points).
+
 ## 2) When Handwriting Goes Social: Creativity, Anonymity, and Communication in Graphonymous Online Spaces
 
 This paper was authored by **Aditya Kumar Purohit**, **Aditya Upadhyaya**, **Nicolas Ruiz**, **Alberto Monge Roffarello**, and **Hendrik Heuer**.
@@ -36,6 +38,7 @@ These two papers represent two complementary directions of my current research: 
 
 - **What is Digital Wellbeing? A Leverage Points Framework to Guide Research and Action**
   - [Link to the ACM Digital Library](https://dl.acm.org/doi/10.1145/3772318.3793192)
+  - [Interactive Framework: Digital Wellbeing Leverage Points](https://lys.polito.it/dwb-leverage-points)
 - **When Handwriting Goes Social: Creativity, Anonymity, and Communication in Graphonymous Online Spaces**
   - [Link to the ACM Digital Library](https://dl.acm.org/doi/10.1145/3772318.3790828)
 - [CHI 2026 Conference Website](https://chi2026.acm.org/)
