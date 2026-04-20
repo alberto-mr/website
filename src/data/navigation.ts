@@ -1,16 +1,8 @@
 export const navigation = {
   thematic: [
     {
-      title: 'Digital Wellbeing',
-      url: '/dwb/'
-    },
-    {
-      title: 'Deceptive Designs',
-      url: '/deceptive-designs/'
-    },
-    {
-      title: 'End User Development',
-      url: '/eud/'
+      title: 'Research',
+      url: '/research/'
     }
   ],
   personal: [
@@ -19,7 +11,11 @@ export const navigation = {
       url: '/publications/'
     },
     {
-      title: 'Research Materials',
+      title: 'Talks',
+      url: '/talks/'
+    },
+    {
+      title: 'Open Science',
       url: '/research-materials/'
     },
     {

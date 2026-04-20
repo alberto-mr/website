@@ -27,13 +27,7 @@ const isActive = (url: string) => {
       </button>
       <div class="navbar-menu">
         <ul class="navbar-nav">
-          {navigation.thematic.map((item) => (
-            <li class="nav-item">
-              <a class={`nav-link ${isActive(item.url) ? 'active' : ''}`} href={item.url}>{item.title}</a>
-            </li>
-          ))}
-          <li class="nav-separator"></li>
-          {navigation.personal.map((item) => (
+          {[...navigation.thematic, ...navigation.personal].map((item) => (
             <li class="nav-item">
               <a class={`nav-link ${isActive(item.url) ? 'active' : ''}`} href={item.url}>{item.title}</a>
             </li>

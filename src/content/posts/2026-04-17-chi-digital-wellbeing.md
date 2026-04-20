@@ -54,11 +54,14 @@ Below you can browse the slides from my presentation:
 
 I'm grateful for the recognition and for the stimulating discussions during and after the session. It was a pleasure to share this work with the CHI community and to explore together how we can move toward a more holistic understanding of digital wellbeing.
 
+You can also watch the recording of the talk here: [CHI 2026 talk recording](https://www.youtube.com/watch?v=n-rPG16r_1M).
+
 ---
 
 ## More Information
 
 - [Paper on the ACM Digital Library](https://dl.acm.org/doi/10.1145/3772318.3793192)
 - [Interactive Framework: Digital Wellbeing Leverage Points](https://lys.polito.it/dwb-leverage-points)
+- [Talk recording on YouTube](https://www.youtube.com/watch?v=n-rPG16r_1M)
 - [Presentation slides (PDF)](/assets/pdfs/CHI26-what-is-digital-wellbeing.pdf)
 - [CHI 2026 Conference Website](https://chi2026.acm.org/)

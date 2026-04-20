@@ -268,24 +268,45 @@ export function getPublicationsByResearchArea(area: 'eud' | 'dwb' | 'deceptive',
     return { pub, simToArea, maxOther };
   });
 
-  const filtered = scored
+  function venueBoost(pub: Publication): number {
+    const v = pub.venue.toLowerCase();
+    if (v.includes('tochi') || v.includes('transactions on computer-human interaction')) return 1.0;
+    if (v.includes('chi') && (v.includes('acm') || v.includes('conference on human factors'))) {
+      const pageCount = estimatePageCount(pub.pages);
+      return pageCount >= 10 ? 0.8 : 0.4;
+    }
+    if (v.includes('acm transactions') || v.includes('acm trans.')) return 0.8;
+    return 0;
+  }
+
+  function estimatePageCount(pages?: string): number {
+    if (!pages) return 0;
+    const match = pages.match(/(\d+)\s*[-–]\s*(\d+)/);
+    if (!match) return 0;
+    return Math.abs(parseInt(match[2]) - parseInt(match[1])) + 1;
+  }
+
+  const currentYear = new Date().getFullYear();
+
+  const selected = scored
     .filter(({ simToArea, maxOther }) => simToArea >= 0.05 && simToArea >= maxOther + 0.02)
     .sort((a, b) => {
-      // Primary sort: in press publications first
-      if (a.pub.isInPress && !b.pub.isInPress) return -1;
-      if (!a.pub.isInPress && b.pub.isInPress) return 1;
-      
-      // Secondary sort: by year (most recent first)
-      const yearA = parseInt(a.pub.year) || 0;
-      const yearB = parseInt(b.pub.year) || 0;
-      if (yearB !== yearA) return yearB - yearA;
-      
-      // Tertiary sort: by similarity score (highest first)
-      return b.simToArea - a.simToArea;
+      const effectiveYear = (p: Publication) => p.isInPress ? currentYear + 1 : (parseInt(p.year) || 0);
+      const recency = (y: number) => 1 - Math.min(Math.max(currentYear - y, 0) / 15, 1);
+
+      const rankA = a.simToArea + venueBoost(a.pub) + recency(effectiveYear(a.pub)) * 0.15;
+      const rankB = b.simToArea + venueBoost(b.pub) + recency(effectiveYear(b.pub)) * 0.15;
+      return rankB - rankA;
+    })
+    .slice(0, limit)
+    .sort((a, b) => {
+      const yearA = a.pub.isInPress ? currentYear + 1 : (parseInt(a.pub.year) || 0);
+      const yearB = b.pub.isInPress ? currentYear + 1 : (parseInt(b.pub.year) || 0);
+      return yearB - yearA;
     })
     .map(({ pub }) => pub);
 
-  return filtered.slice(0, limit);
+  return selected;
 }
 
 export function getAllPublications(): Publication[] {

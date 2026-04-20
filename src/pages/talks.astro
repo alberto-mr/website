@@ -1,0 +1,502 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllPublications } from '../utils/publications';
+
+const allPublications = getAllPublications();
+
+function normalizeTitle(text: string): string {
+  return (text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function titleTokens(text: string): string[] {
+  return normalizeTitle(text)
+    .split(' ')
+    .filter(w => w.length > 3);
+}
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  const intersection = new Set([...a].filter(x => b.has(x)));
+  const union = new Set([...a, ...b]);
+  return union.size === 0 ? 0 : intersection.size / union.size;
+}
+
+function findMatchingPublication(repoTitle: string): string | null {
+  const normRepo = normalizeTitle(repoTitle);
+  const repoSet = new Set(titleTokens(repoTitle));
+
+  let bestLink: string | null = null;
+  let bestScore = 0;
+
+  for (const pub of allPublications) {
+    const normPub = normalizeTitle(pub.title);
+
+    if (normPub === normRepo || normPub.includes(normRepo) || normRepo.includes(normPub)) {
+      return pub.link;
+    }
+
+    const pubSet = new Set(titleTokens(pub.title));
+    const score = jaccard(repoSet, pubSet);
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestLink = pub.link;
+    }
+  }
+
+  return bestScore >= 0.45 ? bestLink : null;
+}
+
+const talks = [
+  {
+    title: "What is Digital Wellbeing? A Leverage Points Framework to Guide Research and Action",
+    type: "Conference Talk",
+    venue: "ACM CHI 2026",
+    date: "2026",
+    description: "Conference presentation of our Honorable Mention paper at CHI 2026.",
+    videoUrl: "https://www.youtube.com/watch?v=n-rPG16r_1M"
+  },
+  {
+    title: "Defining and Identifying Attention Capture Deceptive Designs in Digital Interfaces",
+    type: "Conference Talk",
+    venue: "ACM CHI 2023",
+    date: "2023",
+    description: "Conference presentation of research work at CHI 2023.",
+    videoUrl: "https://www.youtube.com/watch?v=Bw9m8j3_jJ0"
+  },
+  {
+    title: "Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults",
+    type: "Conference Talk",
+    venue: "ACM IUI 2022",
+    date: "2022",
+    description: "Conference presentation of research work at IUI 2022.",
+    videoUrl: "https://www.youtube.com/watch?v=nC56Uqi6iC4"
+  },
+  {
+    title: "From Users' Intentions to IF-THEN Rules in the Internet of Things",
+    type: "Invited Talk",
+    venue: "ACM SIGIR 2022",
+    date: "2022",
+    description: "Conference presentation of research work at SIGIR 2022.",
+    videoUrl: "https://www.youtube.com/watch?v=C-LcCSGRHzg"
+  },
+  {
+    title: "Towards Understanding the Dark Patterns That Steal Our Attention",
+    type: "Conference Talk",
+    venue: "ACM CHI 2021",
+    date: "2021",
+    description: "Conference presentation of research work at CHI 2021.",
+    videoUrl: "https://www.youtube.com/watch?v=myUS8IJJlXA"
+  },
+  {
+    title: "Coping with Digital Wellbeing in a Multi-Device World",
+    type: "Conference Talk",
+    venue: "ACM CHI 2021",
+    date: "2021",
+    description: "Conference presentation of research work at CHI 2021.",
+    videoUrl: "https://www.youtube.com/watch?v=s3VEgVAUtQs"
+  },
+  {
+    title: "End-User Development in the Internet of Things",
+    type: "PhD Defense",
+    venue: "Politecnico di Torino",
+    date: "2020",
+    description: "PhD defense presentation on End-User Development in the Internet of Things.",
+    videoUrl: "https://www.youtube.com/watch?v=a-mkbNZhYtQ"
+  },
+  {
+    title: "The Race Towards Digital Wellbeing: Issues and Opportunities",
+    type: "Conference Talk",
+    venue: "ACM CHI 2019",
+    date: "2019",
+    description: "Conference presentation of research work at CHI 2019.",
+    videoUrl: "https://www.youtube.com/watch?v=ToSG6rYCOJA"
+  }
+];
+---
+
+<BaseLayout title="Talks & Presentations">
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Talks & Presentations</h1>
+        <p class="page-subtitle">
+          Conference talks, invited presentations, and recorded lectures
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="talks-section">
+    <div class="container">
+      <div class="talks-grid">
+        {talks.map((talk, index) => (
+          <div class="talk-card" data-aos="fade-up" data-aos-delay={index * 80}>
+            <div class="card-header">
+              <div class="video-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5,3 19,12 5,21"/>
+                </svg>
+              </div>
+              <div class="card-meta">
+                <span class="talk-type">{talk.type}</span>
+                <span class="talk-venue">{talk.venue} &bull; {talk.date}</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">{talk.title}</h3>
+              <p class="card-description">{talk.description}</p>
+              <div class="card-actions">
+                <a href={talk.videoUrl} class="btn btn-primary btn-sm" target="_blank">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                  Watch Video
+                </a>
+                {findMatchingPublication(talk.title) && (
+                  <a href={findMatchingPublication(talk.title)} class="btn btn-outline btn-sm" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14,2 14,8 20,8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                    Access Paper
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="300" r="200" fill="url(%23a)"/><circle cx="400" cy="700" r="250" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .page-header {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    animation: slideInLeft 1s ease-out;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    animation: slideInLeft 1s ease-out 0.2s both;
+  }
+
+  .talks-section {
+    padding: 5rem 0;
+  }
+
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .talk-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .talk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.5rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .video-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .video-icon svg {
+    width: 22px;
+    height: 22px;
+    margin-left: 1px;
+  }
+
+  .talk-card:hover .video-icon {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    flex: 1;
+  }
+
+  .talk-type {
+    background: var(--bg-accent);
+    color: var(--text-primary);
+    padding: 0.35rem 0.8rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: fit-content;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .talk-venue {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .card-content {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .card-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+    font-size: 0.95rem;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .btn-sm {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .btn-sm svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+  }
+
+  .btn-outline:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 30vh;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .talks-section {
+      padding: 3rem 0;
+    }
+
+    .talks-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .card-header {
+      padding: 1.25rem 1.25rem 0;
+    }
+
+    .card-content {
+      padding: 0 1.25rem 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+    }
+
+    .card-actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .btn-sm {
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .video-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .video-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .talk-type {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .talk-venue {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+
+    .card-header {
+      padding: 1rem 1rem 0;
+    }
+
+    .card-content {
+      padding: 0 1rem 1rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+    }
+
+    .card-description {
+      font-size: 0.85rem;
+    }
+
+    .btn-sm {
+      padding: 0.6rem 0.875rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>

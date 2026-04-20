@@ -55,70 +55,8 @@ function findMatchingPublication(repoTitle: string): string | null {
   return bestScore >= 0.45 ? bestLink : null;
 }
 
-// Pagination parameters
-const talksPerPage = 6;
-const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
-
 // This could be moved to a data file later for easier management
 const researchMaterials = {
-  talks: [
-    {
-      title: "Defining and Identifying Attention Capture Deceptive Designs in Digital Interfaces",
-      type: "Conference Talk",
-      venue: "ACM CHI 2023",
-      date: "2023",
-      description: "Conference presentation of research work at CHI 2023.",
-      videoUrl: "https://www.youtube.com/watch?v=Bw9m8j3_jJ0"
-    },
-    {
-      title: "Understanding, Discovering, and Mitigating Habitual Smartphone Use in Young Adults",
-      type: "Conference Talk",
-      venue: "ACM IUI 2022",
-      date: "2022",
-      description: "Conference presentation of research work at IUI 2022.",
-      videoUrl: "https://www.youtube.com/watch?v=nC56Uqi6iC4"
-    },
-    {
-      title: "From Users' Intentions to IF-THEN Rules in the Internet of Things",
-      type: "Invited Talk",
-      venue: "ACM SIGIR 2022",
-      date: "2022",
-      description: "Conference presentation of research work at SIGIR 2022.",
-      videoUrl: "https://www.youtube.com/watch?v=C-LcCSGRHzg"
-    },
-    {
-      title: "Towards Understanding the Dark Patterns That Steal Our Attention",
-      type: "Conference Talk",
-      venue: "ACM CHI 2021",
-      date: "2021",
-      description: "Conference presentation of research work at CHI 2021.",
-      videoUrl: "https://www.youtube.com/watch?v=myUS8IJJlXA"
-    },
-    {
-      title: "Coping with Digital Wellbeing in a Multi-Device World",
-      type: "Conference Talk",
-      venue: "ACM CHI 2021",
-      date: "2021",
-      description: "Conference presentation of research work at CHI 2021.",
-      videoUrl: "https://www.youtube.com/watch?v=s3VEgVAUtQs"
-    },
-    {
-      title: "End-User Development in the Internet of Things",
-      type: "PhD Defense",
-      venue: "Politecnico di Torino",
-      date: "2020",
-      description: "PhD defense presentation on End-User Development in the Internet of Things.",
-      videoUrl: "https://www.youtube.com/watch?v=a-mkbNZhYtQ"
-    },
-    {
-      title: "The Race Towards Digital Wellbeing: Issues and Opportunities",
-      type: "Conference Talk",
-      venue: "ACM CHI 2019",
-      date: "2019",
-      description: "Conference presentation of research work at CHI 2019.",
-      videoUrl: "https://www.youtube.com/watch?v=ToSG6rYCOJA"
-    }
-  ],
   osfRepositories: [
     {
       title: "Empowering End Users to Design for Their Digital Self-Control",
@@ -229,136 +167,17 @@ const researchMaterials = {
   ]
 };
 
-// Pagination logic
-const totalTalks = researchMaterials.talks.length;
-const totalPages = Math.ceil(totalTalks / talksPerPage);
-const startIndex = (currentPage - 1) * talksPerPage;
-const endIndex = startIndex + talksPerPage;
-const currentTalks = researchMaterials.talks.slice(startIndex, endIndex);
-
-// Pagination helper functions
-function getPageNumbers(current: number, total: number) {
-  const pages = [];
-  const maxVisible = 5;
-  
-  if (total <= maxVisible) {
-    for (let i = 1; i <= total; i++) {
-      pages.push(i);
-    }
-  } else {
-    if (current <= 3) {
-      for (let i = 1; i <= 4; i++) {
-        pages.push(i);
-      }
-      pages.push('...');
-      pages.push(total);
-    } else if (current >= total - 2) {
-      pages.push(1);
-      pages.push('...');
-      for (let i = total - 3; i <= total; i++) {
-        pages.push(i);
-      }
-    } else {
-      pages.push(1);
-      pages.push('...');
-      for (let i = current - 1; i <= current + 1; i++) {
-        pages.push(i);
-      }
-      pages.push('...');
-      pages.push(total);
-    }
-  }
-  
-  return pages;
-}
-
-const pageNumbers = getPageNumbers(currentPage, totalPages);
 ---
 
-<BaseLayout title="Research Materials">
+<BaseLayout title="Open Science">
   <section class="hero-section">
     <div class="hero-background"></div>
     <div class="container">
       <div class="page-header">
-        <h1 class="page-title">Research Materials</h1>
+        <h1 class="page-title">Open Science</h1>
         <p class="page-subtitle">
-          Tools, datasets, talks, and platforms developed through our research
+          Datasets, repositories, tools, and platforms developed through our research
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Talks & Presentations Section -->
-  <section class="materials-section">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="section-icon">🎤</span>
-        Talks & Presentations
-      </h2>
-      <div class="talks-scroll-container">
-        <button class="scroll-btn scroll-left" id="scroll-left">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15,18 9,12 15,6"/>
-          </svg>
-        </button>
-        
-        <div class="talks-scroll-wrapper" id="talks-scroll-wrapper">
-          <div class="talks-scroll-content" id="talks-scroll-content">
-            {researchMaterials.talks.map((talk, index) => (
-              <div class="material-card video-card" data-aos="fade-up" data-aos-delay={index * 100}>
-                <div class="card-header">
-                  <div class="video-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polygon points="5,3 19,12 5,21"/>
-                    </svg>
-                  </div>
-                  <div class="card-meta">
-                    <span class="material-type">{talk.type}</span>
-                    <span class="material-venue">{talk.venue} • {talk.date}</span>
-                  </div>
-                </div>
-                <div class="card-content">
-                  <h3 class="card-title">{talk.title}</h3>
-                  <p class="card-description">{talk.description}</p>
-                  <div class="card-actions">
-                    <a href={talk.videoUrl} class="btn btn-primary btn-sm" target="_blank">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="5,3 19,12 5,21"/>
-                      </svg>
-                      Watch Video
-                    </a>
-                    {findMatchingPublication(talk.title) && (
-                      <a href={findMatchingPublication(talk.title)} class="btn btn-outline btn-sm" target="_blank">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                          <polyline points="14,2 14,8 20,8"/>
-                          <line x1="16" y1="13" x2="8" y2="13"/>
-                          <line x1="16" y1="17" x2="8" y2="17"/>
-                          <polyline points="10,9 9,9 8,9"/>
-                        </svg>
-                        Access Paper
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        <button class="scroll-btn scroll-right" id="scroll-right">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9,18 15,12 9,6"/>
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Scroll Indicators -->
-      <div class="scroll-indicators">
-        <div class="scroll-dots" id="scroll-dots"></div>
-        <div class="scroll-info" id="scroll-info">
-          Showing all {totalTalks} talks
-        </div>
       </div>
     </div>
   </section>
@@ -553,7 +372,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
 <style>
   .hero-section {
     position: relative;
-    min-height: 60vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1118,7 +937,7 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
   /* Responsive Design */
   @media (max-width: 768px) {
     .hero-section {
-      min-height: 40vh;
+      min-height: 30vh;
     }
 
     .page-title {
@@ -1311,83 +1130,6 @@ const pageNumbers = getPageNumbers(currentPage, totalPages);
 </style>
 
 <script>
-  // Horizontal scroll functionality - DESKTOP ONLY
-  document.addEventListener('DOMContentLoaded', function() {
-    // Skip entirely on mobile/tablet
-    if (window.innerWidth <= 768) return;
-    
-    const scrollContent = document.getElementById('talks-scroll-content');
-    const scrollLeftBtn = document.getElementById('scroll-left');
-    const scrollRightBtn = document.getElementById('scroll-right');
-    const scrollDots = document.getElementById('scroll-dots');
-    
-    if (!scrollContent || !scrollLeftBtn || !scrollRightBtn) return;
-    
-    const cardWidth = 400;
-    const totalTalks = scrollContent.children.length;
-    let currentIndex = 0;
-    
-    function getCardsPerView() {
-      const containerWidth = scrollContent.parentElement.offsetWidth;
-      return Math.floor(containerWidth / cardWidth);
-    }
-    
-    function getMaxIndex() {
-      const cardsPerView = getCardsPerView();
-      return Math.max(0, totalTalks - cardsPerView);
-    }
-    
-    function updateScroll() {
-      const maxIndex = getMaxIndex();
-      const translateX = -currentIndex * cardWidth;
-      scrollContent.style.transform = `translateX(${translateX}px)`;
-      
-      scrollLeftBtn.disabled = currentIndex === 0;
-      scrollRightBtn.disabled = currentIndex >= maxIndex;
-      
-      if (scrollDots) {
-        scrollDots.innerHTML = '';
-        const cardsPerView = getCardsPerView();
-        const totalDots = Math.ceil(totalTalks / cardsPerView);
-        
-        for (let i = 0; i < totalDots; i++) {
-          const dot = document.createElement('div');
-          dot.className = `scroll-dot ${i === Math.floor(currentIndex / cardsPerView) ? 'active' : ''}`;
-          dot.onclick = () => {
-            currentIndex = i * cardsPerView;
-            updateScroll();
-          };
-          scrollDots.appendChild(dot);
-        }
-      }
-    }
-    
-    scrollLeftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateScroll();
-      }
-    });
-    
-    scrollRightBtn.addEventListener('click', () => {
-      const maxIndex = getMaxIndex();
-      if (currentIndex < maxIndex) {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
-        updateScroll();
-      }
-    });
-    
-    updateScroll();
-    
-    window.addEventListener('resize', () => {
-      const newMaxIndex = getMaxIndex();
-      if (currentIndex > newMaxIndex) {
-        currentIndex = newMaxIndex;
-      }
-      updateScroll();
-    });
-  });
-
   // OSF Repositories scroll functionality - DESKTOP ONLY
   document.addEventListener('DOMContentLoaded', function() {
     // Skip entirely on mobile/tablet
