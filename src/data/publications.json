@@ -1,10 +1,22 @@
 [
   {
-    "title": "Intervention Design at the Intersection of Accessibility and Digital Wellbeing",
-    "authors": "Robert Everett Schwartz; Alberto Monge Roffarello",
+    "title": "Assessing OS-Level Automation for Digital Self-Control Interventions",
+    "authors": "Aditya Kumar Purohit; Alberto Monge Roffarello",
     "year": "9999",
-    "venue": "SAC '26:  the 41st ACM/SIGAPP Symposium on Applied Computing",
-    "link": "https://iris.polito.it/handle/11583/3009693",
+    "venue": "BEHAVIOUR & INFORMATION TECHNOLOGY",
+    "link": "https://iris.polito.it/handle/11583/3012847",
+    "type": "journal",
+    "doi": null,
+    "pages": "",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "ACDPs Transparency Labels: Supporting User Agency Against Attention-Capture Damaging Patterns",
+    "authors": "Alberto Monge Roffarello; Riccardo Graziosi; Luca Passarella",
+    "year": "9999",
+    "venue": "CSCW Companion '26: Companion Publication of the 2026 Conference on Computer-Supported Cooperative Work and Social Computing",
+    "link": "https://iris.polito.it/handle/11583/3012848",
     "type": "conference",
     "doi": null,
     "pages": "",
@@ -24,6 +36,18 @@
     "issue": null
   },
   {
+    "title": "Bridge Over Troubled Water: Aligning Commercial Incentives With Ethical Design Practice To Combat Deceptive Patterns",
+    "authors": "Thomas Eßmeyer; Johanna Gunawan; Colin M. Gray; Lorena Sánchez Chamorro; Alberto Monge Roffarello; Katie Seaborn; Hauke Sandhaus; Kai Lukoff; Gian-Luca Savino; Shruthi Sai Chivukula; Satoshi Nakamura",
+    "year": "2026",
+    "venue": "Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
+    "link": "https://iris.polito.it/handle/11583/3010044",
+    "type": "conference",
+    "doi": "10.1145/3772363.3778758",
+    "pages": "1-8",
+    "volume": null,
+    "issue": null
+  },
+  {
     "title": "When Handwriting Goes Social: Creativity, Anonymity, and Communication in Graphonymous Online Spaces",
     "authors": "Aditya Kumar Purohit; Aditya Upadhyaya; Nicolas Ruiz; Alberto Monge Roffarello; Hendrik Heuer",
     "year": "2026",
@@ -36,14 +60,26 @@
     "issue": null
   },
   {
-    "title": "Bridge Over Troubled Water: Aligning Commercial Incentives With Ethical Design Practice To Combat Deceptive Patterns",
-    "authors": "Thomas Eßmeyer; Johanna Gunawan; Colin M. Gray; Lorena Sánchez Chamorro; Alberto Monge Roffarello; Katie Seaborn; Hauke Sandhaus; Kai Lukoff; Gian-Luca Savino; Shruthi Sai Chivukula; Satoshi Nakamura",
+    "title": "Intervention Design at the Intersection of Accessibility and Digital Wellbeing",
+    "authors": "Robert Everett Schwartz; Alberto Monge Roffarello",
     "year": "2026",
-    "venue": "Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems",
-    "link": "https://iris.polito.it/handle/11583/3010044",
+    "venue": "SAC '26:  the 41st ACM/SIGAPP Symposium on Applied Computing",
+    "link": "https://iris.polito.it/handle/11583/3009693",
     "type": "conference",
-    "doi": "10.1145/3772363.3778758",
+    "doi": "10.1145/3748522.3779978",
     "pages": "1-8",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "Brainy: a Virtual Pet Encouraging Digital Wellbeing",
+    "authors": "Luca Scibetta; Alberto Monge Roffarello",
+    "year": "2026",
+    "venue": "AVI '26:  the 2026 International Conference on Advanced Visual Interfaces",
+    "link": "https://iris.polito.it/handle/11583/3010307",
+    "type": "conference",
+    "doi": "10.1145/3811427.3811476",
+    "pages": "1-5",
     "volume": null,
     "issue": null
   },
@@ -84,16 +120,16 @@
     "issue": null
   },
   {
-    "title": "Supporting Teachers, Engaging Students: A Collaborative Model for K-12 Computing Education",
-    "authors": "Alberto Monge Roffarello; Juan Pablo Saenz",
+    "title": "The Digital Attention Heuristics: Supporting the User's Attention by Design",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis; Kai Lukoff",
     "year": "2025",
-    "venue": "ENTERTAINMENT COMPUTING",
-    "link": "https://iris.polito.it/handle/11583/2998293",
+    "venue": "ACM TRANSACTIONS ON COMPUTER-HUMAN INTERACTION",
+    "link": "https://iris.polito.it/handle/11583/2998294",
     "type": "journal",
-    "doi": "10.1016/j.entcom.2025.100937",
-    "pages": "",
-    "volume": "54",
-    "issue": null
+    "doi": "10.1145/3725215",
+    "pages": "1-41",
+    "volume": "32",
+    "issue": "4"
   },
   {
     "title": "Empowering End Users to Design for Their Digital Self-Control",
@@ -108,16 +144,16 @@
     "issue": null
   },
   {
-    "title": "The Digital Attention Heuristics: Supporting the User's Attention by Design",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis; Kai Lukoff",
+    "title": "Supporting Teachers, Engaging Students: A Collaborative Model for K-12 Computing Education",
+    "authors": "Alberto Monge Roffarello; Juan Pablo Saenz",
     "year": "2025",
-    "venue": "ACM TRANSACTIONS ON COMPUTER-HUMAN INTERACTION",
-    "link": "https://iris.polito.it/handle/11583/2998294",
+    "venue": "ENTERTAINMENT COMPUTING",
+    "link": "https://iris.polito.it/handle/11583/2998293",
     "type": "journal",
-    "doi": "10.1145/3725215",
-    "pages": "1-41",
-    "volume": "32",
-    "issue": "4"
+    "doi": "10.1016/j.entcom.2025.100937",
+    "pages": "",
+    "volume": "54",
+    "issue": null
   },
   {
     "title": "Bridging Digital Wellbeing and Accessibility: An Analysis of the W3C Web Content Accessibility Guidelines",
@@ -192,6 +228,18 @@
     "issue": null
   },
   {
+    "title": "Digital Wellbeing for Teens: Designing Educational Systems (DIGI-Teens 2024)",
+    "authors": "Chiara Ceccarini; Catia Prandi; Alberto Monge Roffarello; Luigi De Russis",
+    "year": "2024",
+    "venue": "the 2024 International Conference on Advanced Visual Interfaces (AVI '24)",
+    "link": "https://iris.polito.it/handle/11583/2989308",
+    "type": "conference",
+    "doi": "10.1145/3656650.3660538",
+    "pages": "1-3",
+    "volume": null,
+    "issue": null
+  },
+  {
     "title": "Hey StepByStep! Can You Teach Me How To Use My Phone Better?",
     "authors": "Alberto Monge Roffarello; Luigi De Russis",
     "year": "2024",
@@ -204,14 +252,14 @@
     "issue": null
   },
   {
-    "title": "Digital Wellbeing for Teens: Designing Educational Systems (DIGI-Teens 2024)",
-    "authors": "Chiara Ceccarini; Catia Prandi; Alberto Monge Roffarello; Luigi De Russis",
+    "title": "Dialogues with digital wisdom: can LLMs help us put down the phone?",
+    "authors": "Luigi De Russis; Alberto Monge Roffarello; Luca Scibetta",
     "year": "2024",
-    "venue": "the 2024 International Conference on Advanced Visual Interfaces (AVI '24)",
-    "link": "https://iris.polito.it/handle/11583/2989308",
+    "venue": "GoodIT '24:  the 2024 International Conference on Information Technology for Social Good",
+    "link": "https://iris.polito.it/handle/11583/2992025",
     "type": "conference",
-    "doi": "10.1145/3656650.3660538",
-    "pages": "1-3",
+    "doi": "10.1145/3677525.3678640",
+    "pages": "56-61",
     "volume": null,
     "issue": null
   },
@@ -228,18 +276,6 @@
     "issue": null
   },
   {
-    "title": "Dialogues with digital wisdom: can LLMs help us put down the phone?",
-    "authors": "Luigi De Russis; Alberto Monge Roffarello; Luca Scibetta",
-    "year": "2024",
-    "venue": "GoodIT '24:  the 2024 International Conference on Information Technology for Social Good",
-    "link": "https://iris.polito.it/handle/11583/2992025",
-    "type": "conference",
-    "doi": "10.1145/3677525.3678640",
-    "pages": "56-61",
-    "volume": null,
-    "issue": null
-  },
-  {
     "title": "Interacting with the Internet of Things",
     "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello; Juan Pablo Saenz Moreno",
     "year": "2024",
@@ -248,6 +284,78 @@
     "type": "book",
     "doi": "10.1201/9781003490685-6",
     "pages": "171-200",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "Nudging Users or Redesigning Interfaces? Evaluating Novel Strategies for Digital Wellbeing Through inControl",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
+    "year": "2023",
+    "venue": "ACM International Conference on Information Technology for Social Good (GoodIT '23)",
+    "link": "https://iris.polito.it/handle/11583/2980407",
+    "type": "conference",
+    "doi": "10.1145/3582515.3609523",
+    "pages": "100-109",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "Nudging Users Towards Conscious Social Media Use",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
+    "year": "2023",
+    "venue": "25th International Conference on Mobile Human-Computer Interaction (MobileHCI '23 Companion)",
+    "link": "https://iris.polito.it/handle/11583/2980405",
+    "type": "conference",
+    "doi": "10.1145/3565066.3608703",
+    "pages": "1-7",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "Defining Trigger-Action Rules via Voice: a Novel Approach for End-User Development in the IoT",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
+    "year": "2023",
+    "venue": "LECTURE NOTES IN COMPUTER SCIENCE",
+    "link": "https://iris.polito.it/handle/11583/2977871",
+    "type": "conference",
+    "doi": "10.1007/978-3-031-34433-6_5",
+    "pages": "65-83",
+    "volume": "13917",
+    "issue": null
+  },
+  {
+    "title": "An Ontology-Based Approach for Setting Security Policies in Smart Homes",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
+    "year": "2023",
+    "venue": "Emerging Technologies for Authorization and Authentication",
+    "link": "https://iris.polito.it/handle/11583/2974597",
+    "type": "conference",
+    "doi": "10.1007/978-3-031-25467-3_1",
+    "pages": "1-14",
+    "volume": "13782",
+    "issue": null
+  },
+  {
+    "title": "Understanding digital wellbeing within complex technological contexts",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis; Danielle Lottridge; Marta E. Cecchinato",
+    "year": "2023",
+    "venue": "INTERNATIONAL JOURNAL OF HUMAN-COMPUTER STUDIES",
+    "link": "https://iris.polito.it/handle/11583/2977539",
+    "type": "misc",
+    "doi": "10.1016/j.ijhcs.2023.103034",
+    "pages": "",
+    "volume": "175",
+    "issue": null
+  },
+  {
+    "title": "Defining and Identifying Attention Capture Deceptive Designs in Digital Interfaces",
+    "authors": "Alberto MONGE ROFFARELLO; Kai Lukoff; Luigi DE RUSSIS",
+    "year": "2023",
+    "venue": "Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems",
+    "link": "https://iris.polito.it/handle/11583/2978380",
+    "type": "conference",
+    "doi": "10.1145/3544548.3580729",
+    "pages": "1-19",
     "volume": null,
     "issue": null
   },
@@ -276,86 +384,14 @@
     "issue": null
   },
   {
-    "title": "Understanding digital wellbeing within complex technological contexts",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis; Danielle Lottridge; Marta E. Cecchinato",
-    "year": "2023",
-    "venue": "INTERNATIONAL JOURNAL OF HUMAN-COMPUTER STUDIES",
-    "link": "https://iris.polito.it/handle/11583/2977539",
-    "type": "misc",
-    "doi": "10.1016/j.ijhcs.2023.103034",
-    "pages": "",
-    "volume": "175",
-    "issue": null
-  },
-  {
-    "title": "Defining and Identifying Attention Capture Deceptive Designs in Digital Interfaces",
-    "authors": "Alberto MONGE ROFFARELLO; Kai Lukoff; Luigi DE RUSSIS",
-    "year": "2023",
-    "venue": "Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems",
-    "link": "https://iris.polito.it/handle/11583/2978380",
-    "type": "conference",
-    "doi": "10.1145/3544548.3580729",
-    "pages": "1-19",
-    "volume": null,
-    "issue": null
-  },
-  {
-    "title": "An Ontology-Based Approach for Setting Security Policies in Smart Homes",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
-    "year": "2023",
-    "venue": "Emerging Technologies for Authorization and Authentication",
-    "link": "https://iris.polito.it/handle/11583/2974597",
-    "type": "conference",
-    "doi": "10.1007/978-3-031-25467-3_1",
-    "pages": "1-14",
-    "volume": "13782",
-    "issue": null
-  },
-  {
-    "title": "Nudging Users Towards Conscious Social Media Use",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
-    "year": "2023",
-    "venue": "25th International Conference on Mobile Human-Computer Interaction (MobileHCI '23 Companion)",
-    "link": "https://iris.polito.it/handle/11583/2980405",
-    "type": "conference",
-    "doi": "10.1145/3565066.3608703",
-    "pages": "1-7",
-    "volume": null,
-    "issue": null
-  },
-  {
-    "title": "Nudging Users or Redesigning Interfaces? Evaluating Novel Strategies for Digital Wellbeing Through inControl",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
-    "year": "2023",
-    "venue": "ACM International Conference on Information Technology for Social Good (GoodIT '23)",
-    "link": "https://iris.polito.it/handle/11583/2980407",
-    "type": "conference",
-    "doi": "10.1145/3582515.3609523",
-    "pages": "100-109",
-    "volume": null,
-    "issue": null
-  },
-  {
-    "title": "Defining Trigger-Action Rules via Voice: a Novel Approach for End-User Development in the IoT",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
-    "year": "2023",
-    "venue": "LECTURE NOTES IN COMPUTER SCIENCE",
-    "link": "https://iris.polito.it/handle/11583/2977871",
-    "type": "conference",
-    "doi": "10.1007/978-3-031-34433-6_5",
-    "pages": "65-83",
-    "volume": "13917",
-    "issue": null
-  },
-  {
-    "title": "Towards Understanding the Dark Patterns That Steal Our Attention",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
+    "title": "Designing for Meaningful Interactions and Digital Wellbeing",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis; R. X. Schwartz; Panagiotis Apostolellis",
     "year": "2022",
-    "venue": "Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems",
-    "link": "https://iris.polito.it/handle/11583/2955697",
+    "venue": "the 2022 International Conference on Advanced Visual Interfaces",
+    "link": "https://iris.polito.it/handle/11583/2966052",
     "type": "conference",
-    "doi": "10.1145/3491101.3519829",
-    "pages": "1-7",
+    "doi": "10.1145/3531073.3535255",
+    "pages": "1-2",
     "volume": null,
     "issue": null
   },
@@ -372,14 +408,14 @@
     "issue": null
   },
   {
-    "title": "Designing for Meaningful Interactions and Digital Wellbeing",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis; R. X. Schwartz; Panagiotis Apostolellis",
+    "title": "Towards Understanding the Dark Patterns That Steal Our Attention",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
     "year": "2022",
-    "venue": "the 2022 International Conference on Advanced Visual Interfaces",
-    "link": "https://iris.polito.it/handle/11583/2966052",
+    "venue": "Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems",
+    "link": "https://iris.polito.it/handle/11583/2955697",
     "type": "conference",
-    "doi": "10.1145/3531073.3535255",
-    "pages": "1-2",
+    "doi": "10.1145/3491101.3519829",
+    "pages": "1-7",
     "volume": null,
     "issue": null
   },
@@ -394,18 +430,6 @@
     "pages": "1-23",
     "volume": null,
     "issue": null
-  },
-  {
-    "title": "Designing Technology That Promotes Users' Digital Wellbeing",
-    "authors": "Alberto Monge Roffarello; Luigi De Russis",
-    "year": "2021",
-    "venue": "CROSSROADS",
-    "link": "https://iris.polito.it/handle/11583/2915952",
-    "type": "journal",
-    "doi": "10.1145/3481823",
-    "pages": "14-18",
-    "volume": "28",
-    "issue": "1"
   },
   {
     "title": "Towards Multi-Device Digital Self-Control Tools",
@@ -444,16 +468,16 @@
     "issue": "2"
   },
   {
-    "title": "Coping with Digital Wellbeing in a Multi-Device World",
+    "title": "Designing Technology That Promotes Users' Digital Wellbeing",
     "authors": "Alberto Monge Roffarello; Luigi De Russis",
     "year": "2021",
-    "venue": "Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems",
-    "link": "https://iris.polito.it/handle/11583/2862497",
-    "type": "conference",
-    "doi": "10.1145/3411764.3445076",
-    "pages": "1-14",
-    "volume": null,
-    "issue": null
+    "venue": "CROSSROADS",
+    "link": "https://iris.polito.it/handle/11583/2915952",
+    "type": "journal",
+    "doi": "10.1145/3481823",
+    "pages": "14-18",
+    "volume": "28",
+    "issue": "1"
   },
   {
     "title": "Towards Vocally-Composed Personalization Rules in the IoT",
@@ -468,16 +492,16 @@
     "issue": null
   },
   {
-    "title": "From Users' Intentions to IF-THEN Rules in the Internet of Things",
-    "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
+    "title": "Coping with Digital Wellbeing in a Multi-Device World",
+    "authors": "Alberto Monge Roffarello; Luigi De Russis",
     "year": "2021",
-    "venue": "ACM TRANSACTIONS ON INFORMATION SYSTEMS",
-    "link": "https://iris.polito.it/handle/11583/2860780",
-    "type": "journal",
-    "doi": "10.1145/3447264",
-    "pages": "1-33",
-    "volume": "39",
-    "issue": "4"
+    "venue": "Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems",
+    "link": "https://iris.polito.it/handle/11583/2862497",
+    "type": "conference",
+    "doi": "10.1145/3411764.3445076",
+    "pages": "1-14",
+    "volume": null,
+    "issue": null
   },
   {
     "title": "Devices, Information, and People: Abstracting the Internet of Things for End-User Personalization",
@@ -490,6 +514,18 @@
     "pages": "71-86",
     "volume": "12724",
     "issue": null
+  },
+  {
+    "title": "From Users' Intentions to IF-THEN Rules in the Internet of Things",
+    "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
+    "year": "2021",
+    "venue": "ACM TRANSACTIONS ON INFORMATION SYSTEMS",
+    "link": "https://iris.polito.it/handle/11583/2860780",
+    "type": "journal",
+    "doi": "10.1145/3447264",
+    "pages": "1-33",
+    "volume": "39",
+    "issue": "4"
   },
   {
     "title": "End-User Development in the Internet of Things",
@@ -516,18 +552,6 @@
     "issue": null
   },
   {
-    "title": "TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations",
-    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
-    "year": "2020",
-    "venue": "the 25th International Conference on Intelligent User Interfaces",
-    "link": "https://iris.polito.it/handle/11583/2779432",
-    "type": "conference",
-    "doi": "10.1145/3377325.3377499",
-    "pages": "579-588",
-    "volume": null,
-    "issue": null
-  },
-  {
     "title": "HeyTAP: Bridging the Gaps Between Users' Needs and Technology in IF-THEN Rules via Conversation",
     "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
     "year": "2020",
@@ -536,6 +560,18 @@
     "type": "conference",
     "doi": "10.1145/3399715.3399905",
     "pages": "1-9",
+    "volume": null,
+    "issue": null
+  },
+  {
+    "title": "TAPrec: Supporting the Composition of Trigger-Action Rules Through Dynamic Recommendations",
+    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
+    "year": "2020",
+    "venue": "the 25th International Conference on Intelligent User Interfaces",
+    "link": "https://iris.polito.it/handle/11583/2779432",
+    "type": "conference",
+    "doi": "10.1145/3377325.3377499",
+    "pages": "579-588",
     "volume": null,
     "issue": null
   },
@@ -564,30 +600,6 @@
     "issue": null
   },
   {
-    "title": "My IoT Puzzle: Debugging IF-THEN Rules Through the Jigsaw Metaphor",
-    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
-    "year": "2019",
-    "venue": "End-User Development",
-    "link": "https://iris.polito.it/handle/11583/2731417",
-    "type": "conference",
-    "doi": "10.1007/978-3-030-24781-2_2",
-    "pages": "18-33",
-    "volume": "11553",
-    "issue": null
-  },
-  {
-    "title": "RecRules: Recommending IF-THEN Rules for End-User Development",
-    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
-    "year": "2019",
-    "venue": "ACM TRANSACTIONS ON INTELLIGENT SYSTEMS AND TECHNOLOGY",
-    "link": "https://iris.polito.it/handle/11583/2740094",
-    "type": "journal",
-    "doi": "10.1145/3344211",
-    "pages": "1-27",
-    "volume": "10",
-    "issue": "5"
-  },
-  {
     "title": "A High-Level Semantic Approach to End-User Development in the Internet of Things",
     "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
     "year": "2019",
@@ -612,6 +624,18 @@
     "issue": null
   },
   {
+    "title": "My IoT Puzzle: Debugging IF-THEN Rules Through the Jigsaw Metaphor",
+    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
+    "year": "2019",
+    "venue": "End-User Development",
+    "link": "https://iris.polito.it/handle/11583/2731417",
+    "type": "conference",
+    "doi": "10.1007/978-3-030-24781-2_2",
+    "pages": "18-33",
+    "volume": "11553",
+    "issue": null
+  },
+  {
     "title": "Empowering End Users in Debugging Trigger-Action Rules",
     "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
     "year": "2019",
@@ -622,6 +646,18 @@
     "pages": "1-13",
     "volume": null,
     "issue": null
+  },
+  {
+    "title": "RecRules: Recommending IF-THEN Rules for End-User Development",
+    "authors": "Fulvio Corno; Luigi DE RUSSIS; Alberto MONGE ROFFARELLO",
+    "year": "2019",
+    "venue": "ACM TRANSACTIONS ON INTELLIGENT SYSTEMS AND TECHNOLOGY",
+    "link": "https://iris.polito.it/handle/11583/2740094",
+    "type": "journal",
+    "doi": "10.1145/3344211",
+    "pages": "1-27",
+    "volume": "10",
+    "issue": "5"
   },
   {
     "title": "End User Development in the IoT: a Semantic Approach",
@@ -648,18 +684,6 @@
     "issue": null
   },
   {
-    "title": "IoT for ambient assisted living: Care4Me - A healthcare support system",
-    "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
-    "year": "2018",
-    "venue": "Wearable Technologies: Concepts, Methodologies, Tools, and Applications",
-    "link": "https://iris.polito.it/handle/11583/2707887",
-    "type": "book",
-    "doi": "10.4018/978-1-5225-5484-4.ch009",
-    "pages": "161-187",
-    "volume": null,
-    "issue": null
-  },
-  {
     "title": "AwareNotifications: Multi-Device Semantic Notification Handling with User-Defined Preferences",
     "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
     "year": "2018",
@@ -670,6 +694,18 @@
     "pages": "327-343",
     "volume": "10",
     "issue": "4"
+  },
+  {
+    "title": "IoT for ambient assisted living: Care4Me - A healthcare support system",
+    "authors": "Fulvio Corno; Luigi De Russis; Alberto Monge Roffarello",
+    "year": "2018",
+    "venue": "Wearable Technologies: Concepts, Methodologies, Tools, and Applications",
+    "link": "https://iris.polito.it/handle/11583/2707887",
+    "type": "book",
+    "doi": "10.4018/978-1-5225-5484-4.ch009",
+    "pages": "161-187",
+    "volume": null,
+    "issue": null
   },
   {
     "title": "On the Benefit of Adding User Preferences to Notification Delivery",
