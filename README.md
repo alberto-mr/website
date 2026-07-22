@@ -1,6 +1,6 @@
 # Personal Website
 
-Personal website of Alberto Monge Roffarello, Assistant Professor (RTDb) at Politecnico di Torino.
+Personal website of Alberto Monge Roffarello, Associate Professor at Politecnico di Torino.
 
 ## About
 
