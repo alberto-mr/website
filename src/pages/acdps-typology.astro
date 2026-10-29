@@ -1,0 +1,450 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const patterns = [
+  {
+    id: 'P1',
+    name: 'Infinite Scroll',
+    type: 'seductive',
+    description: 'New content loads automatically as the user scrolls down, so the feed never ends. By removing natural stopping points, it makes it easy to keep consuming content well beyond what was intended.',
+    examples: 'Social media feeds, e.g., Facebook, Instagram, and X/Twitter.',
+  },
+  {
+    id: 'P2',
+    name: 'Casino Pull-to-Refresh',
+    type: 'seductive',
+    description: 'Swiping down reloads the page with an animation that may or may not reveal new content. Like a slot machine, the unpredictable outcome acts as a variable reward that encourages compulsive refreshing.',
+    examples: 'Mobile social media apps.',
+  },
+  {
+    id: 'P3',
+    name: 'Neverending Autoplay',
+    type: 'seductive',
+    description: 'When a video ends, the next one starts automatically, while the option to stop it is hidden or not available. Users no longer need to decide whether to keep watching, which undermines their sense of agency.',
+    examples: 'YouTube\'s autoplay countdown; autoplaying videos and stories on Facebook and Instagram.',
+  },
+  {
+    id: 'P4',
+    name: 'Guilty Pleasure Recommendations',
+    type: 'seductive',
+    description: 'Personalized suggestions target users\' known weak spots, tempting them to consume more content. Users often end up regretting the time spent and feeling guilty afterwards.',
+    examples: 'Video recommendations on YouTube; suggested content on Facebook and Instagram.',
+  },
+  {
+    id: 'P5',
+    name: 'Disguised Ads and Recommendations',
+    type: 'deceptive',
+    description: 'Advertisements and recommendations are camouflaged as regular content, e.g., posts or stories from friends, so users engage with them without realizing what they are.',
+    examples: 'Sponsored posts and stories on Instagram and Facebook; suggested posts from non-followed accounts on X/Twitter.',
+  },
+  {
+    id: 'P6',
+    name: 'Recapture Notifications',
+    type: 'seductive',
+    description: 'Notifications are deliberately sent to draw users back into the service, often about content or activity they never engaged with, starting new and unplanned usage sessions.',
+    examples: 'Activity alerts on Facebook; video suggestions from YouTube.',
+  },
+  {
+    id: 'P7',
+    name: 'Playing by Appointment',
+    type: 'seductive',
+    description: 'The service dictates when users have to come back, and they risk losing points, progress, or rewards if they do not show up at the right time.',
+    examples: 'Crops to harvest in FarmVille; Snapchat streaks; BeReal\'s daily notification.',
+  },
+  {
+    id: 'P8',
+    name: 'Grinding',
+    type: 'seductive',
+    description: 'Users have to repeat the same tedious tasks over and over to unlock achievements or rewards, artificially extending the time they spend on the service.',
+    examples: 'Experience points in online games, e.g., World of Warcraft; activity-based badges on social media.',
+  },
+  {
+    id: 'P9',
+    name: 'Attentional Roach Motel',
+    type: 'deceptive',
+    description: 'Getting into the service is easy, but getting out is hard: logging out, deactivating, or deleting an account requires hidden settings and many steps, keeping users attached.',
+    examples: 'Account logout and deletion flows on Facebook.',
+  },
+  {
+    id: 'P10',
+    name: 'Time Fog',
+    type: 'deceptive',
+    description: 'The interface hides or reduces cues about how much time has passed, so users lose track of their time.',
+    examples: 'Video players that do not show the elapsed time; full-screen mobile games that hide the device clock.',
+  },
+  {
+    id: 'P11',
+    name: 'Fake Social Notifications',
+    type: 'deceptive',
+    description: 'Messages pretend to come from other people or report social activity that the user never engaged with, exploiting social pressure to draw users back into the service.',
+    examples: '"User X just joined" or "User X tweeted after a while" notifications; invitations sent on behalf of friends in games.',
+  },
+];
+
+const seductiveCount = patterns.filter((p) => p.type === 'seductive').length;
+const deceptiveCount = patterns.filter((p) => p.type === 'deceptive').length;
+---
+
+<BaseLayout title="ACDPs Typology">
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Attention-Capture Damaging Patterns</h1>
+        <p class="page-subtitle">
+          A typology of 11 design patterns that exploit users' psychological vulnerabilities to capture their attention.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="typology-intro">
+    <div class="container intro-grid">
+      <div class="intro-text">
+      <p>
+        Many technology companies design their services to maximize the time people spend on them and how often
+        they come back, frequently at the expense of users' digital wellbeing. While previous typologies of
+        dark patterns mainly focused on financial and privacy harms, <strong>Attention-Capture Damaging Patterns
+        (ACDPs)</strong> target what is arguably our most precious resource: attention.
+      </p>
+      <p>
+        We identified ACDPs through a systematic literature review of 43 papers, published at
+        <a href="https://dl.acm.org/doi/10.1145/3544548.3580729" target="_blank" rel="noopener">CHI 2023</a>
+        in collaboration with Kai Lukoff and Luigi De Russis. We define an ACDP as:
+      </p>
+      <blockquote class="definition">
+        A recurring pattern in digital interfaces that a designer uses to exploit psychological vulnerabilities
+        and capture attention, often leading the user to lose track of their goals, lose their sense of time
+        and control, and later feel regret.
+      </blockquote>
+      <p>
+        The typology distinguishes between <strong>seductive</strong> designs, which tempt users with short-term
+        satisfaction to encourage passive and continuous use, and <strong>deceptive</strong> designs, which
+        manipulate users into false beliefs.
+      </p>
+      </div>
+      <figure class="intro-figure">
+        <img
+          src="/assets/images/acdps-infinite-scroll.gif"
+          alt="Animated smartphone mockup of a social media feed that keeps scrolling: new posts and loading spinners keep appearing, with no end in sight."
+          width="400"
+          height="753"
+          loading="eager"
+        />
+        <figcaption>
+          <strong>Infinite Scroll (P1)</strong>: new posts keep loading as the user scrolls, removing any natural stopping point.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="typology-section">
+    <div class="container">
+      <div class="filter-bar" role="group" aria-label="Filter patterns">
+        <button class="filter-btn active" data-filter="all">All ({patterns.length})</button>
+        <button class="filter-btn" data-filter="seductive">Seductive ({seductiveCount})</button>
+        <button class="filter-btn" data-filter="deceptive">Deceptive ({deceptiveCount})</button>
+      </div>
+
+      <div class="pattern-grid">
+        {patterns.map((p) => (
+          <article class="pattern-card" data-type={p.type}>
+            <div class="pattern-header">
+              <span class="pattern-id">{p.id}</span>
+              <span class={`pattern-badge ${p.type}`}>{p.type}</span>
+            </div>
+            <h2 class="pattern-name">{p.name}</h2>
+            <p class="pattern-description">{p.description}</p>
+            <p class="pattern-examples"><span>Examples:</span> {p.examples}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="typology-intro">
+    <div class="container narrow">
+      <h2 class="section-heading">How to cite</h2>
+      <p class="citation">
+        Alberto Monge Roffarello, Kai Lukoff, and Luigi De Russis. 2023. Defining and Identifying Attention Capture
+        Deceptive Designs in Digital Interfaces. In <em>Proceedings of the 2023 CHI Conference on Human Factors in
+        Computing Systems</em> (CHI '23). ACM, New York, NY, USA, Article 194, 19 pages.
+        <a href="https://doi.org/10.1145/3544548.3580729" target="_blank" rel="noopener">https://doi.org/10.1145/3544548.3580729</a>
+      </p>
+
+      <h2 class="section-heading">More resources</h2>
+      <ul class="resources">
+        <li><a href="https://dl.acm.org/doi/10.1145/3544548.3580729" target="_blank" rel="noopener">Paper on the ACM Digital Library</a></li>
+        <li><a href="https://iris.polito.it/handle/11583/2978380" target="_blank" rel="noopener">Paper on PORTO@IRIS (open access)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Bw9m8j3_jJ0" target="_blank" rel="noopener">CHI 2023 talk recording</a></li>
+        <li><a href="https://www.figma.com/community/plugin/1310606990428971215/digital-wellbeing-lens" target="_blank" rel="noopener">Digital Wellbeing Lens: a Figma plugin to detect ACDPs in UI mockups</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.pattern-card');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.classList.toggle('active', b === btn));
+      cards.forEach((card) => {
+        card.hidden = filter !== 'all' && card.dataset.type !== filter;
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="300" r="200" fill="url(%23a)"/><circle cx="400" cy="700" r="250" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .page-header {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+
+  .narrow {
+    max-width: 800px;
+  }
+
+  .intro-grid {
+    max-width: 1040px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .intro-figure {
+    margin: 0;
+    text-align: center;
+  }
+
+  .intro-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .intro-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .typology-intro {
+    padding: 3rem 0 1rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+  }
+
+  .typology-intro p {
+    margin-bottom: 1rem;
+  }
+
+  .typology-intro a {
+    color: var(--primary-color);
+  }
+
+  .definition {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #764ba2;
+    background: var(--bg-accent);
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .typology-section {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: #764ba2;
+  }
+
+  .filter-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    color: white;
+  }
+
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pattern-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pattern-card[hidden] {
+    display: none;
+  }
+
+  .pattern-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .pattern-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .pattern-id {
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .pattern-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .pattern-badge.seductive {
+    background: #ede9fe;
+    color: #5b21b6;
+  }
+
+  .pattern-badge.deceptive {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .pattern-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .pattern-description {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .pattern-examples {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .pattern-examples span {
+    font-weight: 600;
+  }
+
+  .section-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem 0 1rem;
+    color: var(--text-primary);
+  }
+
+  .citation {
+    background: var(--bg-accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .resources {
+    padding-left: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .resources li {
+    margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+
+    .pattern-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .intro-figure {
+      max-width: 220px;
+      margin: 0 auto;
+    }
+  }
+</style>
